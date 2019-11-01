@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="6e8f690f-cb82-4c15-86c2-c6b87e2a7f23">
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="NotaCredito" />
+  <Table name="NotaCreditoDetalle" />
+  <Table name="Localidad" />
+  <Table name="PersonaDomicilio" />
+  <Table name="Provincia" />
+  <Table name="Departamento" />
+</Dependencies>

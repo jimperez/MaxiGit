@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="a5e11ae5-1af6-41b6-823a-1991837f7a06">
+  <Table name="UnidadMedida" />
+  <Table name="ArticuloUnidadMedida" />
+</Dependencies>

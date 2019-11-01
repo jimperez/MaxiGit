@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="b5f5478e-9dff-4012-ac15-1e71bdf6cd8a">
+  <Table name="Caja" />
+  <Table name="TransferenciaEfectivo" />
+</Dependencies>

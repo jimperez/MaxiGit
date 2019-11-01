@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="a77cea11-075b-454c-bc3d-73f8833e9f19">
+  <Table name="Articulo" />
+  <Table name="ArticuloCaracteristicaSerie" />
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="PersonaFisica" />
+  <Table name="Tarjeta" />
+  <Table name="TarjetaEmiPlan" />
+  <Table name="Plan" />
+  <Table name="EmisorTarjeta" />
+  <Table name="Fondo" />
+  <Table name="FacturaVta" />
+  <Table name="FacturaVtaDetalle" />
+  <Table name="FacturaVtaDetalleSuc" />
+  <Table name="FacturaVtaFinanciera" />
+  <Table name="FacturaVtaFondo" />
+  <Table name="FacturaVtaMutual" />
+  <Table name="FacturaVtaTarjeta" />
+  <Table name="FinancieraPlan" />
+  <Table name="MutualPlan" />
+  <Table name="Credito" />
+  <Table name="CreditoCuota" />
+  <Table name="FacturaVtaCredito" />
+  <Table name="Caracteristica" />
+  <Table name="Localidad" />
+  <Table name="Provincia" />
+</Dependencies>

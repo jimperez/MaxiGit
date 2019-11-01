@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="d9f6a51a-a0c1-45d5-bf1b-24e1ac3ff71d">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="Sucursal" />
+  <Table name="Plan" />
+  <Table name="Credito" />
+  <Table name="CreditoCuota" />
+  <Table name="ArticuloPlanCredito" />
+</Dependencies>

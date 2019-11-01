@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="b7d648bc-a7b8-489d-8e17-df1496a97a40">
+  <Table name="Sucursal" />
+  <Table name="Banco" />
+  <Table name="Persona" />
+  <Table name="CBU" />
+  <Table name="BancoSucursal" />
+  <Table name="BoletaDeposito" />
+</Dependencies>

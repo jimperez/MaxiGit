@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="74d57e50-8a34-4432-bb05-5502731f6752">
+  <Table name="Banco" />
+  <Table name="CBU" />
+  <Table name="BancoSucursal" />
+  <Table name="ComprobanteTipo" />
+  <Table name="LibroBanco" />
+  <Table name="TipoMovBancario" />
+</Dependencies>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="9a10b01f-2a0b-4311-acf8-f1d4a729776f">
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="GFK" />
+</Dependencies>

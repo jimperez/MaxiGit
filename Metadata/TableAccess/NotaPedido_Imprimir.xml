@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="10d6407e-5291-41c7-ac44-7fe9c3ce31ab">
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="Persona" />
+  <Table name="NotaPedidoDetalle" />
+  <Table name="NotaPedidoDetalleDescuento" />
+  <Table name="Fondo" />
+  <Table name="NotaPedido" />
+  <Table name="NotaPedidoCondicion" />
+  <Table name="CondicionCompra" />
+  <Table name="NotaPedidoDescuento" />
+  <Table name="NotaPedidoPago" />
+  <Table name="Localidad" />
+  <Table name="Provincia" />
+</Dependencies>

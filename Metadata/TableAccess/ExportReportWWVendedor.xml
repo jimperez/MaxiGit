@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="145d4f6d-4c3a-4123-a304-240623ff2ac7">
+  <Table name="PersonaFisica" />
+  <Table name="Vendedor" />
+</Dependencies>

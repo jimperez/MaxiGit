@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="e61eacb4-2da0-4fc6-8176-05db69b6bb9f">
+  <Table name="Caja" />
+  <Table name="CajaArqueo" />
+</Dependencies>

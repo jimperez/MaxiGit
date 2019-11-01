@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="fda2605f-203a-4e95-88e0-66c85b60261d">
+  <Table name="Sucursal" />
+  <Table name="VentaTotal" />
+</Dependencies>

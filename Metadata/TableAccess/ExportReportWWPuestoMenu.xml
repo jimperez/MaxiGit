@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="d7f725e3-fb9f-4772-ae5b-ddeb95209c62">
+  <Table name="Puesto" />
+  <Table name="Menues" />
+  <Table name="PuestoMenu" />
+</Dependencies>

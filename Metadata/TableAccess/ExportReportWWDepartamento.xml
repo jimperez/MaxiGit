@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="fdf320e0-0e9c-40e9-b672-3baefad08956">
+  <Table name="Provincia" />
+  <Table name="Departamento" />
+</Dependencies>

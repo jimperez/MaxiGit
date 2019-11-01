@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="c70e06bd-1994-4cd0-981e-3942b06e01b9">
+  <Table name="Sucursal" />
+  <Table name="Localidad" />
+  <Table name="Provincia" />
+</Dependencies>

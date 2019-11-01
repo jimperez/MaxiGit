@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="0834846d-c863-434e-a504-52b205cea693">
+  <Table name="ComprobanteTipo" />
+  <Table name="CuentaMovimiento" />
+</Dependencies>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="b526b34d-afef-4f04-abe0-fe63df5da561">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="Sucursal" />
+  <Table name="Tarjeta" />
+  <Table name="TarjetaEmiPlan" />
+  <Table name="Plan" />
+  <Table name="EmisorTarjeta" />
+  <Table name="ArticuloPlanTarjeta" />
+</Dependencies>

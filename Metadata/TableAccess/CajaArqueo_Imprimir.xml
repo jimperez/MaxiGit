@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="a3f349c9-67d8-490c-b942-69c02ee4da47">
+  <Table name="Sucursal" />
+  <Table name="Banco" />
+  <Table name="Persona" />
+  <Table name="Caja" />
+  <Table name="CajaFisica" />
+  <Table name="PersonaFisica" />
+  <Table name="CajaMovimientoFondo" />
+  <Table name="Cheque" />
+  <Table name="BancoSucursal" />
+  <Table name="Cupon" />
+  <Table name="Tarjeta" />
+  <Table name="TarjetaEmiPlan" />
+  <Table name="Plan" />
+  <Table name="EmisorTarjeta" />
+  <Table name="CajaMovimiento" />
+  <Table name="CajaArqueo" />
+  <Table name="CajaArqueoFondo" />
+  <Table name="CajaArqueoEfectivo" />
+  <Table name="CajaArqueoTarjeta" />
+  <Table name="CajaArqueoFinanciera" />
+  <Table name="CajaArqueoMutual" />
+  <Table name="FacturaVta" />
+  <Table name="FacturaVtaFinanciera" />
+  <Table name="FacturaVtaMutual" />
+  <Table name="FacturaVtaTarjeta" />
+  <Table name="FinancieraPlan" />
+  <Table name="MutualPlan" />
+</Dependencies>

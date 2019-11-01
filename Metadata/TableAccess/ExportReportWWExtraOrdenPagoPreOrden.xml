@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="41b96f93-db0d-461c-aa2b-37e4977046da">
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="OrdenPago" />
+  <Table name="OrdenPagoDetalle" />
+  <Table name="OrdenPagoImpuesto" />
+</Dependencies>

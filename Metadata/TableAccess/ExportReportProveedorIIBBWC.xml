@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="c958a290-983d-4adc-820c-ad95d04bf05e">
+  <Table name="Provincia" />
+  <Table name="ProveedorIIBB" />
+</Dependencies>

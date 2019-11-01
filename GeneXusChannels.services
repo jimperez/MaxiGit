@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ExposableServices module="GeneXusChannels">
-  <Service name="GeneXusChannels.Message.SendMessage" fullName="GeneXus.Programs.genexuschannels.message.sendmessage" />
-</ExposableServices>

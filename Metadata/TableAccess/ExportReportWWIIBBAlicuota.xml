@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="8772f75d-9adf-4c29-9cd8-dc237a04ca35">
+  <Table name="Provincia" />
+  <Table name="IIBBAlicuota" />
+</Dependencies>

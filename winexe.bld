@@ -1,6 +1,6 @@
 /t:winexe
 /w:0
-
+/r:bin\GeneXus.Security.API.Common.dll
 
 /r:bin\GXClasses.dll
 /r:system.web.dll

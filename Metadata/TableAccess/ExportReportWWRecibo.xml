@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="ab0637df-b00d-4488-9028-3a272a7e2dd4">
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="Recibo" />
+</Dependencies>

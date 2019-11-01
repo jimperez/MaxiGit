@@ -1,1 +1,0 @@
-<%@ServiceHost Service= "GeneXus.AI.genexusai.zcommon.media.image.getdimension_services,genexusai" %>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="6e0c2db0-d4dd-44cb-a119-215b33234006">
+  <Table name="Sucursal" />
+  <Table name="Cupon" />
+  <Table name="Tarjeta" />
+  <Table name="TarjetaEmiPlan" />
+  <Table name="Plan" />
+  <Table name="EmisorTarjeta" />
+</Dependencies>

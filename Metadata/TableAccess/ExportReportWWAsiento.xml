@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="7728b6db-77d0-4132-b27e-0a6d283c85d3">
+  <Table name="Sucursal" />
+  <Table name="Asiento" />
+  <Table name="CentroCosto" />
+  <Table name="AsientoDetalle" />
+</Dependencies>

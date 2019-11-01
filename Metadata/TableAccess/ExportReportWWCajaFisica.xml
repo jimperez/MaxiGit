@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="1883dce8-b551-495d-85ab-6cee5b3fde78">
+  <Table name="Sucursal" />
+  <Table name="CajaFisica" />
+</Dependencies>

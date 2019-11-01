@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="345d32d1-410a-4e91-96e4-438408c5e223">
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="RemitoAjuste" />
+</Dependencies>

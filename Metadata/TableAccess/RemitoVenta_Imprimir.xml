@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="ae6fcbf9-fcae-4fcb-9cdd-2676df2034f1">
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="Persona" />
+  <Table name="RemitoVenta" />
+  <Table name="RemitoVentaDetalle" />
+  <Table name="Localidad" />
+  <Table name="PersonaDomicilio" />
+  <Table name="Provincia" />
+  <Table name="Departamento" />
+  <Table name="ArticuloStock" />
+  <Table name="PersonaFisica" />
+  <Table name="FacturaVta" />
+</Dependencies>

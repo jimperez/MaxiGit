@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="612afeaa-4ec8-45f3-b9e4-a9eb9694f938">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="RemitoAjuste" />
+  <Table name="RemitoAjusteDetalle" />
+</Dependencies>

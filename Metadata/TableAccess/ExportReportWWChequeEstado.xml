@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="554c0163-99c4-4ba3-a77a-ebd4ade5691f">
+  <Table name="EstadoCheque" />
+  <Table name="ChequeEstado" />
+</Dependencies>

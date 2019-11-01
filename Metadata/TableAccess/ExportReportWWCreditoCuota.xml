@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="f6857621-eb10-41b5-9fec-2eb9da8ebd56">
+  <Table name="Plan" />
+  <Table name="Credito" />
+  <Table name="CreditoCuota" />
+</Dependencies>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="a6976376-cbe6-4d40-a4fe-fdec1f2b819b">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="RemitoCompra" />
+  <Table name="RemitoCompraDetalle" />
+  <Table name="Localidad" />
+  <Table name="Provincia" />
+</Dependencies>

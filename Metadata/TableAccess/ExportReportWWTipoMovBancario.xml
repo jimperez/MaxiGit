@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="cf10db0a-610b-47f3-b431-11de52f23ba2">
+  <Table name="PlanCuenta" />
+  <Table name="TipoMovBancario" />
+</Dependencies>

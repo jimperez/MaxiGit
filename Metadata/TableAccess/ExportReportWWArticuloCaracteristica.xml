@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="6d6cdbf8-4278-4338-858a-7cef5e9e129b">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="Caracteristica" />
+  <Table name="ArticuloCaracteristica" />
+</Dependencies>

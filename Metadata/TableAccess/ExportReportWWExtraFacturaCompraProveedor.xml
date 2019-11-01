@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="6c3019f3-4d8d-449b-8dc8-8a343f65d007">
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="Proveedor" />
+  <Table name="FacturaCompra" />
+</Dependencies>

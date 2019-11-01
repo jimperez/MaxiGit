@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="c2b6162d-72bb-4da8-8bae-ded3f3105212">
+  <Table name="FacturaCompra" />
+  <Table name="FacturaCompraPago" />
+</Dependencies>

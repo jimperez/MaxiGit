@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="1f7161c6-afa3-464c-b964-718a2fa3c859">
+  <Table name="Sucursal" />
+  <Table name="Banco" />
+  <Table name="Persona" />
+  <Table name="CajaComprobante" />
+  <Table name="Cheque" />
+  <Table name="BancoSucursal" />
+  <Table name="Impuesto" />
+  <Table name="OrdenPago" />
+  <Table name="OrdenPagoDetalle" />
+  <Table name="OrdenPagoFondo" />
+  <Table name="Fondo" />
+  <Table name="CuentaMovimiento" />
+  <Table name="OrdenPagoCheque" />
+  <Table name="Recibo" />
+  <Table name="OrdenPagoRendicion" />
+  <Table name="OrdenPagoImpuesto" />
+  <Table name="OrdenPagoReciboCanje" />
+  <Table name="OrdenPagoChequeP" />
+  <Table name="OrdenPagoDeposito" />
+  <Table name="OrdenPagoTransferencia" />
+  <Table name="Localidad" />
+  <Table name="PersonaDomicilio" />
+  <Table name="Provincia" />
+  <Table name="Departamento" />
+</Dependencies>

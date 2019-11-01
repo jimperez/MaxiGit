@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="a7deee60-0c1d-47ac-ad63-78556a4bee74">
+  <Table name="Deposito" />
+  <Table name="RemitoInterno" />
+  <Table name="RemitoInternoDetalle" />
+  <Table name="Sucursal" />
+  <Table name="Localidad" />
+  <Table name="Provincia" />
+</Dependencies>

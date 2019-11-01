@@ -1,0 +1,1 @@
+<%@ServiceHost Service= "GeneXus.Programs.genexusai.zcommon.utils.file.server.pathtosrvurl_services,genexusai" %>

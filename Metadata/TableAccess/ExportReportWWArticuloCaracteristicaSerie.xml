@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="7011ac80-aeb2-4729-9e30-3814a3ca4c37">
+  <Table name="Articulo" />
+  <Table name="Marca" />
+  <Table name="Grupo" />
+  <Table name="SubGrupo" />
+  <Table name="ArticuloStock" />
+  <Table name="ArticuloCaracteristicaSerie" />
+  <Table name="Sucursal" />
+  <Table name="Deposito" />
+  <Table name="Caracteristica" />
+</Dependencies>

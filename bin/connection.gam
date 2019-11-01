@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ConnectionCollection>
+  <Connection>
+    <Name>SIGMA</Name>
+    <Repository>214bf64d-e942-48af-ba54-c37dd584b878</Repository>
+    <UserName>N/Nr8LTO00sMnl9Lou7cfA==</UserName>
+    <UserPassword>w3fbvWbbNP0SutzMVXak9g==</UserPassword>
+    <Type>LAN                           </Type>
+    <Language />
+    <Properties />
+  </Connection>
+</ConnectionCollection>

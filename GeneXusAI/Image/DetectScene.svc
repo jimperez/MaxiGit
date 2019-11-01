@@ -1,1 +1,1 @@
-<%@ServiceHost Service= "GeneXus.AI.genexusai.image.inference.cloud.detectscene_services,genexusai" %>
+<%@ServiceHost Service= "GeneXus.Programs.genexusai.image.detectscene_services,genexusai" %>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="ee6ff8ab-461b-4a4f-882e-14ffa1725b9a">
+  <Table name="Sucursal" />
+  <Table name="CajaComprobante" />
+  <Table name="CajaComprobanteFondo" />
+  <Table name="ComprobanteTipo" />
+</Dependencies>

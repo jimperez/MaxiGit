@@ -4,31 +4,59 @@
       <sectionGroup  name="languages" type="System.Configuration.NameValueSectionHandler">
          <section  name="Spanish" type="System.Configuration.SingleTagSectionHandler" requirePermission="false"/>
       </sectionGroup>
+      <section  name="sustainsys.saml2" type="Sustainsys.Saml2.Configuration.SustainsysSaml2Section, Sustainsys.Saml2"/>
+      <section  name="system.identityModel" type="System.IdentityModel.Configuration.SystemIdentityModelSection, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
    </configSections>
    <appSettings>
       <add  key="AppMainNamespace" value="GeneXus.Programs"/>
-      <add  key="DataStore1" value="Default"/>
-      <add  key="DataStore-Count" value="1"/>
+      <add  key="DataStore1" value="GAM"/>
+      <add  key="DataStore2" value="AFIP"/>
+      <add  key="DataStore3" value="Default"/>
+      <add  key="DataStore-Count" value="3"/>
+      <add  key="Connection-GAM-DBMS" value="sqlserver"/>
+      <add  key="Connection-GAM-Port" value=""/>
+      <add  key="Connection-GAM-LockTimeout" value="0"/>
+      <add  key="Connection-GAM-LockRetryCount" value="10"/>
+      <add  key="Connection-GAM-IsolationLevel" value="CR"/>
+      <add  key="Connection-GAM-Datasource" value="F/qIgJbdf6N/A7GK9pczHGa7t3oqucxYMJNl//VQ1yOYh8WoLX33MLvmJzRp/OPc"/>
+      <add  key="Connection-GAM-User" value="pHZnB0VdWX26gKHC7P5Ct/=="/>
+      <add  key="Connection-GAM-Password" value="QJJo5Y11yIAhasPuE4Wc+4=="/>
+      <add  key="Connection-GAM-DB" value="GamSIGMA"/>
+      <add  key="Connection-GAM-Schema" value="AcNMu2fK7ytcxZ3B9UN+W0=="/>
+      <add  key="Connection-GAM-Opts" value=";Integrated Security=no;"/>
+      <add  key="Connection-GAM-TrnInt" value="1"/>
+      <add  key="Connection-AFIP-DBMS" value="sqlserver"/>
+      <add  key="Connection-AFIP-Port" value=""/>
+      <add  key="Connection-AFIP-LockTimeout" value="0"/>
+      <add  key="Connection-AFIP-LockRetryCount" value="10"/>
+      <add  key="Connection-AFIP-IsolationLevel" value="CR"/>
+      <add  key="Connection-AFIP-Datasource" value="bSZ60awbpSMv9xQ++T2EzbmtUvavqYMR8cOWg5XUIhS4ceXbyVa6X0QWks5NimVs"/>
+      <add  key="Connection-AFIP-User" value="pHZnB0VdWX26gKHC7P5Ct/=="/>
+      <add  key="Connection-AFIP-Password" value="QJJo5Y11yIAhasPuE4Wc+4=="/>
+      <add  key="Connection-AFIP-DB" value="AFIP"/>
+      <add  key="Connection-AFIP-Schema" value="82sPNmMP8O3TlpdEZk1r8E=="/>
+      <add  key="Connection-AFIP-Opts" value=";Integrated Security=no;"/>
+      <add  key="Connection-AFIP-TrnInt" value="1"/>
       <add  key="Connection-Default-DBMS" value="sqlserver"/>
       <add  key="Connection-Default-Port" value=""/>
       <add  key="Connection-Default-LockTimeout" value="0"/>
       <add  key="Connection-Default-LockRetryCount" value="10"/>
       <add  key="Connection-Default-IsolationLevel" value="CR"/>
-      <add  key="Connection-Default-Datasource" value="82sPNmMP8O3TlpdEZk1r8E=="/>
-      <add  key="Connection-Default-User" value="82sPNmMP8O3TlpdEZk1r8E=="/>
-      <add  key="Connection-Default-Password" value="82sPNmMP8O3TlpdEZk1r8E=="/>
-      <add  key="Connection-Default-DB" value=""/>
+      <add  key="Connection-Default-Datasource" value="F/qIgJbdf6N/A7GK9pczHGa7t3oqucxYMJNl//VQ1yOYh8WoLX33MLvmJzRp/OPc"/>
+      <add  key="Connection-Default-User" value="pHZnB0VdWX26gKHC7P5Ct/=="/>
+      <add  key="Connection-Default-Password" value="QJJo5Y11yIAhasPuE4Wc+4=="/>
+      <add  key="Connection-Default-DB" value="SIGMA"/>
       <add  key="Connection-Default-Schema" value="82sPNmMP8O3TlpdEZk1r8E=="/>
-      <add  key="Connection-Default-Opts" value=";Integrated Security=yes;"/>
+      <add  key="Connection-Default-Opts" value=";Integrated Security=no;"/>
       <add  key="Connection-Default-TrnInt" value="1"/>
       <add  key="DateFormat" value="DMY"/>
       <add  key="YearLimit" value="1940"/>
       <add  key="TimeAmPmFormat" value="24"/>
-      <add  key="VER_STAMP" value=""/>
+      <add  key="VER_STAMP" value="20191028.211216"/>
       <add  key="CS_BLOB_PATH" value="PublicTempStorage"/>
       <add  key="TMPMEDIA_DIR" value="PrivateTempStorage"/>
       <add  key="PRINT_LAYOUT_METADATA_DIR" value="LayoutMetadata"/>
-      <add  key="StorageTimeZone" value="1"/>
+      <add  key="StorageTimeZone" value="2"/>
       <add  key="LOGIN_AS_USERID" value="0"/>
       <add  key="LANGUAGE" value="spa"/>
       <add  key="LANG_NAME" value="Spanish"/>
@@ -36,11 +64,13 @@
       <add  key="DATE_FMT" value="DMY"/>
       <add  key="CTOD_DATE_FMT" value="L"/>
       <add  key="Culture" value="es-ES"/>
-      <add  key="Theme" value="Carmine"/>
-      <add  key="EnableIntegratedSecurity" value="0"/>
+      <add  key="Theme" value="WorkWithPlusTheme"/>
+      <add  key="EnableIntegratedSecurity" value="1"/>
+      <add  key="IntegratedSecurityLoginWeb" value="gamloginmh,objects"/>
+      <add  key="IntegratedSecurityNotAuthorizedWeb" value="gamnotauthorized,objects"/>
       <add  key="MAX_CURSOR" value="100"/>
       <add  key="STATIC_CONTENT" value=""/>
-      <add  key="GX_BUILD_NUMBER" value="136889"/>
+      <add  key="GX_BUILD_NUMBER" value="135614"/>
       <add  key="CACHE_CONTENT_EXPIRATION" value="36"/>
       <add  key="ENABLE_MANAGEMENT" value="0"/>
       <add  key="COMPRESS_HTML" value="1"/>
@@ -48,7 +78,7 @@
       <add  key="DocumentType" value="HTML5"/>
       <add  key="SMART_CACHING" value="0"/>
       <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="201911111593991"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="201910299352463"/>
    </appSettings>
    <languages >
       <Spanish  code="spa" time_fmt="24" decimal_point="," thousand_sep="." date_fmt="DMY" culture="es-ES"/>
@@ -56,30 +86,144 @@
    <log4net  configSource="log.config"/>
    <system.web>
       <trace  enabled="false"/>
-      <httpRuntime  requestValidationMode="2.0" targetFramework="4.6"/>
+      <httpRuntime  requestValidationMode="2.0" targetFramework="4.6" requestPathInvalidCharacters=""/>
       <compilation  optimizeCompilations="true">
          <assemblies>
          </assemblies>
       </compilation>
    </system.web>
    <system.serviceModel>
+      <client>
+      </client>
       <serviceHostingEnvironment  aspNetCompatibilityEnabled="true"/>
+      <services>
+         <service  name="GeneXus.Programs.awscomprobante_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.awscomprobante_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+         <service  name="GeneXus.Programs.awscomprobantes_grabarnro_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.awscomprobantes_grabarnro_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+         <service  name="GeneXus.Programs.awscomprobantessdt_imprimir_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.awscomprobantessdt_imprimir_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+         <service  name="GeneXus.Programs.awscomprobantes_imprimir_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.awscomprobantes_imprimir_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+         <service  name="GeneXus.Programs.wwpbaseobjects.gethomesamplenamevaluedata_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.wwpbaseobjects.gethomesamplenamevaluedata_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+         <service  name="GeneXus.Programs.wwpbaseobjects.gethomesampledata_services" behaviorConfiguration="ServiceDefaultBehavior">
+            <endpoint  address="" binding="basicHttpBinding" bindingConfiguration="CustomBinding" contract="GeneXus.Programs.wwpbaseobjects.gethomesampledata_services"/>
+            <endpoint  address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+         </service>
+      </services>
+      <extensions>
+         <behaviorExtensions>
+            <add  name="customWebHttp" type="GeneXus.Utils.CustomHttpBehaviorExtensionElement, GxClasses, Version=11.0.0.0, Culture=neutral, PublicKeyToken=6f5bf81c27b6b8aa"/>
+         </behaviorExtensions>
+      </extensions>
+      <behaviors>
+         <serviceBehaviors>
+            <behavior  name="ServiceDefaultBehavior">
+               <serviceMetadata  httpGetEnabled="true"/>
+               <dataContractSerializer  maxItemsInObjectGraph="2147483647"/>
+            </behavior>
+         </serviceBehaviors>
+      </behaviors>
+      <bindings>
+         <webHttpBinding>
+            <binding  name="CustomBinding" maxReceivedMessageSize="10485760">
+               <security  mode="None">
+                  <transport  clientCredentialType="None"/>
+               </security>
+               <readerQuotas  maxStringContentLength="10485760"/>
+            </binding>
+         </webHttpBinding>
+         <basicHttpBinding>
+            <binding  name="CustomBinding" maxReceivedMessageSize="10485760">
+               <security  mode="None">
+                  <transport  clientCredentialType="None"/>
+               </security>
+               <readerQuotas  maxStringContentLength="10485760"/>
+            </binding>
+         </basicHttpBinding>
+      </bindings>
    </system.serviceModel>
    <system.webServer>
+      <rewrite>
+         <rules>
+            <rule  name="GXOAuthAccessToken" stopProcessing="true">
+               <match  url="^oauth/access_token$"/>
+               <action  type="Rewrite" url="GXOAuthAccessToken.aspx"/>
+            </rule>
+            <rule  name="GXOAuthLogout" stopProcessing="true">
+               <match  url="^oauth/logout$"/>
+               <action  type="Rewrite" url="GXOAuthLogout.aspx"/>
+            </rule>
+            <rule  name="GXOAuthUserInfo" stopProcessing="true">
+               <match  url="^oauth/userinfo$"/>
+               <action  type="Rewrite" url="GXOAuthUserInfo.aspx"/>
+            </rule>
+            <rule  name="GXGamSignIn" stopProcessing="true">
+               <match  url="^oauth/gam/signin$"/>
+               <action  type="Rewrite" url="agamextauthinput.aspx"/>
+            </rule>
+            <rule  name="GXGamCallback" stopProcessing="true">
+               <match  url="^oauth/gam/callback$"/>
+               <action  type="Rewrite" url="agamextauthinput.aspx"/>
+            </rule>
+            <rule  name="GXGamAccessToken" stopProcessing="true">
+               <match  url="^oauth/gam/access_token$"/>
+               <action  type="Rewrite" url="agamoauth20getaccesstoken.aspx"/>
+            </rule>
+            <rule  name="GXGamUserInfo" stopProcessing="true">
+               <match  url="^oauth/gam/userinfo$"/>
+               <action  type="Rewrite" url="agamoauth20getuserinfo.aspx"/>
+            </rule>
+            <rule  name="GXGamSignOut" stopProcessing="true">
+               <match  url="^oauth/gam/signout$"/>
+               <action  type="Rewrite" url="agamextauthinput.aspx"/>
+            </rule>
+            <rule  name="GXGamSamlSignin" stopProcessing="true">
+               <match  url="^saml/gam/signin$"/>
+               <action  type="Rewrite" url="Saml2/SignIn"/>
+            </rule>
+            <rule  name="GXGamSamlCallBack" stopProcessing="true">
+               <match  url="^saml/gam/callback$"/>
+               <action  type="Rewrite" url="gamexternalauthenticationinputsaml20_ws.aspx"/>
+            </rule>
+            <rule  name="GXGamSamlSignout" stopProcessing="true">
+               <match  url="^saml/gam/signout$"/>
+               <action  type="Rewrite" url="Saml2/Logout"/>
+            </rule>
+            <rule  name="GXGamRequestTokenService" stopProcessing="true">
+               <match  url="^oauth/requesttokenservice$"/>
+               <action  type="Rewrite" url="agamstsauthappgetaccesstoken.aspx"/>
+            </rule>
+            <rule  name="GXGamQueryAccessToken" stopProcessing="true">
+               <match  url="^oauth/queryaccesstoken$"/>
+               <action  type="Rewrite" url="agamstsauthappvalidaccesstoken.aspx"/>
+            </rule>
+         </rules>
+      </rewrite>
+      <httpErrors  errorMode="Detailed"/>
       <staticContent>
          <remove  fileExtension=".json"/>
          <remove  fileExtension=".woff"/>
          <remove  fileExtension=".woff2"/>
          <remove  fileExtension=".tmp"/>
          <remove  fileExtension=".otf"/>
-         <remove  fileExtension=".apk"/>
          <mimeMap  fileExtension=".json" mimeType="application/json"/>
          <mimeMap  fileExtension=".woff" mimeType="font/woff"/>
          <mimeMap  fileExtension=".woff2" mimeType="font/woff2"/>
          <mimeMap  fileExtension=".tmp" mimeType="image/jpeg"/>
          <mimeMap  fileExtension=".otf" mimeType="font/opentype"/>
          <mimeMap  fileExtension=".gxsd" mimeType="application/zip"/>
-         <mimeMap  fileExtension=".apk" mimeType="application/vnd.android.package-archive"/>
       </staticContent>
       <handlers>
          <add  name="GeneXus WebSocket Handler" verb="*" path="gxwebsocket.svc" type="GeneXus.Http.WSHttpHandler,gxwebsocket"/>
@@ -88,6 +232,8 @@
       </handlers>
       <modules>
          <add  name="GXStaticContentCache" type="GeneXus.Http.HttpModules.GXStaticCacheModule,gxclasses"/>
+         <add  name="SessionAuthenticationModule" type="System.IdentityModel.Services.SessionAuthenticationModule, System.IdentityModel.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+         <add  name="Saml2AuthenticationModule" type="Sustainsys.Saml2.HttpModule.Saml2AuthenticationModule, Sustainsys.Saml2.HttpModule"/>
       </modules>
       <validation  validateIntegratedModeConfiguration="false"/>
       <urlCompression  doStaticCompression="true"/>

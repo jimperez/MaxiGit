@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="f3efcae6-3b1c-4739-be85-cbcf07793aef">
+  <Table name="Articulo" />
+  <Table name="ArticuloCaracteristicaSerie" />
+  <Table name="Persona" />
+  <Table name="Cliente" />
+  <Table name="CondicionIVA" />
+  <Table name="FacturaVta" />
+  <Table name="FacturaVtaDetalle" />
+  <Table name="FacturaVtaDetalleSuc" />
+  <Table name="Caracteristica" />
+</Dependencies>

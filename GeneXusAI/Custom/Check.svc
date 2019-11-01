@@ -1,1 +1,0 @@
-<%@ServiceHost Service= "GeneXus.AI.genexusai.custom.inference.cloud.check_services,genexusai" %>

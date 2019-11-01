@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="4f1e583e-8b9c-4253-834f-76fc5ad028eb">
+  <Table name="Deposito" />
+  <Table name="Persona" />
+  <Table name="RemitoVenta" />
+  <Table name="FacturaVta" />
+</Dependencies>

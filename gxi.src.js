@@ -22,13 +22,13 @@ gx.parentGridRow = function (GridId, gxO) {
 	return curRow;
 };
 
-gx.applyPicture = function (vStruct, value, Ctrl) {			
-	if (!gx.lang.emptyObject(vStruct) && !gx.lang.emptyObject(gx.rtPicture(vStruct, Ctrl)) && !gx.lang.emptyObject(vStruct.type)) {
+gx.applyPicture = function (vStruct, value) {			
+	if (!gx.lang.emptyObject(vStruct) && !gx.lang.emptyObject(vStruct.pic) && !gx.lang.emptyObject(vStruct.type)) {
 		try {
 			switch (vStruct.type) {
 				case 'int':
 				case 'decimal':
-					return gx.num.formatNumber(value, vStruct.dec, gx.rtPicture(vStruct, Ctrl), vStruct.len, vStruct.sign, true);
+					return gx.num.formatNumber(value, vStruct.dec, vStruct.pic, vStruct.len, vStruct.sign, true);
 				case 'char':
 					return value;
 					//case 'date':
@@ -2385,10 +2385,7 @@ gx.evt_i = (function($) {
 		}
 		var vStruct = gx.O.getValidStructFld(Ctrl);
 		if (vStruct) {
-			var pic = gx.rtPicture(vStruct, Ctrl),
-			LenDec = gx.numericLenDec( pic),
-			decimals = LenDec.Decimals,
-			integers = LenDec.Integers,
+			var pic = vStruct.pic,
 			type = vStruct.type,
 			value = Ctrl.value;
 			if (type == 'int' || type == 'decimal') {
@@ -2396,7 +2393,10 @@ gx.evt_i = (function($) {
 				if (selLen === undefined) {
 					return true;
 				}
-				if (gx.util.browser.isFirefox() && Ctrl.type == "number" && decimals === 0) {
+				dec = vStruct.dec || 0,
+				len = vStruct.len - ((dec > 0) ? dec + 1 : 0),
+				picinputs = 0;
+				if (gx.util.browser.isFirefox() && Ctrl.type == "number" && dec === 0) {
 					//WA Firefox wont return selection for input type=number controls v63.0.3
 					if (!Ctrl.gxoninput && Ctrl.max && Ctrl.min ) {
 						Ctrl.gxoninput = true;
@@ -2416,7 +2416,7 @@ gx.evt_i = (function($) {
 					if (!isNaN(Number(event.key))) {
 						digits = value.split("").filter(function(c){ return c>='0' && c<='9'}).length;							
 						value = gx.num.normalize_decimal_sep(pic, gx.thousandSeparator, gx.decimalPoint, value);
-						picinputs = integers + (value.indexOf(gx.decimalPoint) == -1 ? 0 : decimals);
+						picinputs = len + (value.indexOf(gx.decimalPoint) == -1 ? 0 : dec);
 						return ((digits - selLen) < picinputs);
 					}	
 				}	
@@ -2824,8 +2824,7 @@ gx.evt_i = (function($) {
 		if (!gx.lang.emptyObject(ctrl)) {
 			if (ctrl == gx.evt.dummyCtrl)
 				return true;
-			var triggersEvtNodes = gx.config.evt.triggersEvtNodes;
-			if ((ctrl.nodeName === 'A' || ctrl.nodeName === 'TEXTAREA' || (ctrl.nodeName === 'SELECT')) && (!triggersEvtNodes || triggersEvtNodes[ctrl.nodeName]))
+			if (ctrl.nodeName === 'A' || ctrl.nodeName === 'TEXTAREA' || ctrl.nodeName === 'SELECT')
 				return true;
 			else if (ctrl.nodeName === 'INPUT') {
 				if (ctrl.type === 'button' || ctrl.type === 'image')
@@ -2900,7 +2899,7 @@ gx.evt_i = (function($) {
 				failCallback.call();
 			}
 		};
-		if (!force && (gx.spa.isNavigating() || !gx.csv.validating && (gx.lang.emptyObject(evt) || gx.evt.processing ))) {
+		if (!force && !gx.csv.validating && (gx.lang.emptyObject(evt) || gx.evt.processing)) {
 			callFailCallback();
 			return;
 		}
@@ -3156,12 +3155,6 @@ gx.evt_i = (function($) {
 				return false;
 			},
 
-			initialize: function() {
-				this.t && clearTimeout(this.t);
-				this.serialRunner = new serialRunner();
-				this.dispatchedEvents = {};
-			},
-
 			beforeDispatch: function(gxO) {
 				var secToken = gx.ajax.getSecurityToken(gxO);
 				if (secToken) {
@@ -3219,7 +3212,7 @@ gx.evt_i = (function($) {
 						events: [eventObj]
 					};
 					this.dispatchedEvents[contextKey] = dispatchedEvts;
-					this.t = setTimeout(
+					setTimeout(
 						this.serialRunner.addTask.closure(this.serialRunner, [this.dispatchTimeoutCallback.closure(this, [contextKey])]), 
 						gx.evt.dispatcherTimeout
 					);
@@ -3700,7 +3693,7 @@ gx.csv_i =  (function($) {
 									validStruct.rgrid[j].filterVarChanged();
 								}
 							}
-							var ctrlIsAccepted = gx.fn.isAccepted(Ctrl, false, gxO);
+							var ctrlIsAccepted = gx.fn.isAccepted(Ctrl, gxO);
 							var callback = function () {
 								deferred.resolve(true);
 								try {
@@ -3708,7 +3701,7 @@ gx.csv_i =  (function($) {
 										//Si Ctrl esta en un grid, y fue una validacion server side que disparo un refresh del grid, Ctrl es una referencia a un control que fue sustituido (redibujado) en el dom.
 										var DomCtrl = gx.dom.byId(Ctrl.id);
 
-										if (ctrlIsAccepted) {
+										if (ctrlIsAccepted && !toUpperRowInGrid) {
 											gx.fn.setControlGxValid(DomCtrl, "1");
 										}
 										else {
@@ -3871,9 +3864,9 @@ gx.csv_i =  (function($) {
 				if (typeof(currentValue) === 'undefined')
 					currentValue = Ctrl.value;
 				var ctrlOldValue = Ctrl.getAttribute(gx.csv.GX_OLD_VALUE_ATTRIBUTE),
-					oldValue = gx.applyPicture(vStruct, ctrlOldValue, Ctrl);
+					oldValue = gx.applyPicture(vStruct, ctrlOldValue);
 				
-				return ctrlOldValue === null || oldValue !== gx.applyPicture(vStruct, currentValue, Ctrl);
+				return ctrlOldValue === null || oldValue !== gx.applyPicture(vStruct, currentValue);
 			},
 
 			setFormatError: function(Ctrl, error) {
@@ -10218,8 +10211,8 @@ gx.popup = (function ($) {
 
 				if (frameDoc) {
 					var mainEl = frameDoc.documentElement;
-					if (mainEl) {
-						if(compatMode) {
+					if (mainEl) {															
+						if(compatMode) {							
 							docWidth = docHeight = "100%";
 						}
 						else
@@ -10231,9 +10224,10 @@ gx.popup = (function ($) {
 							
 							if (!fixedSize) {
 								if (!isResponsive) {
-									$iFrame.width(50);
+									$iFrame.width(50);									
 								}
-								$(mainEl).width(mainEl.offsetWidth);
+								$(mainEl).width($(mainEl).width());									
+								$iFrame.width($(mainEl).width());
 							}
 							else {
 								$(mainEl).width(width);								
@@ -10810,8 +10804,7 @@ gx.ajax = (function ($) {
 								}
 							}
 						}
-						else if (this.gxO.isTransaction() && this.grid > 0 && this.row && parm.av === 'Gx_mode' && parm.fld === 'vMODE')
-						{
+						else if (this.grid > 0 && this.row && parm.av === 'Gx_mode' && parm.fld === 'vMODE') {
 							inputParms.push(gx.fn.getGridRowModeImpl(gx.fn.gridLvl(this.grid), this.grid, this.row));
 						}
 						else if (parm.prop == 'Referrer') {
@@ -12291,45 +12284,43 @@ gx.util.balloon = {
 					ofEl = Control,
 					triggerEl = findTriggerElement(Control);
 
-				gx.lang.requestAnimationFrame(function () {
-					if (gx.csv.overlap === true) {
-						switch(messagePosition) {
-							case "top":
-								my = "left bottom";
-								at = "left top";
-								break;
-							case "right":
-								my = "left center";
-								at = "right center";
-								ofEl = triggerEl || ofEl;
-								break;
-							case "bottom":
-								my = "left top";
-								at = "left bottom";
-								break;
-							case "left":
-								my = "right center";
-								at = "left center";
-								break;
-						}
+				if (gx.csv.overlap === true) {
+					switch(messagePosition) {
+						case "top":
+							my = "left bottom";
+							at = "left top";
+							break;
+						case "right":
+							my = "left center";
+							at = "right center";
+							ofEl = triggerEl || ofEl;
+							break;
+						case "bottom":
+							my = "left top";
+							at = "left bottom";
+							break;
+						case "left":
+							my = "right center";
+							at = "left center";
+							break;
+					}
 
-						$div.fadeIn().css("display","block");
-						$div.position({
-							my: my,
-							at: at,
-							of: ofEl,
-							collision: collision
-						});
+					$div.fadeIn().css("display","block");
+					$div.position({
+						my: my,
+						at: at,
+						of: ofEl,
+						collision: collision
+					});
+				}
+				else {
+					if ((messagePosition == "top" || messagePosition == "bottom") && (gx.csv.overlap === false)) {
+						div.style.display = "block";
 					}
 					else {
-						if ((messagePosition == "top" || messagePosition == "bottom") && (gx.csv.overlap === false)) {
-							div.style.display = "block";
-						}
-						else {
-							div.style.display = "inline";
-						}
+						div.style.display = "inline";
 					}
-				});
+				}
 			}
 			catch (e) {
 				gx.dbg.logEx(e, 'gxballoon.js', 'showBalloon');

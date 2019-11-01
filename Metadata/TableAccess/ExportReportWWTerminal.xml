@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="e46a159a-8ac8-49ae-a7d7-a495ff29bc05">
+  <Table name="Entidad" />
+  <Table name="Sucursal" />
+  <Table name="Terminal" />
+</Dependencies>

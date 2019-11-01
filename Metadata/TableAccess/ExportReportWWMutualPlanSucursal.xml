@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dependencies type="guid" guid="13a24194-aba8-4df2-86ce-1573fbf13616">
+  <Table name="Sucursal" />
+  <Table name="Persona" />
+  <Table name="Plan" />
+  <Table name="MutualPlan" />
+  <Table name="MutualPlanSucursal" />
+</Dependencies>
