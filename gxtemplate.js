@@ -31,14 +31,12 @@ gx.plugdesign.definition = {
 		// Attributes and variables
 		{
 			selector:'.gx-attribute > input:not(.GeoLocOption):not([type="image"]):not([type="checkbox"]), .gx-attribute > select, .gx-attribute > textarea',
-			cssClass:'form-control',
-			first: true
+			cssClass:'form-control'
 		},
 		// Attributes and variables with prompt
 		{
 			selector:'.gx-attribute > .input-group > input, .gx-attribute > .input-group > select, .gx-attribute > .input-group > textarea, .gx-attribute > .dp_container input',
-			cssClass:'form-control',
-			first: true
+			cssClass:'form-control'
 		},
 		// Form
 		{
