@@ -2,7 +2,6 @@
 /w:0
 
 
-/out:bin\GeneXus.Programs.Common.dll
 /r:bin\GXClasses.dll
 /r:system.web.dll
 /r:system.web.services.dll
@@ -13,9 +12,7 @@
 /r:system.dll
 /r:system.data.dll
 /r:system.data.dll
-GxWebStd.cs
-SoapParm.cs
-GxObjectCollection.cs
-GxFullTextSearchReindexer.cs
-GxModelInfoProvider.cs
-@genexus.programs.sdt.rsp
+/r:bin\GeneXus.Programs.Common.dll
+/r:GxBaseBuilder.dll
+/out:bin\procedure1.dll
+procedure1.cs

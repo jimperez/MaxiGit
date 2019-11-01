@@ -1,2 +1,0 @@
-ALTER TABLE [TipoTelefono] ALTER COLUMN [TipTelNom]  nchar(20) NOT NULL
-

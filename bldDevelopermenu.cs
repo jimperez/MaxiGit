@@ -42,39 +42,13 @@ public class bldDevelopermenu : GxBaseBuilder
    public override TargetCollection GetRuntimeBuildList( )
    {
       TargetCollection sc = new TargetCollection() ;
-      sc.Add( @"wwpbaseobjects\gethomesampledata", "dll");
-      sc.Add( @"wwpbaseobjects\gethomesamplenamevaluedata", "dll");
-      sc.Add( @"exportreportwwtipotelefono", "dll");
-      sc.Add( @"getfilterdatawwtipotelefono", "dll");
+      sc.Add( @"procedure1", "dll");
       sc.Add( @"appmasterpage", "dll");
       sc.Add( @"recentlinks", "dll");
       sc.Add( @"promptmasterpage", "dll");
       sc.Add( @"rwdmasterpage", "dll");
       sc.Add( @"rwdrecentlinks", "dll");
       sc.Add( @"rwdpromptmasterpage", "dll");
-      sc.Add( @"gx0010", "dll");
-      sc.Add( @"wwpbaseobjects\wizardstepsarrowwc", "dll");
-      sc.Add( @"wwpbaseobjects\wizardstepsbulletwc", "dll");
-      sc.Add( @"wwpbaseobjects\addressdisplay", "dll");
-      sc.Add( @"wwpbaseobjects\exportoptions", "dll");
-      sc.Add( @"wwpbaseobjects\exportoptions", "dll");
-      sc.Add( @"wwpbaseobjects\home", "dll");
-      sc.Add( @"wwpbaseobjects\home", "dll");
-      sc.Add( @"wwpbaseobjects\managefilters", "dll");
-      sc.Add( @"wwpbaseobjects\promptgeolocation", "dll");
-      sc.Add( @"wwpbaseobjects\savefilteras", "dll");
-      sc.Add( @"wwpbaseobjects\wwptabbedview", "dll");
-      sc.Add( @"wwpbaseobjects\notauthorized", "dll");
-      sc.Add( @"wwpbaseobjects\homeprogressbarcirclewc", "dll");
-      sc.Add( @"wwpbaseobjects\homeprogressbarwc", "dll");
-      sc.Add( @"wwpbaseobjects\masterpageframe", "dll");
-      sc.Add( @"wwpbaseobjects\workwithplusmasterpageprompt", "dll");
-      sc.Add( @"wwpbaseobjects\workwithplusmasterpage", "dll");
-      sc.Add( @"tipotelefonogeneral", "dll");
-      sc.Add( @"viewtipotelefono", "dll");
-      sc.Add( @"wwtipotelefono", "dll");
-      sc.Add( @"prompttipotelefono", "dll");
-      sc.Add( @"tipotelefono", "dll");
       return sc ;
    }
 
@@ -102,52 +76,6 @@ public class bldDevelopermenu : GxBaseBuilder
          if (checkTime(obj, cs_path + @"\GxModelInfoProvider.cs" ))
             return true;
          if (checkTime(obj, cs_path + @"\genexus.programs.sdt.rsp" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewersubtotals.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewershowdatalabelsin.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainwwpdomains.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainpage.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainexporttype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\wwpbaseobjects\gxdomainsplitscreen_action.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainhomesampledatastatus.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainwwpcardsmenusize.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\wwpbaseobjects\gxdomainwwpcardsmenuoptiontype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewercharttype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryvieweroutputtype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerplotseries.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewershowdataas.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerorientation.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewertrendperiod.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerxaxislabels.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryvieweraggregationtype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryvieweraxisordertype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryvieweraxistype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerconditionoperator.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerexpandcollapse.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerfiltertype.cs" ))
-            return true;
-         if (checkTime(obj, cs_path + @"\gxdomainqueryviewerobjecttype.cs" ))
             return true;
       }
       if ( obj == @"bin\messages.spa.dll" )

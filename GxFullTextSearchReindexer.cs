@@ -1,8 +1,8 @@
 /*
                File: GxFullTextSearchReindexer
         Description: No description for object
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/30/2019 19:14:31.5
+             Author: GeneXus C# Generator version 16_0_2-131213
+       Generated on: 11/1/2019 8:27:23.33
        Program type: Callable routine
           Main DBMS: SQL Server
 */

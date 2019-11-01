@@ -2,9 +2,9 @@
   <Charset>UTF-8</Charset>
   <Path>file:///C:/Program Files (x86)/GeneXus/GeneXus16/</Path>
   <Object>
-    <ObjCls>0</ObjCls>
-    <ObjName>TipoTelefono</ObjName>
-    <ObjDesc>Tipo Telefono</ObjDesc>
-    <ObjLink>tipotelefono.aspx</ObjLink>
+    <ObjCls>1</ObjCls>
+    <ObjName>Procedure1</ObjName>
+    <ObjDesc>Procedure1</ObjDesc>
+    <ObjLink>procedure1.aspx</ObjLink>
   </Object>
 </Objects>

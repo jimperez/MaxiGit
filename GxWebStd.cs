@@ -1,8 +1,8 @@
 /*
                File: GxWebStd
         Description: GeneXus Standard Web Functions
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/30/2019 19:1:52.38
+             Author: GeneXus C# Generator version 16_0_2-131213
+       Generated on: 11/1/2019 8:28:7.84
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -239,6 +239,10 @@ namespace GeneXus.Programs {
                GxWebStd.StyleAttribute( context, sStyleString);
             }
             context.WriteHtmlText( sTags) ;
+            if ( nAutoComplete == 0 )
+            {
+               GxWebStd.gx_ctrl_attribute( context, sCtrlName, "autocomplete", "off", false, true);
+            }
             context.WriteHtmlText( GXUtil.HtmlEndTag( HTMLElement.INPUT)) ;
          }
          if ( nEnabled == 0 )
@@ -366,7 +370,7 @@ namespace GeneXus.Programs {
             }
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( sClassString)) )
             {
-               context.WriteHtmlText( " class=\"") ;
+               context.WriteHtmlText( "class=\"") ;
                context.WriteHtmlText( sClassString) ;
                context.WriteHtmlText( "\"") ;
             }
@@ -767,9 +771,10 @@ namespace GeneXus.Programs {
             sEventJsCode = "";
          }
          sEventJsCode = sJsCode + sEventJsCode;
-         GxWebStd.gx_on_js_event( context, nJScriptCode, sEventJsCode, sUserOnClickCode);
+         GxWebStd.gx_on_js_event( context, "onclick", sEventJsCode);
          context.WriteHtmlText( " ") ;
          context.WriteHtmlText( sTags) ;
+         GxWebStd.gx_ctrl_attribute( context, sCtrlName, "data-jsevent", sUserOnClickCode, false, false);
          context.WriteHtmlText( GXUtil.HtmlEndTag( HTMLElement.INPUT)) ;
          if ( StringUtil.StrCmp(sBorderStyle, "rounded") == 0 )
          {
@@ -778,48 +783,24 @@ namespace GeneXus.Programs {
       }
 
       static public void gx_on_js_event( IGxContext context ,
-                                         int nJScriptCode ,
-                                         String sGXOnClickCode ,
-                                         String sUserOnClickCode )
+                                         String sEventName ,
+                                         String sEventJsCode )
       {
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( sUserOnClickCode)) )
+         context.WriteHtmlText( " ") ;
+         context.SendWebValue( sEventName) ;
+         context.WriteHtmlText( "=\"if( ") ;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( sEventJsCode)) )
          {
-            if ( ! (0==nJScriptCode) )
-            {
-               context.WriteHtmlText( " data-gx-evt=\"") ;
-               context.WriteHtmlText( StringUtil.Trim( StringUtil.Str( (decimal)(nJScriptCode), 10, 0))) ;
-               context.WriteHtmlText( "\"") ;
-               context.WriteHtmlText( " data-gx-evt-condition=\"") ;
-               context.WriteHtmlText( sUserOnClickCode) ;
-               context.WriteHtmlText( "\"") ;
-            }
-            else
-            {
-               context.WriteHtmlText( " data-gx-evt=\"") ;
-               context.WriteHtmlText( StringUtil.Trim( StringUtil.Str( (decimal)(nJScriptCode), 10, 0))) ;
-               context.WriteHtmlText( "\"") ;
-            }
-            if ( ( nJScriptCode == 4 ) || ( nJScriptCode == 3 ) )
-            {
-               context.WriteHtmlText( " data-gx-evt-code=\"") ;
-               context.WriteHtmlText( sGXOnClickCode) ;
-               context.WriteHtmlText( "\"") ;
-            }
+            context.WriteHtmlText( "gx.evt.jsEvent(this)") ;
+            context.WriteHtmlText( ") {") ;
+            context.WriteHtmlText( sEventJsCode) ;
+            context.WriteHtmlText( "} else return false;\"") ;
          }
          else
          {
-            if ( ! (0==nJScriptCode) )
-            {
-               context.WriteHtmlText( " data-gx-evt=\"") ;
-               context.WriteHtmlText( StringUtil.Trim( StringUtil.Str( (decimal)(nJScriptCode), 10, 0))) ;
-               context.WriteHtmlText( "\"") ;
-               if ( ( nJScriptCode == 4 ) || ( nJScriptCode == 3 ) )
-               {
-                  context.WriteHtmlText( " data-gx-evt-code=\"") ;
-                  context.WriteHtmlText( sGXOnClickCode) ;
-                  context.WriteHtmlText( "\"") ;
-               }
-            }
+            context.WriteHtmlText( "!(") ;
+            context.WriteHtmlText( "gx.evt.jsEvent(this)") ;
+            context.WriteHtmlText( ")) return false;\"") ;
          }
       }
 
@@ -1784,13 +1765,13 @@ namespace GeneXus.Programs {
                                                      String sInternalName ,
                                                      int nVisible ,
                                                      int nWidth ,
-                                                     String sStyleStringParm )
+                                                     String sStyleString )
       {
          context.WriteHtmlText( "<div class=\"gx-multimedia-upload\"") ;
          context.WriteHtmlText( " id =\"") ;
          context.SendWebValue( sInternalName) ;
          context.WriteHtmlText( "_ct\"") ;
-         String sStyleString = sStyleStringParm ;
+         sStyleString = "";
          if ( nVisible == 0 )
          {
             sStyleString = "display:none;";
@@ -2428,8 +2409,8 @@ namespace GeneXus.Programs {
                   {
                      context.WriteHtmlText( GXUtil.HtmlDocType( )) ;
                      context.WriteHtmlText( "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"><title>Close window</title>") ;
-                     context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-                     context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
+                     context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 131213), false, true);
+                     context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 131213), false, true);
                      context.WriteHtmlText( "</head><body><script type=\"text/javascript\">") ;
                      context.WriteHtmlText( "gx.fn.closeWindowServerScript(") ;
                      context.WriteHtmlText( context.getWebReturnParmsJS( )) ;
@@ -2817,8 +2798,8 @@ namespace GeneXus.Programs {
                                          String sAlign ,
                                          bool bIsTextEdit )
       {
-         String sTagsLocal = " data-gx-geolocation" ;
-         GxWebStd.gx_single_line_edit( context, sCtrlName, sValue, sFormatedValue, sTagsLocal, sEventName, sLinkURL, sLinkTarget, sTooltipText, sPlaceholder, sUserOnClickCode, nJScriptCode, sClassString, sStyleString, sROClassString, sColumnClassString, sColumnHeaderClassString, nVisible, nEnabled, nRTEnabled, sType, sStep, nWidth, nWidthUnit, nHeight, nHeightUnit, nLength, nIsPassword, nFormat, nParentId, bHasTheme, nAutoComplete, nAutoCorrection, bSendHidden, sDomainType, "", false, "");
+         sTags = " data-gx-geolocation";
+         GxWebStd.gx_single_line_edit( context, sCtrlName, sValue, sFormatedValue, sTags, sEventName, sLinkURL, sLinkTarget, sTooltipText, sPlaceholder, sUserOnClickCode, nJScriptCode, sClassString, sStyleString, sROClassString, sColumnClassString, sColumnHeaderClassString, nVisible, nEnabled, nRTEnabled, sType, sStep, nWidth, nWidthUnit, nHeight, nHeightUnit, nLength, nIsPassword, nFormat, nParentId, bHasTheme, nAutoComplete, nAutoCorrection, bSendHidden, sDomainType, "", false, "");
          if ( ( nRTEnabled != 0 ) || ( nEnabled != 0 ) )
          {
             GxWebStd.gx_bitmap_readonly( context, sCtrlName+"_geoLocMe", context.convertURL( "locateMe"), "", "", "", "", nVisible, 1, context.GetMessage( "GXM_locatemeoption", ""), context.GetMessage( "GXM_locatemeoption", ""), 0, 0, 0, nWidthUnit, 0, nHeightUnit, 0, 0, 4, sUserOnClickCode, sEventName, sStyleString, "GeoLocOption", "", "", "", "", "", "gx.geolocation.getMyPosition(this);", "", "");
