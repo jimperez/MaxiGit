@@ -1,8 +1,8 @@
 /*
                File: RwdPromptMasterPage
         Description: Rwd Prompt Master Page
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 11/1/2019 9:14:48.69
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 9:54:32.14
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         context.AddJavascriptSource("rwdpromptmasterpage.js", "?20191119144870", false, true);
+         context.AddJavascriptSource("rwdpromptmasterpage.js", "?20191119543214", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -473,8 +473,8 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            /* Read variables values. */
             /* Read saved values. */
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -555,7 +555,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20191119144872", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20191119543216", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -572,7 +572,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("rwdpromptmasterpage.js", "?20191119144872", false, true);
+            context.AddJavascriptSource("rwdpromptmasterpage.js", "?20191119543216", false, true);
          }
          /* End function include_jscripts */
       }
