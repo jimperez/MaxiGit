@@ -2,7 +2,7 @@
                File: PromptMasterPage
         Description: Prompt Master Page
              Author: GeneXus C# Generator version 16_0_6-136889
-       Generated on: 11/1/2019 11:16:22.28
+       Generated on: 11/1/2019 11:59:7.49
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -136,7 +136,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         context.AddJavascriptSource("promptmasterpage.js", "?201911111162229", false, true);
+         context.AddJavascriptSource("promptmasterpage.js", "?20191111159750", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -845,7 +845,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?201911111162233", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20191111159757", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -862,7 +862,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("promptmasterpage.js", "?201911111162233", false, true);
+            context.AddJavascriptSource("promptmasterpage.js", "?20191111159757", false, true);
          }
          /* End function include_jscripts */
       }

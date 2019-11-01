@@ -2,7 +2,7 @@
                File: RwdPromptMasterPage
         Description: Rwd Prompt Master Page
              Author: GeneXus C# Generator version 16_0_6-136889
-       Generated on: 11/1/2019 11:16:23.37
+       Generated on: 11/1/2019 11:59:10.25
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         context.AddJavascriptSource("rwdpromptmasterpage.js", "?201911111162339", false, true);
+         context.AddJavascriptSource("rwdpromptmasterpage.js", "?201911111591026", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -555,7 +555,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?201911111162340", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?201911111591028", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -572,7 +572,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("rwdpromptmasterpage.js", "?201911111162340", false, true);
+            context.AddJavascriptSource("rwdpromptmasterpage.js", "?201911111591028", false, true);
          }
          /* End function include_jscripts */
       }
