@@ -2,7 +2,7 @@
                File: Procedure1
         Description: Procedure1
              Author: GeneXus C# Generator version 16_0_6-136889
-       Generated on: 11/1/2019 9:54:32.19
+       Generated on: 11/1/2019 10:8:15.32
        Program type: HTTP procedure
           Main DBMS: SQL Server
 */

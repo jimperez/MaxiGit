@@ -48,7 +48,7 @@
       <add  key="DocumentType" value="HTML5"/>
       <add  key="SMART_CACHING" value="0"/>
       <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="20191119545118"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="20191111083340"/>
    </appSettings>
    <languages >
       <Spanish  code="spa" time_fmt="24" decimal_point="," thousand_sep="." date_fmt="DMY" culture="es-ES"/>
