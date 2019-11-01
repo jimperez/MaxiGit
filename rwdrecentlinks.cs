@@ -1,8 +1,8 @@
 /*
                File: RwdRecentLinks
         Description: Responsive Recent Links
-             Author: GeneXus C# Generator version 16_0_2-131213
-       Generated on: 11/1/2019 8:28:9.71
+             Author: GeneXus C# Generator version 16_0_5-135614
+       Generated on: 11/1/2019 9:14:45.87
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -149,8 +149,8 @@ namespace GeneXus.Programs {
                }
                else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Links") == 0 )
                {
-                  nRC_GXsfl_8 = (short)(NumberUtil.Val( GetNextPar( ), "."));
-                  nGXsfl_8_idx = (short)(NumberUtil.Val( GetNextPar( ), "."));
+                  nRC_GXsfl_8 = (int)(NumberUtil.Val( GetNextPar( ), "."));
+                  nGXsfl_8_idx = (int)(NumberUtil.Val( GetNextPar( ), "."));
                   sGXsfl_8_idx = GetNextPar( );
                   sPrefix = GetNextPar( );
                   setAjaxCallMode();
@@ -285,11 +285,11 @@ namespace GeneXus.Programs {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 131213), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 131213), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 131213), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?2019111828972", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?20191119144589", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -366,7 +366,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_8", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_8), 4, 0, ",", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_8", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_8), 8, 0, ",", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6FormCaption", StringUtil.RTrim( wcpOAV6FormCaption));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV7FormPgmName", wcpOAV7FormPgmName);
          GxWebStd.gx_hidden_field( context, sPrefix+"vFORMCAPTION", StringUtil.RTrim( AV6FormCaption));
@@ -379,7 +379,7 @@ namespace GeneXus.Programs {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
          {
-            context.AddJavascriptSource("rwdrecentlinks.js", "?2019111828975", false, true);
+            context.AddJavascriptSource("rwdrecentlinks.js", "?20191119144590", false, true);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"GX_FocusControl", GX_FocusControl);
          define_styles( ) ;
@@ -504,7 +504,7 @@ namespace GeneXus.Programs {
          if ( wbEnd == 8 )
          {
             wbEnd = 0;
-            nRC_GXsfl_8 = (short)(nGXsfl_8_idx-1);
+            nRC_GXsfl_8 = (int)(nGXsfl_8_idx-1);
             if ( LinksContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "</table>") ;
@@ -575,7 +575,7 @@ namespace GeneXus.Programs {
          {
             if ( ! context.isSpaRequest( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus C# 16_0_2-131213", 0) ;
+               Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
                Form.Meta.addItem("description", "Responsive Recent Links", 0) ;
             }
             context.wjLoc = "";
@@ -673,7 +673,7 @@ namespace GeneXus.Programs {
                               {
                                  STRUP050( ) ;
                               }
-                              nGXsfl_8_idx = (short)(NumberUtil.Val( sEvtType, "."));
+                              nGXsfl_8_idx = (int)(NumberUtil.Val( sEvtType, "."));
                               sGXsfl_8_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_8_idx), 4, 0)), 4, "0");
                               SubsflControlProps_82( ) ;
                               sEvtType = StringUtil.Right( sEvt, 1);
@@ -807,7 +807,7 @@ namespace GeneXus.Programs {
          while ( nGXsfl_8_idx <= nRC_GXsfl_8 )
          {
             sendrow_82( ) ;
-            nGXsfl_8_idx = (short)(((subLinks_Islastpage==1)&&(nGXsfl_8_idx+1>subLinks_Recordsperpage( )) ? 1 : nGXsfl_8_idx+1));
+            nGXsfl_8_idx = ((subLinks_Islastpage==1)&&(nGXsfl_8_idx+1>subLinks_Recordsperpage( )) ? 1 : nGXsfl_8_idx+1);
             sGXsfl_8_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_8_idx), 4, 0)), 4, "0");
             SubsflControlProps_82( ) ;
          }
@@ -920,8 +920,6 @@ namespace GeneXus.Programs {
       {
          /* Before Start, stand alone formulas. */
          context.Gx_err = 0;
-         /* Execute Start event if defined. */
-         context.wbGlbDoneStart = 0;
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -931,7 +929,7 @@ namespace GeneXus.Programs {
             /* Read saved SDTs. */
             /* Read variables values. */
             /* Read saved values. */
-            nRC_GXsfl_8 = (short)(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_8"), ",", "."));
+            nRC_GXsfl_8 = (int)(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_8"), ",", "."));
             wcpOAV6FormCaption = cgiGet( sPrefix+"wcpOAV6FormCaption");
             wcpOAV7FormPgmName = cgiGet( sPrefix+"wcpOAV7FormPgmName");
             /* Read subfile selected row values. */
@@ -1221,7 +1219,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?2019111828988", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?20191119144598", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1236,7 +1234,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("rwdrecentlinks.js", "?2019111828988", false, true);
+         context.AddJavascriptSource("rwdrecentlinks.js", "?20191119144598", false, true);
          /* End function include_jscripts */
       }
 
@@ -1288,15 +1286,7 @@ namespace GeneXus.Programs {
          {
             /* Report style subfile background logic. */
             subLinks_Backstyle = 1;
-            if ( ((int)(((nGXsfl_8_idx-1)/ (decimal)(1)) % (2))) == 0 )
-            {
-               subLinks_Backcolor = (int)(0xFFFFFF);
-               if ( StringUtil.StrCmp(subLinks_Class, "") != 0 )
-               {
-                  subLinks_Linesclass = subLinks_Class+"Odd";
-               }
-            }
-            else
+            if ( ((int)((nGXsfl_8_idx) % (2))) == 0 )
             {
                subLinks_Backcolor = (int)(0x0);
                if ( StringUtil.StrCmp(subLinks_Class, "") != 0 )
@@ -1304,21 +1294,19 @@ namespace GeneXus.Programs {
                   subLinks_Linesclass = subLinks_Class+"Even";
                }
             }
+            else
+            {
+               subLinks_Backcolor = (int)(0xFFFFFF);
+               if ( StringUtil.StrCmp(subLinks_Class, "") != 0 )
+               {
+                  subLinks_Linesclass = subLinks_Class+"Odd";
+               }
+            }
          }
          /* Start of Columns property logic. */
          if ( LinksContainer.GetWrapped() == 1 )
          {
-            if ( ( 1 == 0 ) && ( nGXsfl_8_idx == 1 ) )
-            {
-               context.WriteHtmlText( "<tr"+" class=\""+subLinks_Linesclass+"\" style=\""+""+"\""+" data-gxrow=\""+sGXsfl_8_idx+"\">") ;
-            }
-            if ( 1 > 0 )
-            {
-               if ( ( 1 == 1 ) || ( ((int)((nGXsfl_8_idx) % (1))) - 1 == 0 ) )
-               {
-                  context.WriteHtmlText( "<tr"+" class=\""+subLinks_Linesclass+"\" style=\""+""+"\""+" data-gxrow=\""+sGXsfl_8_idx+"\">") ;
-               }
-            }
+            context.WriteHtmlText( "<tr"+" class=\""+subLinks_Linesclass+"\" style=\""+""+"\""+" data-gxrow=\""+sGXsfl_8_idx+"\">") ;
          }
          /* Div Control */
          LinksRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(String)divLinkstable_Internalname+"_"+sGXsfl_8_idx,(short)1,(short)0,(String)"px",(short)0,(String)"px",(String)"RecentLinksTable",(String)"left",(String)"top",(String)"",(String)"",(String)"div"});
@@ -1334,7 +1322,7 @@ namespace GeneXus.Programs {
          send_integrity_lvl_hashes052( ) ;
          /* End of Columns property logic. */
          LinksContainer.AddRow(LinksRow);
-         nGXsfl_8_idx = (short)(((subLinks_Islastpage==1)&&(nGXsfl_8_idx+1>subLinks_Recordsperpage( )) ? 1 : nGXsfl_8_idx+1));
+         nGXsfl_8_idx = ((subLinks_Islastpage==1)&&(nGXsfl_8_idx+1>subLinks_Recordsperpage( )) ? 1 : nGXsfl_8_idx+1);
          sGXsfl_8_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_8_idx), 4, 0)), 4, "0");
          SubsflControlProps_82( ) ;
          /* End function sendrow_82 */
@@ -1457,8 +1445,6 @@ namespace GeneXus.Programs {
       private short nGotPars ;
       private short GxWebError ;
       private short nDynComponent ;
-      private short nRC_GXsfl_8 ;
-      private short nGXsfl_8_idx=1 ;
       private short initialized ;
       private short wbEnd ;
       private short wbStart ;
@@ -1474,6 +1460,8 @@ namespace GeneXus.Programs {
       private short nGXWrapped ;
       private short subLinks_Backstyle ;
       private short LINKS_nEOF ;
+      private int nRC_GXsfl_8 ;
+      private int nGXsfl_8_idx=1 ;
       private int subLinks_Selectedindex ;
       private int subLinks_Selectioncolor ;
       private int subLinks_Hoveringcolor ;
