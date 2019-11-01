@@ -2,7 +2,7 @@
                File: Procedure1
         Description: Procedure1
              Author: GeneXus C# Generator version 16_0_6-136889
-       Generated on: 11/1/2019 10:8:15.32
+       Generated on: 11/1/2019 11:16:23.47
        Program type: HTTP procedure
           Main DBMS: SQL Server
 */
@@ -129,9 +129,10 @@ namespace GeneXus.Programs {
             getPrinter().setLineHeight(lineHeight);
             getPrinter().setM_top(M_top);
             getPrinter().setM_bot(M_bot);
+            AV8Texto = "HOLA MUNDO";
             H0A0( false, 100) ;
-            getPrinter().GxAttris("Microsoft Sans Serif", 12, true, false, false, false, 0, 17, 45, 255, 0, 255, 255, 255) ;
-            getPrinter().GxDrawText("EDGARDO ROLDAN", 200, Gx_line+33, 376, Gx_line+54, 0+256, 0, 0, 0) ;
+            getPrinter().GxAttris("Microsoft Sans Serif", 8, false, false, false, false, 0, 0, 0, 0, 0, 255, 255, 255) ;
+            getPrinter().GxDrawText(StringUtil.RTrim( context.localUtil.Format( AV8Texto, "")), 125, Gx_line+33, 334, Gx_line+48, 0+256, 0, 0, 0) ;
             Gx_OldLine = Gx_line;
             Gx_line = (int)(Gx_line+100);
             /* Print footer for last page */
@@ -206,7 +207,7 @@ namespace GeneXus.Programs {
 
       protected void add_metrics0( )
       {
-         getPrinter().setMetrics("Microsoft Sans Serif", true, false, 57, 15, 72, 163,  new int[] {47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 17, 19, 29, 34, 34, 55, 45, 15, 21, 21, 24, 36, 17, 21, 17, 17, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 21, 21, 36, 36, 36, 38, 60, 43, 45, 45, 45, 41, 38, 48, 45, 17, 34, 45, 38, 53, 45, 48, 41, 48, 45, 41, 38, 45, 41, 57, 41, 41, 38, 21, 17, 21, 36, 34, 21, 34, 38, 34, 38, 34, 21, 38, 38, 17, 17, 34, 17, 55, 38, 38, 38, 38, 24, 34, 21, 38, 33, 49, 34, 34, 31, 24, 17, 24, 36, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 17, 21, 34, 34, 34, 34, 17, 34, 21, 46, 23, 34, 36, 21, 46, 34, 25, 34, 21, 21, 21, 36, 34, 21, 20, 21, 23, 34, 52, 52, 52, 38, 45, 45, 45, 45, 45, 45, 62, 45, 41, 41, 41, 41, 17, 17, 17, 17, 45, 45, 48, 48, 48, 48, 48, 36, 48, 45, 45, 45, 45, 41, 41, 38, 34, 34, 34, 34, 34, 34, 55, 34, 34, 34, 34, 34, 17, 17, 17, 17, 38, 38, 38, 38, 38, 38, 38, 34, 38, 38, 38, 38, 38, 34, 38, 34}) ;
+         getPrinter().setMetrics("Microsoft Sans Serif", false, false, 58, 14, 72, 171,  new int[] {48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 18, 20, 23, 36, 36, 57, 43, 12, 21, 21, 25, 37, 18, 21, 18, 18, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 18, 18, 37, 37, 37, 36, 65, 43, 43, 46, 46, 43, 39, 50, 46, 18, 32, 43, 36, 53, 46, 50, 43, 50, 46, 43, 40, 46, 43, 64, 41, 42, 39, 18, 18, 18, 27, 36, 21, 36, 36, 32, 36, 36, 18, 36, 36, 14, 15, 33, 14, 55, 36, 36, 36, 36, 21, 32, 18, 36, 33, 47, 31, 31, 31, 21, 17, 21, 37, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 18, 20, 36, 36, 36, 36, 17, 36, 21, 47, 24, 36, 37, 21, 47, 35, 26, 35, 21, 21, 21, 37, 34, 21, 21, 21, 23, 36, 53, 53, 53, 39, 43, 43, 43, 43, 43, 43, 64, 46, 43, 43, 43, 43, 18, 18, 18, 18, 46, 46, 50, 50, 50, 50, 50, 37, 50, 46, 46, 46, 46, 43, 43, 39, 36, 36, 36, 36, 36, 36, 57, 32, 36, 36, 36, 36, 18, 18, 18, 18, 36, 36, 36, 36, 36, 36, 36, 35, 39, 36, 36, 36, 36, 32, 36, 32}) ;
       }
 
       public override int getOutputType( )
@@ -233,6 +234,7 @@ namespace GeneXus.Programs {
       {
          GXKey = "";
          gxfirstwebparm = "";
+         AV8Texto = "";
          /* GeneXus formulas. */
          Gx_line = 0;
          context.Gx_err = 0;
@@ -249,6 +251,7 @@ namespace GeneXus.Programs {
       private int Gx_OldLine ;
       private String GXKey ;
       private String gxfirstwebparm ;
+      private String AV8Texto ;
       private bool entryPointCalled ;
    }
 

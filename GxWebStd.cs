@@ -2,7 +2,7 @@
                File: GxWebStd
         Description: GeneXus Standard Web Functions
              Author: GeneXus C# Generator version 16_0_6-136889
-       Generated on: 11/1/2019 10:8:15.31
+       Generated on: 11/1/2019 11:16:23.24
        Program type: Callable routine
           Main DBMS: SQL Server
 */
