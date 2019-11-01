@@ -1,7 +1,7 @@
 /*
 				   File: type_SdtWWPGridState
 			Description: WWPGridState
-				 Author: Nemo 🐠 for C# version 16.0.5.135614
+				 Author: Nemo 🐠 for C# version 16.0.6.136889
 		   Program type: Callable routine
 			  Main DBMS: 
 */

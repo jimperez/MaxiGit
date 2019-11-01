@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 19:12:59.47
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:39.56
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.notauthorized', false, function () {

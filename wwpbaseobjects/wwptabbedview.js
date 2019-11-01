@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 14:15:32.53
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:36:46.68
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.wwptabbedview', true, function (CmpContext) {
@@ -30,7 +30,7 @@ gx.define('wwpbaseobjects.wwptabbedview', true, function (CmpContext) {
    var GXValidFnc = this.GXValidFnc ;
    this.GXCtrlIds=[2,5,8,11,17,19,22,24,26,28,31,34];
    this.GXLastCtrlId =34;
-   this.TabsgridContainer = new gx.grid.grid(this, 2,"WbpLvl2",14,"Tabsgrid","Tabsgrid","TabsgridContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.wwptabbedview",[],true,0,true,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",false,false,false,null,null,false,"",false,[1,1,1,1],false,0,false,false);
+   this.TabsgridContainer = new gx.grid.grid(this, 2,"WbpLvl2",14,"Tabsgrid","Tabsgrid","TabsgridContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.wwptabbedview",[],true,0,false,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",false,false,false,null,null,false,"",false,[1,1,1,1],false,0,false,false);
    var TabsgridContainer = this.TabsgridContainer;
    TabsgridContainer.startRow("","","top","","","");
    TabsgridContainer.startCell("","","bottom","","","","","","","");

@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 19:12:58.21
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:48.84
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.savefilteras', false, function () {

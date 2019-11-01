@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.PromptGeolocation
         Description: Seleccionar Geolocalización
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:43:48.83
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:37.89
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -48,6 +50,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -128,7 +132,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
                AV7Geolocation = gxfirstwebparm;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV7Geolocation", AV7Geolocation);
+               AssignAttri("", false, "AV7Geolocation", AV7Geolocation);
             }
             if ( context.isSpaRequest( ) )
             {
@@ -188,7 +192,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -245,11 +249,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?201910315434886", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115473793", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -281,7 +285,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
          context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, "FORM", "Class", "FormNoBackgroundColor", true);
+         AssignProp("", false, "FORM", "Class", "FormNoBackgroundColor", true);
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -420,7 +424,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( ! context.isSpaRequest( ) )
          {
-            Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+            Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
             Form.Meta.addItem("description", "Seleccionar Geolocalización", 0) ;
          }
          context.wjLoc = "";
@@ -628,7 +632,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vGXMAPDATA"), GxMapData);
-            /* Read variables values. */
             /* Read saved values. */
             AV10Latitude = cgiGet( "vLATITUDE");
             AV11Longitude = cgiGet( "vLONGITUDE");
@@ -639,6 +642,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Googlemapcontrol1_Longitude = cgiGet( "GOOGLEMAPCONTROL1_Longitude");
             Googlemapcontrol1_Precision = (int)(context.localUtil.CToN( cgiGet( "GOOGLEMAPCONTROL1_Precision"), ",", "."));
             Googlemapcontrol1_Onclick = cgiGet( "GOOGLEMAPCONTROL1_Onclick");
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -687,7 +691,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10Latitude)) )
             {
                AV7Geolocation = AV10Latitude + "," + AV11Longitude;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV7Geolocation", AV7Geolocation);
+               AssignAttri("", false, "AV7Geolocation", AV7Geolocation);
             }
             context.setWebReturnParms(new Object[] {(String)AV7Geolocation});
             context.setWebReturnParmsMetadata(new Object[] {"AV7Geolocation"});
@@ -714,8 +718,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Table start */
             sStyleString = "";
-            sStyleString = sStyleString + " height: " + StringUtil.LTrim( StringUtil.Str( (decimal)(420), 10, 0)) + "px" + ";";
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(618), 10, 0)) + "px" + ";";
+            sStyleString = sStyleString + " height: " + StringUtil.LTrimStr( (decimal)(420), 10, 0) + "px" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(618), 10, 0) + "px" + ";";
             GxWebStd.gx_table_start( context, tblTablemain_Internalname, tblTablemain_Internalname, "", "TableMain", 0, "", "", 0, 0, sStyleString, "", "", 0);
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr>") ;
@@ -809,7 +813,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          createObjects();
          initialize();
          AV7Geolocation = (String)getParm(obj,0);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV7Geolocation", AV7Geolocation);
+         AssignAttri("", false, "AV7Geolocation", AV7Geolocation);
       }
 
       public override String getresponse( String sGXDynURL )
@@ -845,7 +849,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201910315434911", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115473818", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -861,7 +865,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.spa.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?201910315434912", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?201911115473818", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/mapsproviders.js", "", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/Gxmap.js", "", false, true);
          /* End function include_jscripts */
@@ -1028,6 +1032,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private String AV11Longitude ;
       private GXUserControl ucGooglemapcontrol1 ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private String aP0_Geolocation ;

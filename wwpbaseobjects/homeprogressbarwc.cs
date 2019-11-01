@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.HomeProgressBarWC
         Description: Home Progress Bar WC
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:15:30.1
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:45.59
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -51,6 +53,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -122,11 +126,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   sCompPrefix = GetNextPar( );
                   sSFPrefix = GetNextPar( );
                   AV5OptionTitle = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
+                  AssignAttri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
                   AV9BarDescription = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
+                  AssignAttri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
                   AV6Percentage = (short)(NumberUtil.Val( GetNextPar( ), "."));
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV6Percentage", StringUtil.LTrim( StringUtil.Str( (decimal)(AV6Percentage), 2, 0)));
+                  AssignAttri(sPrefix, false, "AV6Percentage", StringUtil.LTrimStr( (decimal)(AV6Percentage), 2, 0));
                   setjustcreated();
                   componentprepare(new Object[] {(String)sCompPrefix,(String)sSFPrefix,(String)AV5OptionTitle,(String)AV9BarDescription,(short)AV6Percentage});
                   componentstart();
@@ -198,7 +202,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                /* GeneXus formulas. */
                context.Gx_err = 0;
                edtavOptiontitle_Enabled = 0;
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavOptiontitle_Enabled), 5, 0)), true);
+               AssignProp(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOptiontitle_Enabled), 5, 0), true);
                WS0I2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
@@ -217,7 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -262,11 +266,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?20191021415303", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115364562", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -296,7 +300,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                GxWebStd.gx_hidden_field( context, "_EventGridId", "");
                GxWebStd.gx_hidden_field( context, "_EventRowId", "");
                context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, "FORM", "Class", "form-horizontal Form", true);
+               AssignProp(sPrefix, false, "FORM", "Class", "form-horizontal Form", true);
             }
          }
          else
@@ -361,7 +365,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
          {
-            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?20191021415306", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?201911115364565", false, true);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"GX_FocusControl", GX_FocusControl);
          define_styles( ) ;
@@ -473,7 +477,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavOptiontitle_Internalname, "Option Title", "col-sm-3 AttributeCardsMenuTitleLabel", 0, true);
             /* Single line edit */
-            GxWebStd.gx_single_line_edit( context, edtavOptiontitle_Internalname, AV5OptionTitle, StringUtil.RTrim( context.localUtil.Format( AV5OptionTitle, "")), "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOptiontitle_Jsonclick, 0, "AttributeCardsMenuTitle", "", "", "", "", 1, edtavOptiontitle_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 1, -1, -1, false, "", "left", true, "HLP_WWPBaseObjects\\HomeProgressBarWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavOptiontitle_Internalname, AV5OptionTitle, StringUtil.RTrim( context.localUtil.Format( AV5OptionTitle, "")), "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOptiontitle_Jsonclick, 0, "AttributeCardsMenuTitle", "", "", "", "", 1, edtavOptiontitle_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 1, -1, -1, false, "", "left", true, "", "HLP_WWPBaseObjects\\HomeProgressBarWC.htm");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
@@ -495,7 +499,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             if ( ! context.isSpaRequest( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+               Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
                Form.Meta.addItem("description", "Home Progress Bar WC", 0) ;
             }
             context.wjLoc = "";
@@ -742,7 +746,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas. */
          context.Gx_err = 0;
          edtavOptiontitle_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavOptiontitle_Enabled), 5, 0)), true);
+         AssignProp(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOptiontitle_Enabled), 5, 0), true);
       }
 
       protected void RF0I2( )
@@ -769,7 +773,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Before Start, stand alone formulas. */
          context.Gx_err = 0;
          edtavOptiontitle_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavOptiontitle_Enabled), 5, 0)), true);
+         AssignProp(sPrefix, false, edtavOptiontitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOptiontitle_Enabled), 5, 0), true);
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
@@ -781,13 +785,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
          {
             /* Read saved SDTs. */
-            /* Read variables values. */
             /* Read saved values. */
             wcpOAV5OptionTitle = cgiGet( sPrefix+"wcpOAV5OptionTitle");
             wcpOAV9BarDescription = cgiGet( sPrefix+"wcpOAV9BarDescription");
             wcpOAV6Percentage = (short)(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV6Percentage"), ",", "."));
             Progressbar1_Type = cgiGet( sPrefix+"PROGRESSBAR1_Type");
             Progressbar1_Percentage = (int)(context.localUtil.CToN( cgiGet( sPrefix+"PROGRESSBAR1_Percentage"), ",", "."));
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -809,9 +813,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Start Routine */
          Progressbar1_Percentage = AV6Percentage;
-         ucProgressbar1.SendProperty(context, sPrefix, false, Progressbar1_Internalname, "Percentage", StringUtil.LTrim( StringUtil.Str( (decimal)(Progressbar1_Percentage), 9, 0)));
+         ucProgressbar1.SendProperty(context, sPrefix, false, Progressbar1_Internalname, "Percentage", StringUtil.LTrimStr( (decimal)(Progressbar1_Percentage), 9, 0));
          lblDescriptionprogressbar1_Caption = AV9BarDescription;
-         context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, lblDescriptionprogressbar1_Internalname, "Caption", lblDescriptionprogressbar1_Caption, true);
+         AssignProp(sPrefix, false, lblDescriptionprogressbar1_Internalname, "Caption", lblDescriptionprogressbar1_Caption, true);
       }
 
       protected void nextLoad( )
@@ -828,11 +832,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          createObjects();
          initialize();
          AV5OptionTitle = (String)getParm(obj,0);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
+         AssignAttri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
          AV9BarDescription = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
+         AssignAttri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
          AV6Percentage = Convert.ToInt16(getParm(obj,2));
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV6Percentage", StringUtil.LTrim( StringUtil.Str( (decimal)(AV6Percentage), 2, 0)));
+         AssignAttri(sPrefix, false, "AV6Percentage", StringUtil.LTrimStr( (decimal)(AV6Percentage), 2, 0));
       }
 
       public override String getresponse( String sGXDynURL )
@@ -901,11 +905,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          else
          {
             AV5OptionTitle = (String)getParm(obj,2);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
+            AssignAttri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
             AV9BarDescription = (String)getParm(obj,3);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
+            AssignAttri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
             AV6Percentage = Convert.ToInt16(getParm(obj,4));
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV6Percentage", StringUtil.LTrim( StringUtil.Str( (decimal)(AV6Percentage), 2, 0)));
+            AssignAttri(sPrefix, false, "AV6Percentage", StringUtil.LTrimStr( (decimal)(AV6Percentage), 2, 0));
          }
          wcpOAV5OptionTitle = cgiGet( sPrefix+"wcpOAV5OptionTitle");
          wcpOAV9BarDescription = cgiGet( sPrefix+"wcpOAV9BarDescription");
@@ -926,7 +930,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( sCtrlAV5OptionTitle) > 0 )
          {
             AV5OptionTitle = cgiGet( sCtrlAV5OptionTitle);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
+            AssignAttri(sPrefix, false, "AV5OptionTitle", AV5OptionTitle);
          }
          else
          {
@@ -936,7 +940,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( sCtrlAV9BarDescription) > 0 )
          {
             AV9BarDescription = cgiGet( sCtrlAV9BarDescription);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
+            AssignAttri(sPrefix, false, "AV9BarDescription", AV9BarDescription);
          }
          else
          {
@@ -946,7 +950,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( sCtrlAV6Percentage) > 0 )
          {
             AV6Percentage = (short)(context.localUtil.CToN( cgiGet( sCtrlAV6Percentage), ",", "."));
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV6Percentage", StringUtil.LTrim( StringUtil.Str( (decimal)(AV6Percentage), 2, 0)));
+            AssignAttri(sPrefix, false, "AV6Percentage", StringUtil.LTrimStr( (decimal)(AV6Percentage), 2, 0));
          }
          else
          {
@@ -1064,7 +1068,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201910214153022", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115364584", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1081,7 +1085,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?201910214153022", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?201911115364584", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/DVProgressIndicator/DVProgressIndicatorRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1245,6 +1249,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXUserControl ucProgressbar1 ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

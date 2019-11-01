@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.SecGAMGetAdvancedSecurityWWPFunctionalities
         Description: Get Advanced Security WWP Functionalities
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:48:12.10
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:51.49
        Program type: Callable routine
           Main DBMS: SQL Server
 */

@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.SaveFilterAs
         Description: Guardar filtro como...
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 19:12:57.93
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:48.54
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -48,6 +50,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -129,13 +133,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
                AV15UserKey = gxfirstwebparm;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV15UserKey", AV15UserKey);
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
+               AssignAttri("", false, "AV15UserKey", AV15UserKey);
+               AssignAttri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
                   AV5GridStateKey = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5GridStateKey", AV5GridStateKey);
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vGRIDSTATEKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5GridStateKey, "")), context));
+                  AssignAttri("", false, "AV5GridStateKey", AV5GridStateKey);
+                  AssignAttri("", false, "gxhash_vGRIDSTATEKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5GridStateKey, "")), context));
                }
             }
             if ( context.isSpaRequest( ) )
@@ -196,7 +200,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -253,11 +257,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?201910219125797", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115474859", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -287,7 +291,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
          context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, "FORM", "Class", "FormNoBackgroundColor", true);
+         AssignProp("", false, "FORM", "Class", "FormNoBackgroundColor", true);
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -297,6 +301,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vGRIDSTATEKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5GridStateKey, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -412,7 +418,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( ! context.isSpaRequest( ) )
          {
-            Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+            Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
             Form.Meta.addItem("description", "Guardar filtro como...", 0) ;
          }
          context.wjLoc = "";
@@ -546,7 +552,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! context.isAjaxRequest( ) )
             {
                GX_FocusControl = edtavFiltername_Internalname;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "GX_FocusControl", GX_FocusControl);
+               AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
             }
             nDonePA = 1;
          }
@@ -625,10 +631,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
+            /* Read saved values. */
             /* Read variables values. */
             AV8FilterName = cgiGet( edtavFiltername_Internalname);
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV8FilterName", AV8FilterName);
-            /* Read saved values. */
+            AssignAttri("", false, "AV8FilterName", AV8FilterName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -662,7 +668,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Enter Routine */
          AV8FilterName = StringUtil.Trim( AV8FilterName);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV8FilterName", AV8FilterName);
+         AssignAttri("", false, "AV8FilterName", AV8FilterName);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8FilterName)) )
          {
             GX_msglist.addItem("Empty");
@@ -688,8 +694,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
                AV11GridStateCollectionItem.gxTpr_Gridstatexml = AV6Session.Get(AV5GridStateKey);
                AV10GridStateCollection.Add(AV11GridStateCollectionItem, 1);
                new GeneXus.Programs.wwpbaseobjects.savemanagefiltersstate(context ).execute(  AV15UserKey,  AV10GridStateCollection.ToXml(false, true, "Items", "")) ;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV15UserKey", AV15UserKey);
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
+               AssignAttri("", false, "AV15UserKey", AV15UserKey);
+               AssignAttri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
                context.setWebReturnParms(new Object[] {});
                context.setWebReturnParmsMetadata(new Object[] {});
                context.wjLocDisableFrm = 1;
@@ -788,7 +794,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.WriteHtmlText( "<td class='DataContentCell'>") ;
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFiltername_Internalname, AV8FilterName, StringUtil.RTrim( context.localUtil.Format( AV8FilterName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFiltername_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 1, -1, -1, true, "", "left", true, "HLP_WWPBaseObjects\\SaveFilterAs.htm");
+            GxWebStd.gx_single_line_edit( context, edtavFiltername_Internalname, AV8FilterName, StringUtil.RTrim( context.localUtil.Format( AV8FilterName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFiltername_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 1, -1, -1, true, "", "left", true, "", "HLP_WWPBaseObjects\\SaveFilterAs.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             context.WriteHtmlText( "</tbody>") ;
@@ -807,11 +813,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          createObjects();
          initialize();
          AV15UserKey = (String)getParm(obj,0);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV15UserKey", AV15UserKey);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
+         AssignAttri("", false, "AV15UserKey", AV15UserKey);
+         AssignAttri("", false, "gxhash_vUSERKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15UserKey, "")), context));
          AV5GridStateKey = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5GridStateKey", AV5GridStateKey);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vGRIDSTATEKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5GridStateKey, "")), context));
+         AssignAttri("", false, "AV5GridStateKey", AV5GridStateKey);
+         AssignAttri("", false, "gxhash_vGRIDSTATEKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5GridStateKey, "")), context));
       }
 
       public override String getresponse( String sGXDynURL )
@@ -847,7 +853,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201910219125811", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115474875", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -863,7 +869,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.spa.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/savefilteras.js", "?201910219125811", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/savefilteras.js", "?201911115474875", false, true);
          /* End function include_jscripts */
       }
 
@@ -1020,6 +1026,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private String AV8FilterName ;
       private IGxSession AV6Session ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

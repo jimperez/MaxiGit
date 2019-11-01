@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.SaveUserKeyValue
         Description: Save User Key Value
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:15:41.12
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:51.57
        Program type: Callable routine
           Main DBMS: SQL Server
 */

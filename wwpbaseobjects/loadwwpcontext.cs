@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.LoadWWPContext
         Description: Load Work With Plus Context
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 19:4:54.16
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:51.67
        Program type: Callable routine
           Main DBMS: SQL Server
 */

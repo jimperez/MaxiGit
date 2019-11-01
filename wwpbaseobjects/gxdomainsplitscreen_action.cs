@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.SplitScreen_Action
         Description: SplitScreen_Action
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/27/2019 11:14:41.68
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 16:1:3.2
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -13,12 +13,6 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
-using GeneXus.Reorg;
-using System.Threading;
-using GeneXus.Programs;
-using System.Web.Services;
-using System.Data;
-using GeneXus.Data;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
 using GeneXus.Data.NTier.ADO;
@@ -27,6 +21,9 @@ using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
 using System.Xml.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.Runtime.Serialization;
 namespace GeneXus.Programs.wwpbaseobjects {
    public class gxdomainsplitscreen_action
    {

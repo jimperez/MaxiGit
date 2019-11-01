@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/3/2019 15:43:49.17
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:38.25
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.promptgeolocation', false, function () {

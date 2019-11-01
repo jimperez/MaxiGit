@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.AddressDisplay
         Description: Mapa
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:25:8.42
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:34.88
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -48,6 +50,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -129,13 +133,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
                AV5Address = gxfirstwebparm;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5Address", AV5Address);
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vADDRESS", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5Address, "")), context));
+               AssignAttri("", false, "AV5Address", AV5Address);
+               AssignAttri("", false, "gxhash_vADDRESS", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5Address, "")), context));
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
                   AV6Geolocation = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV6Geolocation", AV6Geolocation);
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vGEOLOCATION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6Geolocation, "")), context));
+                  AssignAttri("", false, "AV6Geolocation", AV6Geolocation);
+                  AssignAttri("", false, "gxhash_vGEOLOCATION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6Geolocation, "")), context));
                }
             }
             if ( context.isSpaRequest( ) )
@@ -204,7 +208,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -246,11 +250,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          define_styles( ) ;
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?20191021425846", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115473491", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -277,7 +281,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
             context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, "FORM", "Class", "FormNoBackgroundColor", true);
+            AssignProp("", false, "FORM", "Class", "FormNoBackgroundColor", true);
          }
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -288,6 +292,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "gxhash_vADDRESS", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5Address, "")), context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vGEOLOCATION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6Geolocation, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -377,7 +383,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( ! context.isSpaRequest( ) )
          {
-            Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+            Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
             Form.Meta.addItem("description", "Mapa", 0) ;
          }
          context.wjLoc = "";
@@ -576,8 +582,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            /* Read variables values. */
             /* Read saved values. */
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -607,7 +613,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV7LinkAddress = "http://maps.google.com/?q=" + AV6Geolocation + "&output=embed&z=16&iwloc=";
          }
          epGooglemapsembpage_Source = AV7LinkAddress;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, epGooglemapsembpage_Internalname, "Source", epGooglemapsembpage_Source, true);
+         AssignProp("", false, epGooglemapsembpage_Internalname, "Source", epGooglemapsembpage_Source, true);
       }
 
       protected void nextLoad( )
@@ -685,11 +691,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          createObjects();
          initialize();
          AV5Address = (String)getParm(obj,0);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5Address", AV5Address);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vADDRESS", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5Address, "")), context));
+         AssignAttri("", false, "AV5Address", AV5Address);
+         AssignAttri("", false, "gxhash_vADDRESS", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV5Address, "")), context));
          AV6Geolocation = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV6Geolocation", AV6Geolocation);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vGEOLOCATION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6Geolocation, "")), context));
+         AssignAttri("", false, "AV6Geolocation", AV6Geolocation);
+         AssignAttri("", false, "gxhash_vGEOLOCATION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6Geolocation, "")), context));
       }
 
       public override String getresponse( String sGXDynURL )
@@ -725,7 +731,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?20191021425852", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115473498", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -743,7 +749,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.spa.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/addressdisplay.js", "?20191021425852", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/addressdisplay.js", "?201911115473499", false, true);
          }
          /* End function include_jscripts */
       }
@@ -867,6 +873,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private String AV7LinkAddress ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

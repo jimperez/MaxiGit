@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.GetHomeSampleNameValueData
         Description: Get Home Sample Name Value Data
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:15:40.10
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:51.25
        Program type: HTTP procedure
           Main DBMS: SQL Server
 */

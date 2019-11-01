@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.ListWWPPrograms
         Description: List Work With Plus Programs
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/27/2019 11:16:17.46
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:54.26
        Program type: Callable routine
           Main DBMS: SQL Server
 */

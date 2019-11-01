@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 14:25:17.59
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:43.65
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.wwppromptmasterpage', false, function () {

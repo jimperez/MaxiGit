@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.WorkWithPlusMasterPage
         Description: Master Page
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/27/2019 11:21:58.59
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:51.63
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -47,6 +49,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -190,7 +194,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/DVMessage/DVMessageRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Tooltip/BootstrapTooltipRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/WorkWithPlusUtilities/WorkWithPlusUtilitiesRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2019102711215947", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?201911115475249", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -682,7 +686,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             ajax_req_read_hidden_sdt(cgiGet( "vADMINAGDATA_MPAGE"), AV5AdminAGData);
             ajax_req_read_hidden_sdt(cgiGet( "vDVELOP_MENU_MPAGE"), AV8DVelop_Menu);
             ajax_req_read_hidden_sdt(cgiGet( "vDVELOP_MENU_USERDATA_MPAGE"), AV33DVelop_Menu_UserData);
-            /* Read variables values. */
             /* Read saved values. */
             Ddo_adminag_Icon = cgiGet( "DDO_ADMINAG_MPAGE_Icon");
             Ddo_adminag_Cls = cgiGet( "DDO_ADMINAG_MPAGE_Cls");
@@ -698,6 +701,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Wwputilities_Enableconvertcombotobootstrapselect = StringUtil.StrToBool( cgiGet( "WWPUTILITIES_MPAGE_Enableconvertcombotobootstrapselect"));
             Ddo_adminag_Activeeventkey = cgiGet( "DDO_ADMINAG_MPAGE_Activeeventkey");
             (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption = cgiGet( "FORM_MPAGE_Caption");
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -720,7 +724,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Start Routine */
          (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml = "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\""+context.convertURL( (String)(context.GetImagePath( "d76b665a-aaf7-4e2f-be20-2aacb3c49f39", "", context.GetTheme( ))))+"\">";
          divLayoutmaintable_Class = "MainContainerWithFooter";
-         context.httpAjaxContext.ajax_rsp_assign_prop("", true, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
+         AssignProp("", true, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          AV20GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
          if ( AV20GAMApplication.gxTpr_Mainmenuid == 0 )
          {
@@ -785,10 +789,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16RolesDescriptions)) )
             {
                AV16RolesDescriptions = AV16RolesDescriptions + ", ";
-               context.httpAjaxContext.ajax_rsp_assign_attri("", true, "AV16RolesDescriptions", AV16RolesDescriptions);
+               AssignAttri("", true, "AV16RolesDescriptions", AV16RolesDescriptions);
             }
             AV16RolesDescriptions = AV16RolesDescriptions + (String.IsNullOrEmpty(StringUtil.RTrim( AV24GAMRole.gxTpr_Description)) ? AV24GAMRole.gxTpr_Name : AV24GAMRole.gxTpr_Description);
-            context.httpAjaxContext.ajax_rsp_assign_attri("", true, "AV16RolesDescriptions", AV16RolesDescriptions);
+            AssignAttri("", true, "AV16RolesDescriptions", AV16RolesDescriptions);
             AV43GXV1 = (int)(AV43GXV1+1);
          }
          AV33DVelop_Menu_UserData.gxTpr_Firstline = AV18UserName;
@@ -827,7 +831,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Refresh Routine */
          lblTextblocktitle_Caption = (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", true, lblTextblocktitle_Internalname, "Caption", lblTextblocktitle_Caption, true);
+         AssignProp("", true, lblTextblocktitle_Internalname, "Caption", lblTextblocktitle_Caption, true);
          /*  Sending Event outputs  */
       }
 
@@ -975,7 +979,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2019102711221119", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20191111548445", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -990,7 +994,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2019102711221123", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20191111548448", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
@@ -1244,6 +1248,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXUserControl ucWwputilities ;
       private GXUserControl ucDdo_adminag ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private GXDataAreaControl Contentholder ;

@@ -10,9 +10,11 @@
    <appSettings>
       <add  key="AppMainNamespace" value="GeneXus.Programs"/>
       <add  key="DataStore1" value="GAM"/>
-      <add  key="DataStore2" value="AFIP"/>
-      <add  key="DataStore3" value="Default"/>
-      <add  key="DataStore-Count" value="3"/>
+      <add  key="DataStore2" value="MH"/>
+      <add  key="DataStore3" value="CAPS"/>
+      <add  key="DataStore4" value="AFIP"/>
+      <add  key="DataStore5" value="Default"/>
+      <add  key="DataStore-Count" value="5"/>
       <add  key="Connection-GAM-DBMS" value="sqlserver"/>
       <add  key="Connection-GAM-Port" value=""/>
       <add  key="Connection-GAM-LockTimeout" value="0"/>
@@ -25,6 +27,30 @@
       <add  key="Connection-GAM-Schema" value="AcNMu2fK7ytcxZ3B9UN+W0=="/>
       <add  key="Connection-GAM-Opts" value=";Integrated Security=no;"/>
       <add  key="Connection-GAM-TrnInt" value="1"/>
+      <add  key="Connection-MH-DBMS" value="sqlserver"/>
+      <add  key="Connection-MH-Port" value=""/>
+      <add  key="Connection-MH-LockTimeout" value="0"/>
+      <add  key="Connection-MH-LockRetryCount" value="10"/>
+      <add  key="Connection-MH-IsolationLevel" value="CR"/>
+      <add  key="Connection-MH-Datasource" value="F/qIgJbdf6N/A7GK9pczHGa7t3oqucxYMJNl//VQ1yOYh8WoLX33MLvmJzRp/OPc"/>
+      <add  key="Connection-MH-User" value="pHZnB0VdWX26gKHC7P5Ct/=="/>
+      <add  key="Connection-MH-Password" value="QJJo5Y11yIAhasPuE4Wc+4=="/>
+      <add  key="Connection-MH-DB" value="SIGMA"/>
+      <add  key="Connection-MH-Schema" value="82sPNmMP8O3TlpdEZk1r8E=="/>
+      <add  key="Connection-MH-Opts" value=";Integrated Security=no;"/>
+      <add  key="Connection-MH-TrnInt" value="1"/>
+      <add  key="Connection-CAPS-DBMS" value="sqlserver"/>
+      <add  key="Connection-CAPS-Port" value=""/>
+      <add  key="Connection-CAPS-LockTimeout" value="0"/>
+      <add  key="Connection-CAPS-LockRetryCount" value="10"/>
+      <add  key="Connection-CAPS-IsolationLevel" value="CR"/>
+      <add  key="Connection-CAPS-Datasource" value="F/qIgJbdf6N/A7GK9pczHGa7t3oqucxYMJNl//VQ1yOYh8WoLX33MLvmJzRp/OPc"/>
+      <add  key="Connection-CAPS-User" value="pHZnB0VdWX26gKHC7P5Ct/=="/>
+      <add  key="Connection-CAPS-Password" value="QJJo5Y11yIAhasPuE4Wc+4=="/>
+      <add  key="Connection-CAPS-DB" value="SIGMA"/>
+      <add  key="Connection-CAPS-Schema" value="82sPNmMP8O3TlpdEZk1r8E=="/>
+      <add  key="Connection-CAPS-Opts" value=";Integrated Security=no;"/>
+      <add  key="Connection-CAPS-TrnInt" value="1"/>
       <add  key="Connection-AFIP-DBMS" value="sqlserver"/>
       <add  key="Connection-AFIP-Port" value=""/>
       <add  key="Connection-AFIP-LockTimeout" value="0"/>
@@ -52,7 +78,7 @@
       <add  key="DateFormat" value="DMY"/>
       <add  key="YearLimit" value="1940"/>
       <add  key="TimeAmPmFormat" value="24"/>
-      <add  key="VER_STAMP" value="20191028.211216"/>
+      <add  key="VER_STAMP" value="20191101.181714"/>
       <add  key="CS_BLOB_PATH" value="PublicTempStorage"/>
       <add  key="TMPMEDIA_DIR" value="PrivateTempStorage"/>
       <add  key="PRINT_LAYOUT_METADATA_DIR" value="LayoutMetadata"/>
@@ -70,7 +96,7 @@
       <add  key="IntegratedSecurityNotAuthorizedWeb" value="gamnotauthorized,objects"/>
       <add  key="MAX_CURSOR" value="100"/>
       <add  key="STATIC_CONTENT" value=""/>
-      <add  key="GX_BUILD_NUMBER" value="135614"/>
+      <add  key="GX_BUILD_NUMBER" value="136889"/>
       <add  key="CACHE_CONTENT_EXPIRATION" value="36"/>
       <add  key="ENABLE_MANAGEMENT" value="0"/>
       <add  key="COMPRESS_HTML" value="1"/>
@@ -78,7 +104,7 @@
       <add  key="DocumentType" value="HTML5"/>
       <add  key="SMART_CACHING" value="0"/>
       <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="201910299352463"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="20191111724356"/>
    </appSettings>
    <languages >
       <Spanish  code="spa" time_fmt="24" decimal_point="," thousand_sep="." date_fmt="DMY" culture="es-ES"/>
@@ -218,12 +244,14 @@
          <remove  fileExtension=".woff2"/>
          <remove  fileExtension=".tmp"/>
          <remove  fileExtension=".otf"/>
+         <remove  fileExtension=".apk"/>
          <mimeMap  fileExtension=".json" mimeType="application/json"/>
          <mimeMap  fileExtension=".woff" mimeType="font/woff"/>
          <mimeMap  fileExtension=".woff2" mimeType="font/woff2"/>
          <mimeMap  fileExtension=".tmp" mimeType="image/jpeg"/>
          <mimeMap  fileExtension=".otf" mimeType="font/opentype"/>
          <mimeMap  fileExtension=".gxsd" mimeType="application/zip"/>
+         <mimeMap  fileExtension=".apk" mimeType="application/vnd.android.package-archive"/>
       </staticContent>
       <handlers>
          <add  name="GeneXus WebSocket Handler" verb="*" path="gxwebsocket.svc" type="GeneXus.Http.WSHttpHandler,gxwebsocket"/>

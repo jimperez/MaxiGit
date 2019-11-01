@@ -1,0 +1,1 @@
+<%@ServiceHost Service= "GeneXus.AI.genexusai.zcommon.file.server.blobreftopath_services,genexusai" %>

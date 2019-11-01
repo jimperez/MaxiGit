@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.WWPTabbedView
         Description: Tabbed View
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:15:32.14
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:46.29
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -51,6 +53,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -121,7 +125,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   sSFPrefix = GetNextPar( );
                   ajax_req_read_hidden_sdt(GetNextPar( ), AV5Tabs);
                   AV7TabCode = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV7TabCode", AV7TabCode);
+                  AssignAttri(sPrefix, false, "AV7TabCode", AV7TabCode);
                   setjustcreated();
                   componentprepare(new Object[] {(String)sCompPrefix,(String)sSFPrefix,(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWWPTabOptions_TabOptionsItem>)AV5Tabs,(String)AV7TabCode});
                   componentstart();
@@ -177,7 +181,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   gxgrTabsgrid_refresh( sPrefix) ;
                   GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
                   GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                   return  ;
                }
                else
@@ -241,7 +245,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -286,11 +290,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?201910214153218", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115364633", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -317,7 +321,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
             context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-            context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, "FORM", "Class", "Form", true);
+            AssignProp(sPrefix, false, "FORM", "Class", "Form", true);
          }
          else
          {
@@ -385,7 +389,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwptabbedview.js", "?201910214153219", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwptabbedview.js", "?201911115364635", false, true);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"GX_FocusControl", GX_FocusControl);
          define_styles( ) ;
@@ -515,7 +519,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             if ( ! context.isSpaRequest( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+               Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
                Form.Meta.addItem("description", "Tabbed View", 0) ;
             }
             context.wjLoc = "";
@@ -614,7 +618,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  STRUP0F0( ) ;
                               }
                               nGXsfl_14_idx = (int)(NumberUtil.Val( sEvtType, "."));
-                              sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_14_idx), 4, 0)), 4, "0");
+                              sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
                               SubsflControlProps_142( ) ;
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -767,11 +771,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          while ( nGXsfl_14_idx <= nRC_GXsfl_14 )
          {
             sendrow_142( ) ;
-            nGXsfl_14_idx = ((subTabsgrid_Islastpage==1)&&(nGXsfl_14_idx+1>subTabsgrid_Recordsperpage( )) ? 1 : nGXsfl_14_idx+1);
-            sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_14_idx), 4, 0)), 4, "0");
+            nGXsfl_14_idx = ((subTabsgrid_Islastpage==1)&&(nGXsfl_14_idx+1>subTabsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_14_idx+1);
+            sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
             SubsflControlProps_142( ) ;
          }
-         context.GX_webresponse.AddString(context.httpAjaxContext.getJSONContainerResponse( TabsgridContainer));
+         AddString( context.httpAjaxContext.getJSONContainerResponse( TabsgridContainer)) ;
          /* End function gxnrTabsgrid_newrow */
       }
 
@@ -826,7 +830,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          wbStart = 14;
          nGXsfl_14_idx = 1;
-         sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_14_idx), 4, 0)), 4, "0");
+         sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
          SubsflControlProps_142( ) ;
          bGXsfl_14_Refreshing = true;
          TabsgridContainer.AddObjectProperty("GridName", "Tabsgrid");
@@ -842,7 +846,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TabsgridContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(0), 4, 0, ".", "")));
          TabsgridContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subTabsgrid_Backcolorstyle), 1, 0, ".", "")));
          TabsgridContainer.AddObjectProperty("Borderwidth", StringUtil.LTrim( StringUtil.NToC( (decimal)(subTabsgrid_Borderwidth), 4, 0, ".", "")));
-         TabsgridContainer.PageSize = subTabsgrid_Recordsperpage( );
+         TabsgridContainer.PageSize = subTabsgrid_fnc_Recordsperpage( );
+         if ( subTabsgrid_Islastpage != 0 )
+         {
+            TABSGRID_nFirstRecordOnPage = (long)(subTabsgrid_fnc_Recordcount( )-subTabsgrid_fnc_Recordsperpage( ));
+            GxWebStd.gx_hidden_field( context, sPrefix+"TABSGRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(TABSGRID_nFirstRecordOnPage), 15, 0, ".", "")));
+            TabsgridContainer.AddObjectProperty("TABSGRID_nFirstRecordOnPage", TABSGRID_nFirstRecordOnPage);
+         }
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
@@ -868,22 +878,22 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
       }
 
-      protected int subTabsgrid_Pagecount( )
+      protected int subTabsgrid_fnc_Pagecount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subTabsgrid_Recordcount( )
+      protected int subTabsgrid_fnc_Recordcount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subTabsgrid_Recordsperpage( )
+      protected int subTabsgrid_fnc_Recordsperpage( )
       {
          return (int)(-1) ;
       }
 
-      protected int subTabsgrid_Currentpage( )
+      protected int subTabsgrid_fnc_Currentpage( )
       {
          return (int)(-1) ;
       }
@@ -899,10 +909,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
          {
             /* Read saved SDTs. */
-            /* Read variables values. */
             /* Read saved values. */
             nRC_GXsfl_14 = (int)(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_14"), ",", "."));
             wcpOAV7TabCode = cgiGet( sPrefix+"wcpOAV7TabCode");
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -924,7 +934,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Table start */
             sStyleString = "";
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(100), 10, 0)) + "%" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(100), 10, 0) + "%" + ";";
             GxWebStd.gx_table_start( context, tblTable4_Internalname, tblTable4_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr>") ;
@@ -961,7 +971,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Table start */
             sStyleString = "";
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(100), 10, 0)) + "%" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(100), 10, 0) + "%" + ";";
             GxWebStd.gx_table_start( context, tblTable3_Internalname, tblTable3_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr>") ;
@@ -998,7 +1008,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Table start */
             sStyleString = "";
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(100), 10, 0)) + "%" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(100), 10, 0) + "%" + ";";
             GxWebStd.gx_table_start( context, tblTable1_Internalname, tblTable1_Internalname, "", "Table", 0, "", "", 0, 0, sStyleString, "none", "", 0);
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr style=\""+CSSHelper.Prettify( "vertical-align:bottom")+"\">") ;
@@ -1057,7 +1067,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                sStyleString = sStyleString + " border-color: " + context.BuildHTMLColor( (int)(0x000000)) + ";";
             }
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(100), 10, 0)) + "%" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(100), 10, 0) + "%" + ";";
             GxWebStd.gx_table_start( context, tblTable2_Internalname, tblTable2_Internalname, "", "Table", 0, "", "", 0, 0, sStyleString, "none", "", 0);
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr>") ;
@@ -1260,7 +1270,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          initialize();
          AV5Tabs = (GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWWPTabOptions_TabOptionsItem>)getParm(obj,0);
          AV7TabCode = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV7TabCode", AV7TabCode);
+         AssignAttri(sPrefix, false, "AV7TabCode", AV7TabCode);
       }
 
       public override String getresponse( String sGXDynURL )
@@ -1329,7 +1339,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             AV5Tabs = (GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWWPTabOptions_TabOptionsItem>)getParm(obj,2);
             AV7TabCode = (String)getParm(obj,3);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV7TabCode", AV7TabCode);
+            AssignAttri(sPrefix, false, "AV7TabCode", AV7TabCode);
          }
          wcpOAV7TabCode = cgiGet( sPrefix+"wcpOAV7TabCode");
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV7TabCode, wcpOAV7TabCode) != 0 ) ) )
@@ -1355,7 +1365,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( sCtrlAV7TabCode) > 0 )
          {
             AV7TabCode = cgiGet( sCtrlAV7TabCode);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV7TabCode", AV7TabCode);
+            AssignAttri(sPrefix, false, "AV7TabCode", AV7TabCode);
          }
          else
          {
@@ -1482,7 +1492,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201910214153241", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115364657", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1497,7 +1507,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/wwptabbedview.js", "?201910214153241", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/wwptabbedview.js", "?201911115364657", false, true);
          /* End function include_jscripts */
       }
 
@@ -1600,8 +1610,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_lvl_hashes0F2( ) ;
          /* End of Columns property logic. */
          TabsgridContainer.AddRow(TabsgridRow);
-         nGXsfl_14_idx = ((subTabsgrid_Islastpage==1)&&(nGXsfl_14_idx+1>subTabsgrid_Recordsperpage( )) ? 1 : nGXsfl_14_idx+1);
-         sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_14_idx), 4, 0)), 4, "0");
+         nGXsfl_14_idx = ((subTabsgrid_Islastpage==1)&&(nGXsfl_14_idx+1>subTabsgrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_14_idx+1);
+         sGXsfl_14_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_14_idx), 4, 0), 4, "0");
          SubsflControlProps_142( ) ;
          /* End function sendrow_142 */
       }
@@ -1811,6 +1821,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXWebColumn TabsgridColumn ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

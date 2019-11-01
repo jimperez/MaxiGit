@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.ExportOptions
         Description: Opciones para Exportar a Excel
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/27/2019 11:21:57.32
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:37.31
        Program type: Main program
           Main DBMS: SQL Server
 */
@@ -38,6 +38,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -49,6 +51,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -131,13 +135,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
                AV12ExcelFileName = gxfirstwebparm;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV12ExcelFileName", AV12ExcelFileName);
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
+               AssignAttri("", false, "AV12ExcelFileName", AV12ExcelFileName);
+               AssignAttri("", false, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
                   AV9DefaultTitle = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV9DefaultTitle", AV9DefaultTitle);
-                  context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9DefaultTitle, "")), context));
+                  AssignAttri("", false, "AV9DefaultTitle", AV9DefaultTitle);
+                  AssignAttri("", false, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9DefaultTitle, "")), context));
                }
             }
             if ( context.isSpaRequest( ) )
@@ -198,7 +202,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -255,11 +259,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?2019102711215736", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115473736", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -294,7 +298,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
          context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, "FORM", "Class", "form-horizontal FormNoBackgroundColor", true);
+         AssignProp("", false, "FORM", "Class", "form-horizontal FormNoBackgroundColor", true);
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -304,6 +308,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "gxhash_vGOOGLEDOCRESULTXML", GetSecureSignedToken( "", AV14GoogleDocResultXML, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
+         GxWebStd.gx_hidden_field( context, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9DefaultTitle, "")), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -313,6 +320,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "vGOOGLEDOCRESULTXML", AV14GoogleDocResultXML);
+         GxWebStd.gx_hidden_field( context, "gxhash_vGOOGLEDOCRESULTXML", GetSecureSignedToken( "", AV14GoogleDocResultXML, context));
          GxWebStd.gx_hidden_field( context, "vEXCELFILENAME", AV12ExcelFileName);
          GxWebStd.gx_hidden_field( context, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
          GxWebStd.gx_hidden_field( context, "vDEFAULTTITLE", StringUtil.RTrim( AV9DefaultTitle));
@@ -455,7 +463,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( ! context.isSpaRequest( ) )
          {
-            Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+            Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
             Form.Meta.addItem("description", "Opciones para Exportar a Excel", 0) ;
          }
          context.wjLoc = "";
@@ -601,7 +609,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! context.isAjaxRequest( ) )
             {
                GX_FocusControl = cmbavExporttype_Internalname;
-               context.httpAjaxContext.ajax_rsp_assign_attri("", false, "GX_FocusControl", GX_FocusControl);
+               AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
             }
             nDonePA = 1;
          }
@@ -629,12 +637,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( cmbavExporttype.ItemCount > 0 )
          {
             AV13ExportType = (short)(NumberUtil.Val( cmbavExporttype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV13ExportType), 1, 0))), "."));
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
+            AssignAttri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
          }
          if ( context.isAjaxRequest( ) )
          {
             cmbavExporttype.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, cmbavExporttype_Internalname, "Values", cmbavExporttype.ToJavascriptSource(), true);
+            AssignProp("", false, cmbavExporttype_Internalname, "Values", cmbavExporttype.ToJavascriptSource(), true);
          }
       }
 
@@ -671,6 +679,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_lvl_hashes0A2( )
       {
+         GxWebStd.gx_hidden_field( context, "vGOOGLEDOCRESULTXML", AV14GoogleDocResultXML);
+         GxWebStd.gx_hidden_field( context, "gxhash_vGOOGLEDOCRESULTXML", GetSecureSignedToken( "", AV14GoogleDocResultXML, context));
       }
 
       protected void STRUP0A0( )
@@ -686,16 +696,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            /* Read variables values. */
-            cmbavExporttype.CurrentValue = cgiGet( cmbavExporttype_Internalname);
-            AV13ExportType = (short)(NumberUtil.Val( cgiGet( cmbavExporttype_Internalname), "."));
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
-            AV22User = cgiGet( edtavUser_Internalname);
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV22User", AV22User);
-            AV5DocTitle = cgiGet( edtavDoctitle_Internalname);
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5DocTitle", AV5DocTitle);
-            AV20Password = cgiGet( edtavPassword_Internalname);
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV20Password", AV20Password);
             /* Read saved values. */
             Dvpanel_tableexport_Width = cgiGet( "DVPANEL_TABLEEXPORT_Width");
             Dvpanel_tableexport_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEEXPORT_Autowidth"));
@@ -720,6 +720,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Innewwindow1_Width = cgiGet( "INNEWWINDOW1_Width");
             Innewwindow1_Height = cgiGet( "INNEWWINDOW1_Height");
             Innewwindow1_Target = cgiGet( "INNEWWINDOW1_Target");
+            /* Read variables values. */
+            cmbavExporttype.CurrentValue = cgiGet( cmbavExporttype_Internalname);
+            AV13ExportType = (short)(NumberUtil.Val( cgiGet( cmbavExporttype_Internalname), "."));
+            AssignAttri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
+            AV22User = cgiGet( edtavUser_Internalname);
+            AssignAttri("", false, "AV22User", AV22User);
+            AV5DocTitle = cgiGet( edtavDoctitle_Internalname);
+            AssignAttri("", false, "AV5DocTitle", AV5DocTitle);
+            AV20Password = cgiGet( edtavPassword_Internalname);
+            AssignAttri("", false, "AV20Password", AV20Password);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -741,29 +751,29 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Start Routine */
          tblTablecontent_Height = 388;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, tblTablecontent_Internalname, "Height", StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Height), 9, 0)), true);
+         AssignProp("", false, tblTablecontent_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblTablecontent_Height), 9, 0), true);
          AV5DocTitle = AV9DefaultTitle;
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5DocTitle", AV5DocTitle);
+         AssignAttri("", false, "AV5DocTitle", AV5DocTitle);
          AV5DocTitle = AV9DefaultTitle;
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV5DocTitle", AV5DocTitle);
+         AssignAttri("", false, "AV5DocTitle", AV5DocTitle);
          edtavPassword_Ispassword = 1;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavPassword_Internalname, "Ispassword", StringUtil.Str( (decimal)(edtavPassword_Ispassword), 1, 0), true);
+         AssignProp("", false, edtavPassword_Internalname, "Ispassword", StringUtil.Str( (decimal)(edtavPassword_Ispassword), 1, 0), true);
          if ( StringUtil.StrCmp(AV16HttpRequest.Method, "GET") == 0 )
          {
             tblTablegoogledriveinfo_Visible = 0;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, tblTablegoogledriveinfo_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablegoogledriveinfo_Visible), 5, 0)), true);
+            AssignProp("", false, tblTablegoogledriveinfo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(tblTablegoogledriveinfo_Visible), 5, 0), true);
             bttBtnsavegoogledrive_Visible = 0;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, bttBtnsavegoogledrive_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(bttBtnsavegoogledrive_Visible), 5, 0)), true);
+            AssignProp("", false, bttBtnsavegoogledrive_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnsavegoogledrive_Visible), 5, 0), true);
          }
          AV21URL = formatLink(AV12ExcelFileName) ;
          bttBtndownloadtofile_Jsonclick = "exportActionDownloadFile('"+AV21URL+"')";
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, bttBtndownloadtofile_Internalname, "Jsonclick", bttBtndownloadtofile_Jsonclick, true);
+         AssignProp("", false, bttBtndownloadtofile_Internalname, "Jsonclick", bttBtndownloadtofile_Jsonclick, true);
          lblJs_Caption = "<script type=\"text/javascript\">function exportActionDownloadFile(u) { var element = document.createElement(\"iframe\"); element.setAttribute(\"src\", u);document.body.appendChild(element); return true; }</script>";
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, lblJs_Internalname, "Caption", lblJs_Caption, true);
+         AssignProp("", false, lblJs_Internalname, "Caption", lblJs_Caption, true);
          tblTablecontent_Width = 560;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, tblTablecontent_Internalname, "Width", StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Width), 9, 0)), true);
+         AssignProp("", false, tblTablecontent_Internalname, "Width", StringUtil.LTrimStr( (decimal)(tblTablecontent_Width), 9, 0), true);
          tblTablecontent_Height = 386;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, tblTablecontent_Internalname, "Height", StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Height), 9, 0)), true);
+         AssignProp("", false, tblTablecontent_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblTablecontent_Height), 9, 0), true);
       }
 
       protected void E120A2( )
@@ -792,13 +802,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             this.executeUsercontrolMethod("", false, "INNEWWINDOW1Container", "OpenWindow", "", new Object[] {});
             GX_msglist.addItem("The document was succesully uploaded to Google Drive");
             bttBtncancel_Caption = "Cerrar";
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, bttBtncancel_Internalname, "Caption", bttBtncancel_Caption, true);
+            AssignProp("", false, bttBtncancel_Internalname, "Caption", bttBtncancel_Caption, true);
             tblTablecontent_Visible = 0;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, tblTablecontent_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Visible), 5, 0)), true);
+            AssignProp("", false, tblTablecontent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(tblTablecontent_Visible), 5, 0), true);
             bttBtndownloadtofile_Visible = 0;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, bttBtndownloadtofile_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(bttBtndownloadtofile_Visible), 5, 0)), true);
+            AssignProp("", false, bttBtndownloadtofile_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtndownloadtofile_Visible), 5, 0), true);
             bttBtnsavegoogledrive_Visible = 0;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, bttBtnsavegoogledrive_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(bttBtnsavegoogledrive_Visible), 5, 0)), true);
+            AssignProp("", false, bttBtnsavegoogledrive_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnsavegoogledrive_Visible), 5, 0), true);
          }
          else
          {
@@ -946,8 +956,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                sStyleString = sStyleString + "display:none;";
             }
-            sStyleString = sStyleString + " height: " + StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Height), 10, 0)) + "px" + ";";
-            sStyleString = sStyleString + " width: " + StringUtil.LTrim( StringUtil.Str( (decimal)(tblTablecontent_Width), 10, 0)) + "px" + ";";
+            sStyleString = sStyleString + " height: " + StringUtil.LTrimStr( (decimal)(tblTablecontent_Height), 10, 0) + "px" + ";";
+            sStyleString = sStyleString + " width: " + StringUtil.LTrimStr( (decimal)(tblTablecontent_Width), 10, 0) + "px" + ";";
             GxWebStd.gx_table_start( context, tblTablecontent_Internalname, tblTablecontent_Internalname, "", "Table", 0, "", "", 0, 0, sStyleString, "", "", 0);
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td class='ExportOptionsPanellCell'>") ;
@@ -980,7 +990,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* ComboBox */
             GxWebStd.gx_combobox_ctrl1( context, cmbavExporttype, cmbavExporttype_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV13ExportType), 1, 0)), 1, cmbavExporttype_Jsonclick, 7, "'"+""+"'"+",false,"+"'"+"e150a1_client"+"'", "int", "", 1, cmbavExporttype.Enabled, 0, 0, 0, "em", 0, "", "", "AttributeRealWidth", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "", true, "HLP_WWPBaseObjects\\ExportOptions.htm");
             cmbavExporttype.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, cmbavExporttype_Internalname, "Values", (String)(cmbavExporttype.ToJavascriptSource()), true);
+            AssignProp("", false, cmbavExporttype_Internalname, "Values", (String)(cmbavExporttype.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
@@ -1056,7 +1066,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "left", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUser_Internalname, StringUtil.RTrim( AV22User), StringUtil.RTrim( context.localUtil.Format( AV22User, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUser_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavUser_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 1, -1, -1, true, "Description", "left", true, "HLP_WWPBaseObjects\\ExportOptions.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUser_Internalname, StringUtil.RTrim( AV22User), StringUtil.RTrim( context.localUtil.Format( AV22User, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUser_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavUser_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 1, -1, -1, true, "Description", "left", true, "", "HLP_WWPBaseObjects\\ExportOptions.htm");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
@@ -1073,7 +1083,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "left", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 43,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavDoctitle_Internalname, StringUtil.RTrim( AV5DocTitle), StringUtil.RTrim( context.localUtil.Format( AV5DocTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDoctitle_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavDoctitle_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 1, -1, -1, true, "Description", "left", true, "HLP_WWPBaseObjects\\ExportOptions.htm");
+            GxWebStd.gx_single_line_edit( context, edtavDoctitle_Internalname, StringUtil.RTrim( AV5DocTitle), StringUtil.RTrim( context.localUtil.Format( AV5DocTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDoctitle_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavDoctitle_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 1, -1, -1, true, "Description", "left", true, "", "HLP_WWPBaseObjects\\ExportOptions.htm");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
@@ -1090,7 +1100,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "left", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPassword_Internalname, StringUtil.RTrim( AV20Password), StringUtil.RTrim( context.localUtil.Format( AV20Password, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassword_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavPassword_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, edtavPassword_Ispassword, 0, 0, 1, -1, -1, true, "Description", "left", true, "HLP_WWPBaseObjects\\ExportOptions.htm");
+            GxWebStd.gx_single_line_edit( context, edtavPassword_Internalname, StringUtil.RTrim( AV20Password), StringUtil.RTrim( context.localUtil.Format( AV20Password, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPassword_Jsonclick, 0, "AttributeRealWidth", "", "", "", "", 1, edtavPassword_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, edtavPassword_Ispassword, 0, 0, 1, -1, -1, true, "Description", "left", true, "", "HLP_WWPBaseObjects\\ExportOptions.htm");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
             GxWebStd.gx_div_end( context, "left", "top", "div");
@@ -1114,11 +1124,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          createObjects();
          initialize();
          AV12ExcelFileName = (String)getParm(obj,0);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV12ExcelFileName", AV12ExcelFileName);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
+         AssignAttri("", false, "AV12ExcelFileName", AV12ExcelFileName);
+         AssignAttri("", false, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ExcelFileName, "")), context));
          AV9DefaultTitle = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV9DefaultTitle", AV9DefaultTitle);
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9DefaultTitle, "")), context));
+         AssignAttri("", false, "AV9DefaultTitle", AV9DefaultTitle);
+         AssignAttri("", false, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9DefaultTitle, "")), context));
       }
 
       public override String getresponse( String sGXDynURL )
@@ -1154,7 +1164,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201910271121585", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?20191111547385", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1170,7 +1180,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.spa.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/exportoptions.js", "?201910271121585", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/exportoptions.js", "?20191111547386", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
@@ -1188,7 +1198,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( cmbavExporttype.ItemCount > 0 )
          {
             AV13ExportType = (short)(NumberUtil.Val( cmbavExporttype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV13ExportType), 1, 0))), "."));
-            context.httpAjaxContext.ajax_rsp_assign_attri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
+            AssignAttri("", false, "AV13ExportType", StringUtil.Str( (decimal)(AV13ExportType), 1, 0));
          }
          /* End function init_web_controls */
       }
@@ -1284,11 +1294,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'AV12ExcelFileName',fld:'vEXCELFILENAME',pic:'',hsh:true},{av:'AV9DefaultTitle',fld:'vDEFAULTTITLE',pic:'',hsh:true}]");
+         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'AV12ExcelFileName',fld:'vEXCELFILENAME',pic:'',hsh:true},{av:'AV9DefaultTitle',fld:'vDEFAULTTITLE',pic:'',hsh:true},{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:'',hsh:true}]");
          setEventMetadata("REFRESH",",oparms:[]}");
          setEventMetadata("'DODOWNLOADTOFILE'","{handler:'E120A2',iparms:[]");
          setEventMetadata("'DODOWNLOADTOFILE'",",oparms:[]}");
-         setEventMetadata("'DOSAVEGOOGLEDRIVE'","{handler:'E130A2',iparms:[{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:''}]");
+         setEventMetadata("'DOSAVEGOOGLEDRIVE'","{handler:'E130A2',iparms:[{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:'',hsh:true}]");
          setEventMetadata("'DOSAVEGOOGLEDRIVE'",",oparms:[{av:'Innewwindow1_Target',ctrl:'INNEWWINDOW1',prop:'Target'},{av:'Innewwindow1_Height',ctrl:'INNEWWINDOW1',prop:'Height'},{av:'Innewwindow1_Width',ctrl:'INNEWWINDOW1',prop:'Width'},{ctrl:'BTNCANCEL',prop:'Caption'},{av:'tblTablecontent_Visible',ctrl:'TABLECONTENT',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'}]}");
          setEventMetadata("VEXPORTTYPE.CLICK","{handler:'E150A1',iparms:[{av:'cmbavExporttype'},{av:'AV13ExportType',fld:'vEXPORTTYPE',pic:'9'}]");
          setEventMetadata("VEXPORTTYPE.CLICK",",oparms:[{av:'tblTablegoogledriveinfo_Visible',ctrl:'TABLEGOOGLEDRIVEINFO',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'}]}");
@@ -1320,8 +1330,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         GXKey = "";
          AV14GoogleDocResultXML = "";
+         GXKey = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1461,6 +1471,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXUserControl ucDvpanel_tableexport ;
       private GXUserControl ucDvpanel_tableattributes ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavExporttype ;

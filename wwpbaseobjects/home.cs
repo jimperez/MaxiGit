@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.Home
         Description: Inicio
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:43:45.68
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:47:36.55
        Program type: Main program
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -48,6 +50,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -130,16 +134,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxGridRefresh_"+"Banner") == 0 )
             {
+               ajax_req_read_hidden_sdt(GetNextPar( ), AV10HomeModulesSDT);
                setAjaxCallMode();
                if ( ! IsValidAjaxCall( true) )
                {
                   GxWebError = 1;
                   return  ;
                }
-               gxgrBanner_refresh( ) ;
+               gxgrBanner_refresh( AV10HomeModulesSDT) ;
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-               context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+               AddString( context.getJSONResponse( )) ;
                return  ;
             }
             else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Gridhomemodulessdts") == 0 )
@@ -168,7 +173,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                gxgrGridhomemodulessdts_refresh( AV10HomeModulesSDT) ;
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-               context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+               AddString( context.getJSONResponse( )) ;
                return  ;
             }
             else
@@ -238,7 +243,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -295,11 +300,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?201910315434572", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115473659", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -333,7 +338,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
             context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-            context.httpAjaxContext.ajax_rsp_assign_prop("", false, "FORM", "Class", "form-horizontal Form", true);
+            AssignProp("", false, "FORM", "Class", "form-horizontal Form", true);
          }
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -344,6 +349,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "gxhash_vHOMEMODULESSDT", GetSecureSignedToken( "", AV10HomeModulesSDT, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -360,6 +366,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Homemodulessdt", AV10HomeModulesSDT);
          }
+         GxWebStd.gx_hidden_field( context, "gxhash_Homemodulessdt", GetSecureSignedToken( "", AV10HomeModulesSDT, context));
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, ",", "")));
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_20", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_20), 8, 0, ",", "")));
          if ( context.isAjaxRequest( ) )
@@ -370,6 +377,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHOMEMODULESSDT", AV10HomeModulesSDT);
          }
+         GxWebStd.gx_hidden_field( context, "gxhash_vHOMEMODULESSDT", GetSecureSignedToken( "", AV10HomeModulesSDT, context));
          GxWebStd.gx_hidden_field( context, "BANNER_Class", StringUtil.RTrim( subBanner_Class));
          GxWebStd.gx_hidden_field( context, "BANNER_Showarrows", StringUtil.RTrim( subBanner_Showarrows));
          GxWebStd.gx_hidden_field( context, "BANNER_Autoplay", StringUtil.RTrim( subBanner_Autoplay));
@@ -721,7 +729,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( ! context.isSpaRequest( ) )
          {
-            Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+            Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
             Form.Meta.addItem("description", "Inicio", 0) ;
          }
          context.wjLoc = "";
@@ -781,11 +789,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
                            if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 11), "BANNER.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) )
                            {
                               nGXsfl_12_idx = (int)(NumberUtil.Val( sEvtType, "."));
-                              sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_12_idx), 4, 0)), 4, "0");
+                              sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_12_idx), 4, 0), 4, "0");
                               SubsflControlProps_122( ) ;
                               AV11ImageBanner = cgiGet( edtavImagebanner_Internalname);
-                              context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavImagebanner_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV11ImageBanner)) ? AV19Imagebanner_GXI : context.convertURL( context.PathToRelativeUrl( AV11ImageBanner))), !bGXsfl_12_Refreshing);
-                              context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavImagebanner_Internalname, "SrcSet", context.GetImageSrcSet( AV11ImageBanner), true);
+                              AssignProp("", false, edtavImagebanner_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV11ImageBanner)) ? AV19Imagebanner_GXI : context.convertURL( context.PathToRelativeUrl( AV11ImageBanner))), !bGXsfl_12_Refreshing);
+                              AssignProp("", false, edtavImagebanner_Internalname, "SrcSet", context.GetImageSrcSet( AV11ImageBanner), true);
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
@@ -829,7 +837,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                            else if ( StringUtil.StrCmp(StringUtil.Left( sEvt, 24), "GRIDHOMEMODULESSDTS.LOAD") == 0 )
                            {
                               nGXsfl_20_idx = (int)(NumberUtil.Val( sEvtType, "."));
-                              sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_idx), 4, 0)), 4, "0");
+                              sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_idx), 4, 0), 4, "0");
                               SubsflControlProps_203( ) ;
                               AV16GXV1 = nGXsfl_20_idx;
                               if ( ( AV10HomeModulesSDT.Count >= AV16GXV1 ) && ( AV16GXV1 > 0 ) )
@@ -922,11 +930,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          while ( nGXsfl_12_idx <= nRC_GXsfl_12 )
          {
             sendrow_122( ) ;
-            nGXsfl_12_idx = ((subBanner_Islastpage==1)&&(nGXsfl_12_idx+1>subBanner_Recordsperpage( )) ? 1 : nGXsfl_12_idx+1);
-            sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_12_idx), 4, 0)), 4, "0");
+            nGXsfl_12_idx = ((subBanner_Islastpage==1)&&(nGXsfl_12_idx+1>subBanner_fnc_Recordsperpage( )) ? 1 : nGXsfl_12_idx+1);
+            sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_12_idx), 4, 0), 4, "0");
             SubsflControlProps_122( ) ;
          }
-         context.GX_webresponse.AddString(context.httpAjaxContext.getJSONContainerResponse( BannerContainer));
+         AddString( context.httpAjaxContext.getJSONContainerResponse( BannerContainer)) ;
          /* End function gxnrBanner_newrow */
       }
 
@@ -937,15 +945,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
          while ( nGXsfl_20_idx <= nRC_GXsfl_20 )
          {
             sendrow_203( ) ;
-            nGXsfl_20_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_idx+1>subGridhomemodulessdts_Recordsperpage( )) ? 1 : nGXsfl_20_idx+1);
-            sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_idx), 4, 0)), 4, "0");
+            nGXsfl_20_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_idx+1>subGridhomemodulessdts_fnc_Recordsperpage( )) ? 1 : nGXsfl_20_idx+1);
+            sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_idx), 4, 0), 4, "0");
             SubsflControlProps_203( ) ;
          }
-         context.GX_webresponse.AddString(context.httpAjaxContext.getJSONContainerResponse( GridhomemodulessdtsContainer));
+         AddString( context.httpAjaxContext.getJSONContainerResponse( GridhomemodulessdtsContainer)) ;
          /* End function gxnrGridhomemodulessdts_newrow */
       }
 
-      protected void gxgrBanner_refresh( )
+      protected void gxgrBanner_refresh( GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> AV10HomeModulesSDT )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -995,9 +1003,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas. */
          context.Gx_err = 0;
          edtavHomemodulessdt__optiontitle_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavHomemodulessdt__optiontitle_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavHomemodulessdt__optiontitle_Enabled), 5, 0)), !bGXsfl_20_Refreshing);
+         AssignProp("", false, edtavHomemodulessdt__optiontitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHomemodulessdt__optiontitle_Enabled), 5, 0), !bGXsfl_20_Refreshing);
          edtavHomemodulessdt__optiondescription_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavHomemodulessdt__optiondescription_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavHomemodulessdt__optiondescription_Enabled), 5, 0)), !bGXsfl_20_Refreshing);
+         AssignProp("", false, edtavHomemodulessdt__optiondescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHomemodulessdt__optiondescription_Enabled), 5, 0), !bGXsfl_20_Refreshing);
       }
 
       protected void RF0B2( )
@@ -1010,7 +1018,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          wbStart = 12;
          nGXsfl_12_idx = 1;
-         sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_12_idx), 4, 0)), 4, "0");
+         sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_12_idx), 4, 0), 4, "0");
          SubsflControlProps_122( ) ;
          bGXsfl_12_Refreshing = true;
          BannerContainer.AddObjectProperty("GridName", "Banner");
@@ -1021,7 +1029,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
          BannerContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
          BannerContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
          BannerContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subBanner_Backcolorstyle), 1, 0, ".", "")));
-         BannerContainer.PageSize = subBanner_Recordsperpage( );
+         BannerContainer.PageSize = subBanner_fnc_Recordsperpage( );
+         if ( subBanner_Islastpage != 0 )
+         {
+            BANNER_nFirstRecordOnPage = (long)(subBanner_fnc_Recordcount( )-subBanner_fnc_Recordsperpage( ));
+            GxWebStd.gx_hidden_field( context, "BANNER_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(BANNER_nFirstRecordOnPage), 15, 0, ".", "")));
+            BannerContainer.AddObjectProperty("BANNER_nFirstRecordOnPage", BANNER_nFirstRecordOnPage);
+         }
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -1037,6 +1051,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_lvl_hashes0B2( )
       {
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vHOMEMODULESSDT", AV10HomeModulesSDT);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHOMEMODULESSDT", AV10HomeModulesSDT);
+         }
+         GxWebStd.gx_hidden_field( context, "gxhash_vHOMEMODULESSDT", GetSecureSignedToken( "", AV10HomeModulesSDT, context));
       }
 
       protected void RF0B3( )
@@ -1049,7 +1072,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          wbStart = 20;
          nGXsfl_20_idx = 1;
-         sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_idx), 4, 0)), 4, "0");
+         sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_idx), 4, 0), 4, "0");
          SubsflControlProps_203( ) ;
          bGXsfl_20_Refreshing = true;
          GridhomemodulessdtsContainer.AddObjectProperty("GridName", "Gridhomemodulessdts");
@@ -1060,7 +1083,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridhomemodulessdtsContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
          GridhomemodulessdtsContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
          GridhomemodulessdtsContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridhomemodulessdts_Backcolorstyle), 1, 0, ".", "")));
-         GridhomemodulessdtsContainer.PageSize = subGridhomemodulessdts_Recordsperpage( );
+         GridhomemodulessdtsContainer.PageSize = subGridhomemodulessdts_fnc_Recordsperpage( );
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -1078,42 +1101,42 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
       }
 
-      protected int subBanner_Pagecount( )
+      protected int subBanner_fnc_Pagecount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subBanner_Recordcount( )
+      protected int subBanner_fnc_Recordcount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subBanner_Recordsperpage( )
+      protected int subBanner_fnc_Recordsperpage( )
       {
          return (int)(-1) ;
       }
 
-      protected int subBanner_Currentpage( )
+      protected int subBanner_fnc_Currentpage( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridhomemodulessdts_Pagecount( )
+      protected int subGridhomemodulessdts_fnc_Pagecount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridhomemodulessdts_Recordcount( )
+      protected int subGridhomemodulessdts_fnc_Recordcount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridhomemodulessdts_Recordsperpage( )
+      protected int subGridhomemodulessdts_fnc_Recordsperpage( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridhomemodulessdts_Currentpage( )
+      protected int subGridhomemodulessdts_fnc_Currentpage( )
       {
          return (int)(-1) ;
       }
@@ -1123,9 +1146,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Before Start, stand alone formulas. */
          context.Gx_err = 0;
          edtavHomemodulessdt__optiontitle_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavHomemodulessdt__optiontitle_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavHomemodulessdt__optiontitle_Enabled), 5, 0)), !bGXsfl_20_Refreshing);
+         AssignProp("", false, edtavHomemodulessdt__optiontitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHomemodulessdt__optiontitle_Enabled), 5, 0), !bGXsfl_20_Refreshing);
          edtavHomemodulessdt__optiondescription_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, edtavHomemodulessdt__optiondescription_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavHomemodulessdt__optiondescription_Enabled), 5, 0)), !bGXsfl_20_Refreshing);
+         AssignProp("", false, edtavHomemodulessdt__optiondescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavHomemodulessdt__optiondescription_Enabled), 5, 0), !bGXsfl_20_Refreshing);
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
@@ -1136,7 +1159,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "Homemodulessdt"), AV10HomeModulesSDT);
-            /* Read variables values. */
             /* Read saved values. */
             nRC_GXsfl_12 = (int)(context.localUtil.CToN( cgiGet( "nRC_GXsfl_12"), ",", "."));
             nRC_GXsfl_20 = (int)(context.localUtil.CToN( cgiGet( "nRC_GXsfl_20"), ",", "."));
@@ -1150,8 +1172,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             nGXsfl_20_fel_idx = 0;
             while ( nGXsfl_20_fel_idx < nRC_GXsfl_20 )
             {
-               nGXsfl_20_fel_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_fel_idx+1>subGridhomemodulessdts_Recordsperpage( )) ? 1 : nGXsfl_20_fel_idx+1);
-               sGXsfl_20_fel_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_fel_idx), 4, 0)), 4, "0");
+               nGXsfl_20_fel_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_fel_idx+1>subGridhomemodulessdts_fnc_Recordsperpage( )) ? 1 : nGXsfl_20_fel_idx+1);
+               sGXsfl_20_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_203( ) ;
                AV16GXV1 = nGXsfl_20_fel_idx;
                if ( ( AV10HomeModulesSDT.Count >= AV16GXV1 ) && ( AV16GXV1 > 0 ) )
@@ -1162,10 +1184,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( nGXsfl_20_fel_idx == 0 )
             {
                nGXsfl_20_idx = 1;
-               sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_idx), 4, 0)), 4, "0");
+               sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_idx), 4, 0), 4, "0");
                SubsflControlProps_203( ) ;
             }
             nGXsfl_20_fel_idx = 1;
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1187,9 +1210,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Start Routine */
          subBanner_Showarrows = StringUtil.BoolToStr( false);
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, "BannerContainerDiv", "ShowArrows", subBanner_Showarrows, true);
+         AssignProp("", false, "BannerContainerDiv", "ShowArrows", subBanner_Showarrows, true);
          subBanner_Autoplay = StringUtil.BoolToStr( true);
-         context.httpAjaxContext.ajax_rsp_assign_prop("", false, "BannerContainerDiv", "AutoPlay", subBanner_Autoplay, true);
+         AssignProp("", false, "BannerContainerDiv", "AutoPlay", subBanner_Autoplay, true);
          GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = AV10HomeModulesSDT;
          new GeneXus.Programs.wwpbaseobjects.getmainhomemodulessample(context ).execute( out  GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1) ;
          AV10HomeModulesSDT = GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1;
@@ -1200,7 +1223,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Banner_Load Routine */
          AV11ImageBanner = context.GetImagePath( "bacb295f-8081-4718-9910-31ffbda185ce", "", context.GetTheme( ));
-         context.httpAjaxContext.ajax_rsp_assign_attri("", false, edtavImagebanner_Internalname, AV11ImageBanner);
+         AssignAttri("", false, edtavImagebanner_Internalname, AV11ImageBanner);
          AV19Imagebanner_GXI = GXDbFile.PathToUrl( context.GetImagePath( "bacb295f-8081-4718-9910-31ffbda185ce", "", context.GetTheme( )));
          /* Load Method */
          if ( wbStart != -1 )
@@ -1279,7 +1302,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?20191031543467", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115473692", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1297,7 +1320,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.spa.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/home.js", "?20191031543467", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/home.js", "?201911115473692", false, true);
             context.AddJavascriptSource("HorizontalGrid/horizontalgrid.min.js", "", false, true);
             context.AddJavascriptSource("HorizontalGrid/horizontalgrid.min.js", "", false, true);
          }
@@ -1417,8 +1440,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_lvl_hashes0B2( ) ;
          /* End of Columns property logic. */
          BannerContainer.AddRow(BannerRow);
-         nGXsfl_12_idx = ((subBanner_Islastpage==1)&&(nGXsfl_12_idx+1>subBanner_Recordsperpage( )) ? 1 : nGXsfl_12_idx+1);
-         sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_12_idx), 4, 0)), 4, "0");
+         nGXsfl_12_idx = ((subBanner_Islastpage==1)&&(nGXsfl_12_idx+1>subBanner_fnc_Recordsperpage( )) ? 1 : nGXsfl_12_idx+1);
+         sGXsfl_12_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_12_idx), 4, 0), 4, "0");
          SubsflControlProps_122( ) ;
          /* End function sendrow_122 */
       }
@@ -1522,7 +1545,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Single line edit */
          ROClassString = "AttributeHomeModulesBigTitle";
-         GridhomemodulessdtsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavHomemodulessdt__optiontitle_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV10HomeModulesSDT.Item(AV16GXV1)).gxTpr_Optiontitle,(String)"",(String)"",(String)"'"+""+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavHomemodulessdt__optiontitle_Jsonclick,(short)0,(String)"AttributeHomeModulesBigTitle",(String)"",(String)ROClassString,(String)"",(String)"",(short)1,(int)edtavHomemodulessdt__optiontitle_Enabled,(short)0,(String)"text",(String)"",(short)80,(String)"chr",(short)1,(String)"row",(short)100,(short)0,(short)0,(short)20,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true});
+         GridhomemodulessdtsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavHomemodulessdt__optiontitle_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV10HomeModulesSDT.Item(AV16GXV1)).gxTpr_Optiontitle,(String)"",(String)"",(String)"'"+""+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavHomemodulessdt__optiontitle_Jsonclick,(short)0,(String)"AttributeHomeModulesBigTitle",(String)"",(String)ROClassString,(String)"",(String)"",(short)1,(int)edtavHomemodulessdt__optiontitle_Enabled,(short)0,(String)"text",(String)"",(short)80,(String)"chr",(short)1,(String)"row",(short)100,(short)0,(short)0,(short)20,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true,(String)""});
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          GridhomemodulessdtsRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(String)"left",(String)"top",(String)"div"});
@@ -1552,7 +1575,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Single line edit */
          ROClassString = "AttributeHomeModulesBigDescription";
-         GridhomemodulessdtsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavHomemodulessdt__optiondescription_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV10HomeModulesSDT.Item(AV16GXV1)).gxTpr_Optiondescription,(String)"",(String)"",(String)"'"+""+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavHomemodulessdt__optiondescription_Jsonclick,(short)0,(String)"AttributeHomeModulesBigDescription",(String)"",(String)ROClassString,(String)"",(String)"",(short)1,(int)edtavHomemodulessdt__optiondescription_Enabled,(short)0,(String)"text",(String)"",(short)80,(String)"chr",(short)1,(String)"row",(short)100,(short)0,(short)0,(short)20,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true});
+         GridhomemodulessdtsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavHomemodulessdt__optiondescription_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV10HomeModulesSDT.Item(AV16GXV1)).gxTpr_Optiondescription,(String)"",(String)"",(String)"'"+""+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavHomemodulessdt__optiondescription_Jsonclick,(short)0,(String)"AttributeHomeModulesBigDescription",(String)"",(String)ROClassString,(String)"",(String)"",(short)1,(int)edtavHomemodulessdt__optiondescription_Enabled,(short)0,(String)"text",(String)"",(short)80,(String)"chr",(short)1,(String)"row",(short)100,(short)0,(short)0,(short)20,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true,(String)""});
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          GridhomemodulessdtsRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(String)"left",(String)"top",(String)"div"});
@@ -1570,8 +1593,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_lvl_hashes0B3( ) ;
          /* End of Columns property logic. */
          GridhomemodulessdtsContainer.AddRow(GridhomemodulessdtsRow);
-         nGXsfl_20_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_idx+1>subGridhomemodulessdts_Recordsperpage( )) ? 1 : nGXsfl_20_idx+1);
-         sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_20_idx), 4, 0)), 4, "0");
+         nGXsfl_20_idx = ((subGridhomemodulessdts_Islastpage==1)&&(nGXsfl_20_idx+1>subGridhomemodulessdts_fnc_Recordsperpage( )) ? 1 : nGXsfl_20_idx+1);
+         sGXsfl_20_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_20_idx), 4, 0), 4, "0");
          SubsflControlProps_203( ) ;
          /* End function sendrow_203 */
       }
@@ -1622,7 +1645,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          subGridhomemodulessdts_Flexwrap = "wrap";
          subGridhomemodulessdts_Class = "FreeStyleHomeModulesBig";
          subBanner_Autoplay = StringUtil.Str( (decimal)(0), 1, 0);
-         subBanner_Showarrows = StringUtil.LTrim( StringUtil.Str( (decimal)(-1), 2, 0));
+         subBanner_Showarrows = StringUtil.LTrimStr( (decimal)(-1), 2, 0);
          subBanner_Class = "FreeStyleGrid";
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -1642,11 +1665,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'BANNER_nFirstRecordOnPage'},{av:'BANNER_nEOF'},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'GRIDHOMEMODULESSDTS_nEOF'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]");
+         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'BANNER_nFirstRecordOnPage'},{av:'BANNER_nEOF'},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'GRIDHOMEMODULESSDTS_nEOF'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]");
          setEventMetadata("REFRESH",",oparms:[]}");
          setEventMetadata("BANNER.LOAD","{handler:'E120B2',iparms:[]");
          setEventMetadata("BANNER.LOAD",",oparms:[{av:'AV11ImageBanner',fld:'vIMAGEBANNER',pic:''}]}");
-         setEventMetadata("GRIDHOMEMODULESSDTS.LOAD","{handler:'E130B3',iparms:[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]");
+         setEventMetadata("GRIDHOMEMODULESSDTS.LOAD","{handler:'E130B3',iparms:[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]");
          setEventMetadata("GRIDHOMEMODULESSDTS.LOAD",",oparms:[{av:'lblOptionicon_Caption',ctrl:'OPTIONICON',prop:'Caption'}]}");
          setEventMetadata("NULL","{handler:'Validv_Imagebanner',iparms:[]");
          setEventMetadata("NULL",",oparms:[]}");
@@ -1673,8 +1696,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         GXKey = "";
          AV10HomeModulesSDT = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "SIGMA");
+         GXKey = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -1827,6 +1850,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXWebColumn BannerColumn ;
       private GXWebColumn GridhomemodulessdtsColumn ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

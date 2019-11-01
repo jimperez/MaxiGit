@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/27/2019 11:21:58.21
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:38.24
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.exportoptions', false, function () {
@@ -122,7 +122,6 @@ gx.define('wwpbaseobjects.exportoptions', false, function () {
    DVPANEL_TABLEEXPORTContainer.setProp("IconPosition", "Iconposition", "Right", "str");
    DVPANEL_TABLEEXPORTContainer.setProp("AutoScroll", "Autoscroll", false, "bool");
    DVPANEL_TABLEEXPORTContainer.setProp("Visible", "Visible", true, "bool");
-   DVPANEL_TABLEEXPORTContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    DVPANEL_TABLEEXPORTContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(DVPANEL_TABLEEXPORTContainer);
    this.DVPANEL_TABLEATTRIBUTESContainer = gx.uc.getNew(this, 31, 25, "BootstrapPanel", "DVPANEL_TABLEATTRIBUTESContainer", "Dvpanel_tableattributes", "DVPANEL_TABLEATTRIBUTES");
@@ -142,7 +141,6 @@ gx.define('wwpbaseobjects.exportoptions', false, function () {
    DVPANEL_TABLEATTRIBUTESContainer.setProp("IconPosition", "Iconposition", "Right", "str");
    DVPANEL_TABLEATTRIBUTESContainer.setProp("AutoScroll", "Autoscroll", false, "bool");
    DVPANEL_TABLEATTRIBUTESContainer.setProp("Visible", "Visible", true, "bool");
-   DVPANEL_TABLEATTRIBUTESContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    DVPANEL_TABLEATTRIBUTESContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(DVPANEL_TABLEATTRIBUTESContainer);
    GXValidFnc[2]={ id: 2, fld:"",grid:0};
@@ -216,10 +214,10 @@ gx.define('wwpbaseobjects.exportoptions', false, function () {
    this.AV9DefaultTitle = "" ;
    this.AV14GoogleDocResultXML = "" ;
    this.Events = {"e120a2_client": ["'DODOWNLOADTOFILE'", true] ,"e130a2_client": ["'DOSAVEGOOGLEDRIVE'", true] ,"e160a2_client": ["ENTER", true] ,"e170a1_client": ["CANCEL", true] ,"e150a1_client": ["VEXPORTTYPE.CLICK", false]};
-   this.EvtParms["REFRESH"] = [[{av:'AV12ExcelFileName',fld:'vEXCELFILENAME',pic:'',hsh:true},{av:'AV9DefaultTitle',fld:'vDEFAULTTITLE',pic:'',hsh:true}],[]];
+   this.EvtParms["REFRESH"] = [[{av:'AV12ExcelFileName',fld:'vEXCELFILENAME',pic:'',hsh:true},{av:'AV9DefaultTitle',fld:'vDEFAULTTITLE',pic:'',hsh:true},{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:'',hsh:true}],[]];
    this.EvtParms["START"] = [[{av:'AV9DefaultTitle',fld:'vDEFAULTTITLE',pic:'',hsh:true},{av:'AV12ExcelFileName',fld:'vEXCELFILENAME',pic:'',hsh:true}],[{av:'gx.fn.getCtrlProperty("TABLECONTENT","Height")',ctrl:'TABLECONTENT',prop:'Height'},{av:'AV5DocTitle',fld:'vDOCTITLE',pic:''},{av:'gx.fn.getCtrlProperty("vPASSWORD","Ispassword")',ctrl:'vPASSWORD',prop:'Ispassword'},{av:'gx.fn.getCtrlProperty("TABLEGOOGLEDRIVEINFO","Visible")',ctrl:'TABLEGOOGLEDRIVEINFO',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Jsonclick'},{av:'gx.fn.getCtrlProperty("JS","Caption")',ctrl:'JS',prop:'Caption'},{av:'gx.fn.getCtrlProperty("TABLECONTENT","Width")',ctrl:'TABLECONTENT',prop:'Width'}]];
    this.EvtParms["'DODOWNLOADTOFILE'"] = [[],[]];
-   this.EvtParms["'DOSAVEGOOGLEDRIVE'"] = [[{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:''}],[{av:'this.INNEWWINDOW1Container.Target',ctrl:'INNEWWINDOW1',prop:'Target'},{av:'this.INNEWWINDOW1Container.Height',ctrl:'INNEWWINDOW1',prop:'Height'},{av:'this.INNEWWINDOW1Container.Width',ctrl:'INNEWWINDOW1',prop:'Width'},{ctrl:'BTNCANCEL',prop:'Caption'},{av:'gx.fn.getCtrlProperty("TABLECONTENT","Visible")',ctrl:'TABLECONTENT',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'}]];
+   this.EvtParms["'DOSAVEGOOGLEDRIVE'"] = [[{av:'AV14GoogleDocResultXML',fld:'vGOOGLEDOCRESULTXML',pic:'',hsh:true}],[{av:'this.INNEWWINDOW1Container.Target',ctrl:'INNEWWINDOW1',prop:'Target'},{av:'this.INNEWWINDOW1Container.Height',ctrl:'INNEWWINDOW1',prop:'Height'},{av:'this.INNEWWINDOW1Container.Width',ctrl:'INNEWWINDOW1',prop:'Width'},{ctrl:'BTNCANCEL',prop:'Caption'},{av:'gx.fn.getCtrlProperty("TABLECONTENT","Visible")',ctrl:'TABLECONTENT',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'}]];
    this.EvtParms["VEXPORTTYPE.CLICK"] = [[{ctrl:'vEXPORTTYPE'},{av:'AV13ExportType',fld:'vEXPORTTYPE',pic:'9'}],[{av:'gx.fn.getCtrlProperty("TABLEGOOGLEDRIVEINFO","Visible")',ctrl:'TABLEGOOGLEDRIVEINFO',prop:'Visible'},{ctrl:'BTNDOWNLOADTOFILE',prop:'Visible'},{ctrl:'BTNSAVEGOOGLEDRIVE',prop:'Visible'}]];
    this.EvtParms["VALIDV_EXPORTTYPE"] = [[],[]];
    this.setVCMap("AV14GoogleDocResultXML", "vGOOGLEDOCRESULTXML", 0, "vchar", 2097152, 0);

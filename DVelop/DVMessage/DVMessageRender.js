@@ -49,7 +49,10 @@ function DVelop_DVMessage($)
 		
 	    if (!this.IsPostBack) {
 			
-	        var divErrors = jQuery('#gxErrorViewer').children();
+	    	var divErrors = jQuery('#gxErrorViewer').children();
+	    	if (divErrors.length == 0) {
+	    		divErrors = jQuery('[data-gx-id="gxErrorViewer"]').children();
+	    	}
 	        var msgsArr = [];
 	        jQuery.each(divErrors, function(index, value) {
 	            msgsArr.push({ att: '', type: 0, text: jQuery(value).html() });

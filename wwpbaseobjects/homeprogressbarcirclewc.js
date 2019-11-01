@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 14:15:32.7
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:36:46.23
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.homeprogressbarcirclewc', true, function (CmpContext) {
@@ -42,7 +42,6 @@ gx.define('wwpbaseobjects.homeprogressbarcirclewc', true, function (CmpContext) 
    UCPBContainer.setProp("CircleProgressWidth", "Circleprogresswidth", 3, "num");
    UCPBContainer.setProp("AnimateOnStart", "Animateonstart", true, "bool");
    UCPBContainer.setProp("Visible", "Visible", true, "bool");
-   UCPBContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    UCPBContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(UCPBContainer);
    GXValidFnc[2]={ id: 2, fld:"",grid:0};

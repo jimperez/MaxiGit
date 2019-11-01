@@ -119,11 +119,11 @@
 	</xs:element>
 	<xs:simpleType name="axisType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="Row"/>
-			<xs:enumeration value="Column"/>
-			<xs:enumeration value="Page"/>
+			<xs:enumeration value="Rows"/>
+			<xs:enumeration value="Columns"/>
+			<xs:enumeration value="Pages"/>
 			<xs:enumeration value="Data"/>
-			<xs:enumeration value="None"/>
+			<xs:enumeration value="Hidden"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="subtotalsType">

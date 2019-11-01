@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 14:25:12.2
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:39.98
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.workwithplusmasterpageprompt', false, function () {
@@ -71,7 +71,6 @@ gx.define('wwpbaseobjects.workwithplusmasterpageprompt', false, function () {
    UCMESSAGE_MPAGEContainer.setProp("LabelAll", "Labelall", "All", "str");
    UCMESSAGE_MPAGEContainer.setProp("LabelLast", "Labellast", "Last", "str");
    UCMESSAGE_MPAGEContainer.setProp("Visible", "Visible", true, "bool");
-   UCMESSAGE_MPAGEContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    UCMESSAGE_MPAGEContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(UCMESSAGE_MPAGEContainer);
    this.UCTOOLTIP_MPAGEContainer = gx.uc.getNew(this, 15, 0, "BootstrapTooltip", "UCTOOLTIP_MPAGEContainer", "Uctooltip", "UCTOOLTIP_MPAGE");
@@ -86,7 +85,6 @@ gx.define('wwpbaseobjects.workwithplusmasterpageprompt', false, function () {
    UCTOOLTIP_MPAGEContainer.setProp("ImagesShowDelay", "Imagesshowdelay", 0, "num");
    UCTOOLTIP_MPAGEContainer.setProp("HideDelay", "Hidedelay", 0, "num");
    UCTOOLTIP_MPAGEContainer.setProp("Visible", "Visible", true, "bool");
-   UCTOOLTIP_MPAGEContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    UCTOOLTIP_MPAGEContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(UCTOOLTIP_MPAGEContainer);
    this.WWPUTILITIES_MPAGEContainer = gx.uc.getNew(this, 18, 0, "DVelop_WorkWithPlusUtilities", "WWPUTILITIES_MPAGEContainer", "Wwputilities", "WWPUTILITIES_MPAGE");
@@ -99,7 +97,6 @@ gx.define('wwpbaseobjects.workwithplusmasterpageprompt', false, function () {
    WWPUTILITIES_MPAGEContainer.setProp("EnableConvertComboToBootstrapSelect", "Enableconvertcombotobootstrapselect", true, "bool");
    WWPUTILITIES_MPAGEContainer.setProp("CurrentTab_ReturnUrl", "Currenttab_returnurl", "", "char");
    WWPUTILITIES_MPAGEContainer.setProp("Visible", "Visible", true, "bool");
-   WWPUTILITIES_MPAGEContainer.setProp("Gx Control Type", "Gxcontroltype", '', "int");
    WWPUTILITIES_MPAGEContainer.setC2ShowFunction(function(UC) { UC.show(); });
    this.setUserControl(WWPUTILITIES_MPAGEContainer);
    GXValidFnc[2]={ id: 2, fld:"",grid:0};

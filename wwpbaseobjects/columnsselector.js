@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 19:19:49.59
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:54:38.4
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.columnsselector', false, function () {
@@ -37,7 +37,7 @@ gx.define('wwpbaseobjects.columnsselector', false, function () {
    var GXValidFnc = this.GXValidFnc ;
    this.GXCtrlIds=[2,5,14,17,19,21,23,24,27,28,29,30];
    this.GXLastCtrlId =30;
-   this.GridContainer = new gx.grid.grid(this, 2,"WbpLvl2",11,"Grid","Grid","GridContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.columnsselector",[],true,1,true,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",true,false,true,null,null,false,"",false,[1,1,1,1],false,0,false,false);
+   this.GridContainer = new gx.grid.grid(this, 2,"WbpLvl2",11,"Grid","Grid","GridContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.columnsselector",[],true,1,false,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",true,false,true,null,null,false,"",false,[1,1,1,1],false,0,false,false);
    var GridContainer = this.GridContainer;
    GridContainer.startRow("","","","","","");
    GridContainer.startCell("","","","","","","","","","FSLineSeparatorCell");

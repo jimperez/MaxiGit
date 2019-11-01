@@ -1,3 +1,4 @@
 Chatbot.services
 GeneXus.services
 GeneXusAI.services
+GeneXusChannels.services

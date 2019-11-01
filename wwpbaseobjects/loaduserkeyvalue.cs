@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.LoadUserKeyValue
         Description: Load User Key Value
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/2/2019 14:15:43.67
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:51.53
        Program type: Callable routine
           Main DBMS: SQL Server
 */

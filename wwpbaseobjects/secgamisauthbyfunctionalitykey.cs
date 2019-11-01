@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.SecGAMIsAuthByFunctionalityKey
         Description: Is Authorized By Functionality
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:40:9.96
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:38:58.29
        Program type: Callable routine
           Main DBMS: SQL Server
 */

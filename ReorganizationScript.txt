@@ -1,5 +1,0 @@
-ALTER TABLE [ComprobanteTipo] ADD [ComprobanteTipoPlanCtaId]  decimal( 10) NULL
-CREATE NONCLUSTERED INDEX [ICOMPROBANTETIPO] ON [ComprobanteTipo] ([ComprobanteTipoPlanCtaId] )
-
-ALTER TABLE [Recibo] ADD [ReciboInteresTar]  money NULL
-

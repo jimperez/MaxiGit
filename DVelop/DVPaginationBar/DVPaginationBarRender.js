@@ -171,6 +171,10 @@ function DVPaginationBar(userControl) {
 				$(mainDiv).css("display", "none");
 			}
 		} else {
+			if (this.control.ChangePage && this.control.PageCount != null && this.control.CurrentPage > this.control.PageCount) {
+				this.control.SelectedPage = this.control.PageCount;
+				this.control.ChangePage();
+			}
 			mainDiv.addClass(this.control.Class);
 			$(mainDiv).css("display", "table");
 			$(mainDiv).css("width", "100%");

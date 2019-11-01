@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/2/2019 14:25:8.55
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:35.3
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.addressdisplay', false, function () {

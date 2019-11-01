@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.InitializeGAMMenuExample
         Description: Initialize GAMMenu Example
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:40:11.40
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:38:58.88
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -39,6 +39,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -50,6 +52,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -343,7 +347,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          while ( AV31GXV1 <= AV18GAMErrorCollection.Count )
          {
             AV11Error = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV18GAMErrorCollection.Item(AV31GXV1));
-            GX_msglist.addItem(StringUtil.Format( "%1 (GAM%2)", AV11Error.gxTpr_Message, StringUtil.LTrim( StringUtil.Str( (decimal)(AV11Error.gxTpr_Code), 12, 0)), "", "", "", "", "", "", ""));
+            GX_msglist.addItem(StringUtil.Format( "%1 (GAM%2)", AV11Error.gxTpr_Message, StringUtil.LTrimStr( (decimal)(AV11Error.gxTpr_Code), 12, 0), "", "", "", "", "", "", ""));
             AV31GXV1 = (int)(AV31GXV1+1);
          }
       }
@@ -379,6 +383,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             new Object[][] {
             }
          );
+         pr_mh = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.initializegammenuexample__mh(),
+            new Object[][] {
+            }
+         );
+         pr_caps = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.initializegammenuexample__caps(),
+            new Object[][] {
+            }
+         );
          pr_afip = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.initializegammenuexample__afip(),
             new Object[][] {
             }
@@ -404,10 +416,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private String AV24MenuItemName ;
       private String AV21IconClass ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private IDataStoreProvider pr_gam ;
+      private IDataStoreProvider pr_mh ;
+      private IDataStoreProvider pr_caps ;
       private IDataStoreProvider pr_afip ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV18GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMApplicationMenuOption AV8GAMApplicationMenuOption ;
@@ -462,7 +478,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
  }
 
- public class initializegammenuexample__afip : DataStoreHelperBase, IDataStoreHelper
+ public class initializegammenuexample__mh : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -501,8 +517,96 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
   public String getDataStoreName( )
   {
-     return "AFIP";
+     return "MH";
   }
+
+}
+
+public class initializegammenuexample__caps : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+    }
+ }
+
+ public void setParameters( int cursor ,
+                            IFieldSetter stmt ,
+                            Object[] parms )
+ {
+    switch ( cursor )
+    {
+    }
+ }
+
+ public String getDataStoreName( )
+ {
+    return "CAPS";
+ }
+
+}
+
+public class initializegammenuexample__afip : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+    }
+ }
+
+ public void setParameters( int cursor ,
+                            IFieldSetter stmt ,
+                            Object[] parms )
+ {
+    switch ( cursor )
+    {
+    }
+ }
+
+ public String getDataStoreName( )
+ {
+    return "AFIP";
+ }
 
 }
 

@@ -1,4 +1,4 @@
-/*!   GeneXus C# 16_0_5-135614 on 10/3/2019 15:43:46.34
+/*!   GeneXus C# 16_0_6-136889 on 11/1/2019 15:47:37.19
 */
 gx.evt.autoSkip = false;
 gx.define('wwpbaseobjects.home', false, function () {
@@ -27,7 +27,7 @@ gx.define('wwpbaseobjects.home', false, function () {
    var GXValidFnc = this.GXValidFnc ;
    this.GXCtrlIds=[2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32];
    this.GXLastCtrlId =32;
-   this.BannerContainer = new gx.grid.grid(this, 2,"WbpLvl2",12,"Banner","Banner","BannerContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.home",[],true,1,true,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",false,false,false,gx.uc.HorizontalGrid,null,false,"",true,[1,1,1,1],false,0,false,false);
+   this.BannerContainer = new gx.grid.grid(this, 2,"WbpLvl2",12,"Banner","Banner","BannerContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.home",[],true,1,false,true,0,false,false,false,"",0,"px",0,"px","Nueva fila",false,false,false,gx.uc.HorizontalGrid,null,false,"",true,[1,1,1,1],false,0,false,false);
    var BannerContainer = this.BannerContainer;
    BannerContainer.startDiv(13,"Unnamedtablefsbanner","0px","0px");
    BannerContainer.startDiv(14,"","0px","0px");
@@ -57,7 +57,7 @@ gx.define('wwpbaseobjects.home', false, function () {
    BannerContainer.setRenderProp("CurrentPage", "Currentpage", '', "int");
    BannerContainer.setRenderProp("Visible", "Visible", true, "boolean");
    this.setGrid(BannerContainer);
-   this.GridhomemodulessdtsContainer = new gx.grid.grid(this, 3,"WbpLvl3",20,"Gridhomemodulessdts","Gridhomemodulessdts","GridhomemodulessdtsContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.home",[],true,1,true,true,0,false,false,false,"CollWWPBaseObjects\HomeModulesSDT.HomeModulesSDTItem",0,"px",0,"px","Nueva fila",false,false,false,gx.grid.flexGrid,null,false,"AV10HomeModulesSDT",true,[2,3,3,3],false,0,false,false);
+   this.GridhomemodulessdtsContainer = new gx.grid.grid(this, 3,"WbpLvl3",20,"Gridhomemodulessdts","Gridhomemodulessdts","GridhomemodulessdtsContainer",this.CmpContext,this.IsMasterPage,"wwpbaseobjects.home",[],true,1,false,true,0,false,false,false,"CollWWPBaseObjects\HomeModulesSDT.HomeModulesSDTItem",0,"px",0,"px","Nueva fila",false,false,false,gx.grid.flexGrid,null,false,"AV10HomeModulesSDT",true,[2,3,3,3],false,0,false,false);
    var GridhomemodulessdtsContainer = this.GridhomemodulessdtsContainer;
    GridhomemodulessdtsContainer.startDiv(21,"Unnamedtablefsgridhomemodulessdts","0px","0px");
    GridhomemodulessdtsContainer.startDiv(22,"","0px","0px");
@@ -132,11 +132,13 @@ gx.define('wwpbaseobjects.home', false, function () {
    this.GXV3 = "" ;
    this.AV10HomeModulesSDT = [ ] ;
    this.Events = {"e140b2_client": ["ENTER", true] ,"e150b2_client": ["CANCEL", true]};
-   this.EvtParms["REFRESH"] = [[{av:'BANNER_nFirstRecordOnPage'},{av:'BANNER_nEOF'},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'GRIDHOMEMODULESSDTS_nEOF'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}],[]];
-   this.EvtParms["START"] = [[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'},{av:'GRIDHOMEMODULESSDTS_nEOF'}],[{ctrl:'BANNER',prop:'Showarrows'},{ctrl:'BANNER',prop:'Autoplay'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]];
+   this.EvtParms["REFRESH"] = [[{av:'BANNER_nFirstRecordOnPage'},{av:'BANNER_nEOF'},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'GRIDHOMEMODULESSDTS_nEOF'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}],[]];
+   this.EvtParms["START"] = [[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'},{av:'GRIDHOMEMODULESSDTS_nEOF'}],[{ctrl:'BANNER',prop:'Showarrows'},{ctrl:'BANNER',prop:'Autoplay'},{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}]];
    this.EvtParms["BANNER.LOAD"] = [[],[{av:'AV11ImageBanner',fld:'vIMAGEBANNER',pic:''}]];
-   this.EvtParms["GRIDHOMEMODULESSDTS.LOAD"] = [[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:''},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}],[{av:'gx.fn.getCtrlProperty("OPTIONICON","Caption")',ctrl:'OPTIONICON',prop:'Caption'}]];
+   this.EvtParms["GRIDHOMEMODULESSDTS.LOAD"] = [[{av:'AV10HomeModulesSDT',fld:'vHOMEMODULESSDT',grid:20,pic:'',hsh:true},{av:'GRIDHOMEMODULESSDTS_nFirstRecordOnPage'},{av:'nRC_GXsfl_20',ctrl:'GRIDHOMEMODULESSDTS',prop:'GridRC'}],[{av:'gx.fn.getCtrlProperty("OPTIONICON","Caption")',ctrl:'OPTIONICON',prop:'Caption'}]];
    this.setVCMap("AV10HomeModulesSDT", "vHOMEMODULESSDT", 0, "CollWWPBaseObjects\HomeModulesSDT.HomeModulesSDTItem", 0, 0);
+   BannerContainer.addRefreshingVar({rfrVar:"AV10HomeModulesSDT"});
+   BannerContainer.addRefreshingParm({rfrVar:"AV10HomeModulesSDT"});
    GridhomemodulessdtsContainer.addRefreshingVar({rfrVar:"AV10HomeModulesSDT"});
    GridhomemodulessdtsContainer.addRefreshingParm({rfrVar:"AV10HomeModulesSDT"});
    this.addGridBCProperty("Homemodulessdt", ["OptionTitle"], this.GXValidFnc[28], "AV10HomeModulesSDT");

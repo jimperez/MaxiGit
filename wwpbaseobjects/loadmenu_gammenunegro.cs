@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.LoadMenu_GAMMenuNegro
         Description: Load Menu_GAMMenu Negro
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/21/2019 11:48:5.29
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:52.67
        Program type: Callable routine
           Main DBMS: SQL Server
 */

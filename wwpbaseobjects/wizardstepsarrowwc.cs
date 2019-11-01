@@ -1,8 +1,8 @@
 /*
                File: WWPBaseObjects.WizardStepsArrowWC
         Description: Wizard Steps Arrow WC
-             Author: GeneXus C# Generator version 16_0_5-135614
-       Generated on: 10/3/2019 15:38:2.59
+             Author: GeneXus C# Generator version 16_0_6-136889
+       Generated on: 11/1/2019 15:36:50.26
        Program type: Callable routine
           Main DBMS: SQL Server
 */
@@ -37,6 +37,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -51,6 +53,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.context = context;
          IsMain = false;
          dsGAM = context.GetDataStore("GAM");
+         dsMH = context.GetDataStore("MH");
+         dsCAPS = context.GetDataStore("CAPS");
          dsAFIP = context.GetDataStore("AFIP");
          dsDefault = context.GetDataStore("Default");
       }
@@ -121,7 +125,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   sSFPrefix = GetNextPar( );
                   ajax_req_read_hidden_sdt(GetNextPar( ), AV18WizardSteps);
                   AV11SelectedStep = GetNextPar( );
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
+                  AssignAttri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
                   setjustcreated();
                   componentprepare(new Object[] {(String)sCompPrefix,(String)sSFPrefix,(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>)AV18WizardSteps,(String)AV11SelectedStep});
                   componentstart();
@@ -187,7 +191,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   gxgrGridwizardsteps_refresh( AV30StepRealNumber, AV32WizardStepsAux, AV11SelectedStep, AV9PreviousSelected, AV14StepNumber, AV23FirstIsDummy, AV24LastIsDummy, AV18WizardSteps, AV27SecondIsDummy, AV26PenultimateIsDummy, sPrefix) ;
                   GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
                   GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                   return  ;
                }
                else
@@ -234,7 +238,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                /* GeneXus formulas. */
                context.Gx_err = 0;
                edtavWizardstepsaux__title_Enabled = 0;
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0)), !bGXsfl_5_Refreshing);
+               AssignProp(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0), !bGXsfl_5_Refreshing);
                WS072( ) ;
                if ( ! isAjaxCallMode( ) )
                {
@@ -253,7 +257,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                if ( ! context.WillRedirect( ) )
                {
-                  context.GX_webresponse.AddString((String)(context.getJSONResponse( )));
+                  AddString( context.getJSONResponse( )) ;
                }
                else
                {
@@ -298,11 +302,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
-            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 135614), false, true);
+            context.AddJavascriptSource("json2.js", "?"+context.GetBuildNumber( 136889), false, true);
          }
-         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 135614), false, true);
-         context.AddJavascriptSource("gxcfg.js", "?20191031538264", false, true);
+         context.AddJavascriptSource("jquery.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxgral.js", "?"+context.GetBuildNumber( 136889), false, true);
+         context.AddJavascriptSource("gxcfg.js", "?201911115365033", false, true);
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -331,7 +335,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                GxWebStd.gx_hidden_field( context, "_EventGridId", "");
                GxWebStd.gx_hidden_field( context, "_EventRowId", "");
                context.WriteHtmlText( "<input type=\"submit\" title=\"submit\" style=\"display:none\" disabled>") ;
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, "FORM", "Class", "Form", true);
+               AssignProp(sPrefix, false, "FORM", "Class", "Form", true);
             }
          }
          else
@@ -374,6 +378,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV32WizardStepsAux, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV14StepNumber), "ZZZ9"), context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV23FirstIsDummy, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vLASTISDUMMY", GetSecureSignedToken( sPrefix, AV24LastIsDummy, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSECONDISDUMMY", GetSecureSignedToken( sPrefix, AV27SecondIsDummy, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -390,6 +402,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"Wizardstepsaux", AV32WizardStepsAux);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_Wizardstepsaux", GetSecureSignedToken( sPrefix, AV32WizardStepsAux, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_5", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_5), 8, 0, ",", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV11SelectedStep", wcpOAV11SelectedStep);
          GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV30StepRealNumber), 4, 0, ",", "")));
@@ -402,6 +415,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDSTEPSAUX", AV32WizardStepsAux);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV32WizardStepsAux, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEP", AV11SelectedStep);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPREVIOUSSELECTED", AV9PreviousSelected);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
@@ -430,7 +444,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wizardstepsarrowwc.js", "?20191031538267", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wizardstepsarrowwc.js", "?201911115365039", false, true);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"GX_FocusControl", GX_FocusControl);
          define_styles( ) ;
@@ -560,7 +574,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             if ( ! context.isSpaRequest( ) )
             {
-               Form.Meta.addItem("generator", "GeneXus C# 16_0_5-135614", 0) ;
+               Form.Meta.addItem("generator", "GeneXus C# 16_0_6-136889", 0) ;
                Form.Meta.addItem("description", "Wizard Steps Arrow WC", 0) ;
             }
             context.wjLoc = "";
@@ -659,7 +673,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  STRUP070( ) ;
                               }
                               nGXsfl_5_idx = (int)(NumberUtil.Val( sEvtType, "."));
-                              sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_idx), 4, 0)), 4, "0");
+                              sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_idx), 4, 0), 4, "0");
                               SubsflControlProps_52( ) ;
                               AV37GXV1 = nGXsfl_5_idx;
                               if ( ( AV32WizardStepsAux.Count >= AV37GXV1 ) && ( AV37GXV1 > 0 ) )
@@ -810,11 +824,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          while ( nGXsfl_5_idx <= nRC_GXsfl_5 )
          {
             sendrow_52( ) ;
-            nGXsfl_5_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_idx+1>subGridwizardsteps_Recordsperpage( )) ? 1 : nGXsfl_5_idx+1);
-            sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_idx), 4, 0)), 4, "0");
+            nGXsfl_5_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_idx+1>subGridwizardsteps_fnc_Recordsperpage( )) ? 1 : nGXsfl_5_idx+1);
+            sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_idx), 4, 0), 4, "0");
             SubsflControlProps_52( ) ;
          }
-         context.GX_webresponse.AddString(context.httpAjaxContext.getJSONContainerResponse( GridwizardstepsContainer));
+         AddString( context.httpAjaxContext.getJSONContainerResponse( GridwizardstepsContainer)) ;
          /* End function gxnrGridwizardsteps_newrow */
       }
 
@@ -868,7 +882,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas. */
          context.Gx_err = 0;
          edtavWizardstepsaux__title_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0)), !bGXsfl_5_Refreshing);
+         AssignProp(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0), !bGXsfl_5_Refreshing);
       }
 
       protected void RF072( )
@@ -881,7 +895,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          wbStart = 5;
          nGXsfl_5_idx = 1;
-         sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_idx), 4, 0)), 4, "0");
+         sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_idx), 4, 0), 4, "0");
          SubsflControlProps_52( ) ;
          bGXsfl_5_Refreshing = true;
          GridwizardstepsContainer.AddObjectProperty("GridName", "Gridwizardsteps");
@@ -892,7 +906,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridwizardstepsContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
          GridwizardstepsContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
          GridwizardstepsContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwizardsteps_Backcolorstyle), 1, 0, ".", "")));
-         GridwizardstepsContainer.PageSize = subGridwizardsteps_Recordsperpage( );
+         GridwizardstepsContainer.PageSize = subGridwizardsteps_fnc_Recordsperpage( );
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
@@ -910,6 +924,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV30StepRealNumber), 4, 0, ",", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWIZARDSTEPSAUX", AV32WizardStepsAux);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDSTEPSAUX", AV32WizardStepsAux);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV32WizardStepsAux, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPREVIOUSSELECTED", AV9PreviousSelected);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV14StepNumber), 4, 0, ",", "")));
@@ -924,22 +947,22 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
       }
 
-      protected int subGridwizardsteps_Pagecount( )
+      protected int subGridwizardsteps_fnc_Pagecount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridwizardsteps_Recordcount( )
+      protected int subGridwizardsteps_fnc_Recordcount( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridwizardsteps_Recordsperpage( )
+      protected int subGridwizardsteps_fnc_Recordsperpage( )
       {
          return (int)(-1) ;
       }
 
-      protected int subGridwizardsteps_Currentpage( )
+      protected int subGridwizardsteps_fnc_Currentpage( )
       {
          return (int)(-1) ;
       }
@@ -949,7 +972,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Before Start, stand alone formulas. */
          context.Gx_err = 0;
          edtavWizardstepsaux__title_Enabled = 0;
-         context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrim( StringUtil.Str( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0)), !bGXsfl_5_Refreshing);
+         AssignProp(sPrefix, false, edtavWizardstepsaux__title_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavWizardstepsaux__title_Enabled), 5, 0), !bGXsfl_5_Refreshing);
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
@@ -962,7 +985,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"Wizardstepsaux"), AV32WizardStepsAux);
-            /* Read variables values. */
             /* Read saved values. */
             nRC_GXsfl_5 = (int)(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_5"), ",", "."));
             wcpOAV11SelectedStep = cgiGet( sPrefix+"wcpOAV11SelectedStep");
@@ -970,8 +992,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             nGXsfl_5_fel_idx = 0;
             while ( nGXsfl_5_fel_idx < nRC_GXsfl_5 )
             {
-               nGXsfl_5_fel_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_fel_idx+1>subGridwizardsteps_Recordsperpage( )) ? 1 : nGXsfl_5_fel_idx+1);
-               sGXsfl_5_fel_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_fel_idx), 4, 0)), 4, "0");
+               nGXsfl_5_fel_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_fel_idx+1>subGridwizardsteps_fnc_Recordsperpage( )) ? 1 : nGXsfl_5_fel_idx+1);
+               sGXsfl_5_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_52( ) ;
                AV37GXV1 = nGXsfl_5_fel_idx;
                if ( ( AV32WizardStepsAux.Count >= AV37GXV1 ) && ( AV37GXV1 > 0 ) )
@@ -982,10 +1004,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( nGXsfl_5_fel_idx == 0 )
             {
                nGXsfl_5_idx = 1;
-               sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_idx), 4, 0)), 4, "0");
+               sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_idx), 4, 0), 4, "0");
                SubsflControlProps_52( ) ;
             }
             nGXsfl_5_fel_idx = 1;
+            /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1010,26 +1033,26 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV32WizardStepsAux = (GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>)(AV18WizardSteps.Clone());
          gx_BV5 = true;
          AV14StepNumber = 1;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV14StepNumber", StringUtil.LTrim( StringUtil.Str( (decimal)(AV14StepNumber), 4, 0)));
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV14StepNumber), "ZZZ9"), context));
+         AssignAttri(sPrefix, false, "AV14StepNumber", StringUtil.LTrimStr( (decimal)(AV14StepNumber), 4, 0));
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV14StepNumber), "ZZZ9"), context));
          AV30StepRealNumber = 1;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrim( StringUtil.Str( (decimal)(AV30StepRealNumber), 4, 0)));
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
+         AssignAttri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrimStr( (decimal)(AV30StepRealNumber), 4, 0));
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
          AV9PreviousSelected = false;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
+         AssignAttri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
          AV23FirstIsDummy = false;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV23FirstIsDummy", AV23FirstIsDummy);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV23FirstIsDummy, context));
+         AssignAttri(sPrefix, false, "AV23FirstIsDummy", AV23FirstIsDummy);
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV23FirstIsDummy, context));
          AV27SecondIsDummy = false;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV27SecondIsDummy", AV27SecondIsDummy);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSECONDISDUMMY", GetSecureSignedToken( sPrefix, AV27SecondIsDummy, context));
+         AssignAttri(sPrefix, false, "AV27SecondIsDummy", AV27SecondIsDummy);
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vSECONDISDUMMY", GetSecureSignedToken( sPrefix, AV27SecondIsDummy, context));
          AV26PenultimateIsDummy = false;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV26PenultimateIsDummy", AV26PenultimateIsDummy);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
+         AssignAttri(sPrefix, false, "AV26PenultimateIsDummy", AV26PenultimateIsDummy);
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
          AV24LastIsDummy = false;
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV24LastIsDummy", AV24LastIsDummy);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vLASTISDUMMY", GetSecureSignedToken( sPrefix, AV24LastIsDummy, context));
+         AssignAttri(sPrefix, false, "AV24LastIsDummy", AV24LastIsDummy);
+         AssignAttri(sPrefix, false, sPrefix+"gxhash_vLASTISDUMMY", GetSecureSignedToken( sPrefix, AV24LastIsDummy, context));
          if ( AV32WizardStepsAux.Count > AV25MaxStepsToShow )
          {
             AV25MaxStepsToShow = (short)(AV25MaxStepsToShow-1);
@@ -1059,19 +1082,19 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
             }
             AV30StepRealNumber = AV29StartIndex;
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrim( StringUtil.Str( (decimal)(AV30StepRealNumber), 4, 0)));
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
+            AssignAttri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrimStr( (decimal)(AV30StepRealNumber), 4, 0));
+            AssignAttri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
             if ( AV29StartIndex > 1 )
             {
                AV23FirstIsDummy = true;
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV23FirstIsDummy", AV23FirstIsDummy);
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV23FirstIsDummy, context));
+               AssignAttri(sPrefix, false, "AV23FirstIsDummy", AV23FirstIsDummy);
+               AssignAttri(sPrefix, false, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV23FirstIsDummy, context));
                AV25MaxStepsToShow = (short)(AV25MaxStepsToShow+1);
                if ( AV29StartIndex > 2 )
                {
                   AV27SecondIsDummy = true;
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV27SecondIsDummy", AV27SecondIsDummy);
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSECONDISDUMMY", GetSecureSignedToken( sPrefix, AV27SecondIsDummy, context));
+                  AssignAttri(sPrefix, false, "AV27SecondIsDummy", AV27SecondIsDummy);
+                  AssignAttri(sPrefix, false, sPrefix+"gxhash_vSECONDISDUMMY", GetSecureSignedToken( sPrefix, AV27SecondIsDummy, context));
                   AV25MaxStepsToShow = (short)(AV25MaxStepsToShow+1);
                   ((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV32WizardStepsAux.Item(2)).gxTpr_Title = "...";
                   while ( AV29StartIndex > 3 )
@@ -1085,13 +1108,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( AV32WizardStepsAux.Count > AV25MaxStepsToShow )
             {
                AV24LastIsDummy = true;
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV24LastIsDummy", AV24LastIsDummy);
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vLASTISDUMMY", GetSecureSignedToken( sPrefix, AV24LastIsDummy, context));
+               AssignAttri(sPrefix, false, "AV24LastIsDummy", AV24LastIsDummy);
+               AssignAttri(sPrefix, false, sPrefix+"gxhash_vLASTISDUMMY", GetSecureSignedToken( sPrefix, AV24LastIsDummy, context));
                if ( AV32WizardStepsAux.Count > AV25MaxStepsToShow + 1 )
                {
                   AV26PenultimateIsDummy = true;
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV26PenultimateIsDummy", AV26PenultimateIsDummy);
-                  context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
+                  AssignAttri(sPrefix, false, "AV26PenultimateIsDummy", AV26PenultimateIsDummy);
+                  AssignAttri(sPrefix, false, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV26PenultimateIsDummy, context));
                   ((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV32WizardStepsAux.Item(AV32WizardStepsAux.Count-1)).gxTpr_Title = "...";
                   while ( AV32WizardStepsAux.Count > AV25MaxStepsToShow + 2 )
                   {
@@ -1120,10 +1143,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
                AV16TableContainerStepClass = "TableContainerStepSelected";
                lblStepnumber_Class = "StepNumberSelected";
                divTblstep_Class = "TableStepSelected";
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, divTblstep_Internalname, "Class", divTblstep_Class, !bGXsfl_5_Refreshing);
+               AssignProp(sPrefix, false, divTblstep_Internalname, "Class", divTblstep_Class, !bGXsfl_5_Refreshing);
                AV9PreviousSelected = true;
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
+               AssignAttri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
+               AssignAttri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
             }
             else
             {
@@ -1138,11 +1161,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                lblStepnumber_Class = "StepNumber";
                divTblstep_Class = "TableStep";
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, divTblstep_Internalname, "Class", divTblstep_Class, !bGXsfl_5_Refreshing);
+               AssignProp(sPrefix, false, divTblstep_Internalname, "Class", divTblstep_Class, !bGXsfl_5_Refreshing);
                edtavWizardstepsaux__title_Class = "AttributeStep";
                AV9PreviousSelected = false;
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
+               AssignAttri(sPrefix, false, "AV9PreviousSelected", AV9PreviousSelected);
+               AssignAttri(sPrefix, false, sPrefix+"gxhash_vPREVIOUSSELECTED", GetSecureSignedToken( sPrefix, AV9PreviousSelected, context));
             }
             if ( AV14StepNumber == 1 )
             {
@@ -1158,9 +1181,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
                imgStepimg_Visible = 1;
             }
             tblTblcontainerstep_Class = AV16TableContainerStepClass;
-            context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, tblTblcontainerstep_Internalname, "Class", tblTblcontainerstep_Class, !bGXsfl_5_Refreshing);
+            AssignProp(sPrefix, false, tblTblcontainerstep_Internalname, "Class", tblTblcontainerstep_Class, !bGXsfl_5_Refreshing);
             divTblstep_Visible = 1;
-            context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, divTblstep_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(divTblstep_Visible), 5, 0)), !bGXsfl_5_Refreshing);
+            AssignProp(sPrefix, false, divTblstep_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTblstep_Visible), 5, 0), !bGXsfl_5_Refreshing);
             lblStepnumber_Visible = 1;
             edtavWizardstepsaux__title_Visible = 1;
             if ( ( AV14StepNumber == 1 ) && AV23FirstIsDummy )
@@ -1177,17 +1200,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                lblStepnumber_Visible = 0;
                divTblstep_Visible = 0;
-               context.httpAjaxContext.ajax_rsp_assign_prop(sPrefix, false, divTblstep_Internalname, "Visible", StringUtil.LTrim( StringUtil.Str( (decimal)(divTblstep_Visible), 5, 0)), !bGXsfl_5_Refreshing);
+               AssignProp(sPrefix, false, divTblstep_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTblstep_Visible), 5, 0), !bGXsfl_5_Refreshing);
             }
             else
             {
                AV30StepRealNumber = (short)(AV30StepRealNumber+1);
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrim( StringUtil.Str( (decimal)(AV30StepRealNumber), 4, 0)));
-               context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
+               AssignAttri(sPrefix, false, "AV30StepRealNumber", StringUtil.LTrimStr( (decimal)(AV30StepRealNumber), 4, 0));
+               AssignAttri(sPrefix, false, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV30StepRealNumber), "ZZZ9"), context));
             }
             AV14StepNumber = (short)(AV14StepNumber+1);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV14StepNumber", StringUtil.LTrim( StringUtil.Str( (decimal)(AV14StepNumber), 4, 0)));
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV14StepNumber), "ZZZ9"), context));
+            AssignAttri(sPrefix, false, "AV14StepNumber", StringUtil.LTrimStr( (decimal)(AV14StepNumber), 4, 0));
+            AssignAttri(sPrefix, false, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV14StepNumber), "ZZZ9"), context));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1325,7 +1348,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          initialize();
          AV18WizardSteps = (GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>)getParm(obj,0);
          AV11SelectedStep = (String)getParm(obj,1);
-         context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
+         AssignAttri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
       }
 
       public override String getresponse( String sGXDynURL )
@@ -1394,7 +1417,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             AV18WizardSteps = (GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>)getParm(obj,2);
             AV11SelectedStep = (String)getParm(obj,3);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
+            AssignAttri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
          }
          wcpOAV11SelectedStep = cgiGet( sPrefix+"wcpOAV11SelectedStep");
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV11SelectedStep, wcpOAV11SelectedStep) != 0 ) ) )
@@ -1420,7 +1443,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( sCtrlAV11SelectedStep) > 0 )
          {
             AV11SelectedStep = cgiGet( sCtrlAV11SelectedStep);
-            context.httpAjaxContext.ajax_rsp_assign_attri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
+            AssignAttri(sPrefix, false, "AV11SelectedStep", AV11SelectedStep);
          }
          else
          {
@@ -1539,7 +1562,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?20191031538292", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((String)Form.Jscriptsrc.Item(idxLst))), "?201911115365069", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1556,7 +1579,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wizardstepsarrowwc.js", "?20191031538292", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wizardstepsarrowwc.js", "?201911115365069", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1660,7 +1683,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridwizardstepsRow.AddColumnProperties("cell", -1, isAjaxCallMode( ), new Object[] {(String)"",(String)"",(String)""});
          /* Single line edit */
          ROClassString = edtavWizardstepsaux__title_Class;
-         GridwizardstepsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavWizardstepsaux__title_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV32WizardStepsAux.Item(AV37GXV1)).gxTpr_Title,(String)"",(String)"",(String)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavWizardstepsaux__title_Jsonclick,(short)0,(String)edtavWizardstepsaux__title_Class,(String)"",(String)ROClassString,(String)"",(String)"",(int)edtavWizardstepsaux__title_Visible,(int)edtavWizardstepsaux__title_Enabled,(short)0,(String)"text",(String)"",(short)40,(String)"chr",(short)1,(String)"row",(short)40,(short)0,(short)0,(short)5,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true});
+         GridwizardstepsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(String)edtavWizardstepsaux__title_Internalname,((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV32WizardStepsAux.Item(AV37GXV1)).gxTpr_Title,(String)"",(String)"",(String)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(String)"",(String)"",(String)"",(String)"",(String)edtavWizardstepsaux__title_Jsonclick,(short)0,(String)edtavWizardstepsaux__title_Class,(String)"",(String)ROClassString,(String)"",(String)"",(int)edtavWizardstepsaux__title_Visible,(int)edtavWizardstepsaux__title_Enabled,(short)0,(String)"text",(String)"",(short)40,(String)"chr",(short)1,(String)"row",(short)40,(short)0,(short)0,(short)5,(short)1,(short)-1,(short)-1,(bool)false,(String)"",(String)"left",(bool)true,(String)""});
          if ( GridwizardstepsContainer.GetWrapped() == 1 )
          {
             GridwizardstepsContainer.CloseTag("cell");
@@ -1685,8 +1708,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_lvl_hashes072( ) ;
          /* End of Columns property logic. */
          GridwizardstepsContainer.AddRow(GridwizardstepsRow);
-         nGXsfl_5_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_idx+1>subGridwizardsteps_Recordsperpage( )) ? 1 : nGXsfl_5_idx+1);
-         sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrim( StringUtil.Str( (decimal)(nGXsfl_5_idx), 4, 0)), 4, "0");
+         nGXsfl_5_idx = ((subGridwizardsteps_Islastpage==1)&&(nGXsfl_5_idx+1>subGridwizardsteps_fnc_Recordsperpage( )) ? 1 : nGXsfl_5_idx+1);
+         sGXsfl_5_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_5_idx), 4, 0), 4, "0");
          SubsflControlProps_52( ) ;
          /* End function sendrow_52 */
       }
@@ -1757,9 +1780,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'GRIDWIZARDSTEPS_nFirstRecordOnPage'},{av:'GRIDWIZARDSTEPS_nEOF'},{av:'AV32WizardStepsAux',fld:'vWIZARDSTEPSAUX',grid:5,pic:''},{av:'nRC_GXsfl_5',ctrl:'GRIDWIZARDSTEPS',prop:'GridRC'},{av:'AV11SelectedStep',fld:'vSELECTEDSTEP',pic:''},{av:'AV18WizardSteps',fld:'vWIZARDSTEPS',pic:''},{av:'sPrefix'},{av:'AV30StepRealNumber',fld:'vSTEPREALNUMBER',pic:'ZZZ9',hsh:true},{av:'AV9PreviousSelected',fld:'vPREVIOUSSELECTED',pic:'',hsh:true},{av:'AV14StepNumber',fld:'vSTEPNUMBER',pic:'ZZZ9',hsh:true},{av:'AV23FirstIsDummy',fld:'vFIRSTISDUMMY',pic:'',hsh:true},{av:'AV24LastIsDummy',fld:'vLASTISDUMMY',pic:'',hsh:true},{av:'AV27SecondIsDummy',fld:'vSECONDISDUMMY',pic:'',hsh:true},{av:'AV26PenultimateIsDummy',fld:'vPENULTIMATEISDUMMY',pic:'',hsh:true}]");
+         setEventMetadata("REFRESH","{handler:'Refresh',iparms:[{av:'GRIDWIZARDSTEPS_nFirstRecordOnPage'},{av:'GRIDWIZARDSTEPS_nEOF'},{av:'AV11SelectedStep',fld:'vSELECTEDSTEP',pic:''},{av:'AV18WizardSteps',fld:'vWIZARDSTEPS',pic:''},{av:'sPrefix'},{av:'AV30StepRealNumber',fld:'vSTEPREALNUMBER',pic:'ZZZ9',hsh:true},{av:'AV32WizardStepsAux',fld:'vWIZARDSTEPSAUX',grid:5,pic:'',hsh:true},{av:'nRC_GXsfl_5',ctrl:'GRIDWIZARDSTEPS',prop:'GridRC'},{av:'AV9PreviousSelected',fld:'vPREVIOUSSELECTED',pic:'',hsh:true},{av:'AV14StepNumber',fld:'vSTEPNUMBER',pic:'ZZZ9',hsh:true},{av:'AV23FirstIsDummy',fld:'vFIRSTISDUMMY',pic:'',hsh:true},{av:'AV24LastIsDummy',fld:'vLASTISDUMMY',pic:'',hsh:true},{av:'AV27SecondIsDummy',fld:'vSECONDISDUMMY',pic:'',hsh:true},{av:'AV26PenultimateIsDummy',fld:'vPENULTIMATEISDUMMY',pic:'',hsh:true}]");
          setEventMetadata("REFRESH",",oparms:[]}");
-         setEventMetadata("GRIDWIZARDSTEPS.LOAD","{handler:'E12072',iparms:[{av:'AV30StepRealNumber',fld:'vSTEPREALNUMBER',pic:'ZZZ9',hsh:true},{av:'AV32WizardStepsAux',fld:'vWIZARDSTEPSAUX',grid:5,pic:''},{av:'GRIDWIZARDSTEPS_nFirstRecordOnPage'},{av:'nRC_GXsfl_5',ctrl:'GRIDWIZARDSTEPS',prop:'GridRC'},{av:'AV11SelectedStep',fld:'vSELECTEDSTEP',pic:''},{av:'AV9PreviousSelected',fld:'vPREVIOUSSELECTED',pic:'',hsh:true},{av:'AV14StepNumber',fld:'vSTEPNUMBER',pic:'ZZZ9',hsh:true},{av:'AV23FirstIsDummy',fld:'vFIRSTISDUMMY',pic:'',hsh:true},{av:'AV24LastIsDummy',fld:'vLASTISDUMMY',pic:'',hsh:true},{av:'AV18WizardSteps',fld:'vWIZARDSTEPS',pic:''},{av:'AV27SecondIsDummy',fld:'vSECONDISDUMMY',pic:'',hsh:true},{av:'AV26PenultimateIsDummy',fld:'vPENULTIMATEISDUMMY',pic:'',hsh:true}]");
+         setEventMetadata("GRIDWIZARDSTEPS.LOAD","{handler:'E12072',iparms:[{av:'AV30StepRealNumber',fld:'vSTEPREALNUMBER',pic:'ZZZ9',hsh:true},{av:'AV32WizardStepsAux',fld:'vWIZARDSTEPSAUX',grid:5,pic:'',hsh:true},{av:'GRIDWIZARDSTEPS_nFirstRecordOnPage'},{av:'nRC_GXsfl_5',ctrl:'GRIDWIZARDSTEPS',prop:'GridRC'},{av:'AV11SelectedStep',fld:'vSELECTEDSTEP',pic:''},{av:'AV9PreviousSelected',fld:'vPREVIOUSSELECTED',pic:'',hsh:true},{av:'AV14StepNumber',fld:'vSTEPNUMBER',pic:'ZZZ9',hsh:true},{av:'AV23FirstIsDummy',fld:'vFIRSTISDUMMY',pic:'',hsh:true},{av:'AV24LastIsDummy',fld:'vLASTISDUMMY',pic:'',hsh:true},{av:'AV18WizardSteps',fld:'vWIZARDSTEPS',pic:''},{av:'AV27SecondIsDummy',fld:'vSECONDISDUMMY',pic:'',hsh:true},{av:'AV26PenultimateIsDummy',fld:'vPENULTIMATEISDUMMY',pic:'',hsh:true}]");
          setEventMetadata("GRIDWIZARDSTEPS.LOAD",",oparms:[{av:'lblStepnumber_Caption',ctrl:'STEPNUMBER',prop:'Caption'},{ctrl:'WIZARDSTEPSAUX__TITLE',prop:'Class'},{av:'imgStepimg_Class',ctrl:'STEPIMG',prop:'Class'},{av:'lblStepnumber_Class',ctrl:'STEPNUMBER',prop:'Class'},{av:'divTblstep_Class',ctrl:'TBLSTEP',prop:'Class'},{av:'AV9PreviousSelected',fld:'vPREVIOUSSELECTED',pic:'',hsh:true},{av:'imgStepimg_Visible',ctrl:'STEPIMG',prop:'Visible'},{av:'tblTblcontainerstep_Class',ctrl:'TBLCONTAINERSTEP',prop:'Class'},{av:'divTblstep_Visible',ctrl:'TBLSTEP',prop:'Visible'},{av:'lblStepnumber_Visible',ctrl:'STEPNUMBER',prop:'Visible'},{ctrl:'WIZARDSTEPSAUX__TITLE',prop:'Visible'},{av:'AV30StepRealNumber',fld:'vSTEPREALNUMBER',pic:'ZZZ9',hsh:true},{av:'AV14StepNumber',fld:'vSTEPNUMBER',pic:'ZZZ9',hsh:true}]}");
          setEventMetadata("NULL","{handler:'Validv_Gxv2',iparms:[]");
          setEventMetadata("NULL",",oparms:[]}");
@@ -1929,6 +1952,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXWebColumn GridwizardstepsColumn ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
+      private IGxDataStore dsMH ;
+      private IGxDataStore dsCAPS ;
       private IGxDataStore dsAFIP ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

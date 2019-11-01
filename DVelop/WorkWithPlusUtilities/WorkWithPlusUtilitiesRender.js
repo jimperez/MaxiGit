@@ -158,7 +158,7 @@ function DVelop_WorkWithPlusUtilities() {
 	}
 
 	this.IsIE = function () {
-		return (window.navigator.userAgent.indexOf("MSIE ") >= 0 || (!!window.MSInputMethodContext && !!document.documentMode));
+		return (window.navigator.userAgent.indexOf("MSIE ") >= 0 || window.navigator.userAgent.indexOf('Edge') >= 0 || (!!window.MSInputMethodContext && !!document.documentMode));
 	}
 
 	this.FixObjectFitCover = function () {
@@ -311,7 +311,7 @@ function DVelop_WorkWithPlusUtilities() {
 							&& !$(elem).hasClass('gx-radio-button')
 							&& elem.tagName != 'LABEL'
 							&& (elem.id == null || !elem.id.match(/_GXI$/))
-							&& !(i != null && "focus" === i.type || controlValue != null && controlValue.length > 0);
+							&& !(i != null && "focus" === i.type || controlValue != null && controlValue.length > 0 || $(elem).is(':focus'));
 		this.FloatingLabels_AnimateLabel_ToggleClases(elem, addReadOnly, addEmptyVal);
 	}
 
