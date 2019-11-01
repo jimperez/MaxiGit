@@ -1,9 +1,9 @@
 /*
 				   File: type_SdtLinkList_LinkItem
 			Description: LinkList
-				 Author: Nemo 🐠 for C# version 16.0.5.135614
+				 Author: Nemo 🐠 for C# version 16.0.2.131213
 		   Program type: Callable routine
-			  Main DBMS: 
+			  Main DBMS: SQL Server
 */
 using System;
 using System.Collections;
@@ -155,7 +155,7 @@ namespace GeneXus.Programs
 
 			}
 			set { 
-				 sdt.gxTpr_Caption = value;
+				 sdt.gxTpr_Caption = value ;
 			}
 		}
 
@@ -167,7 +167,7 @@ namespace GeneXus.Programs
 
 			}
 			set { 
-				 sdt.gxTpr_Url = value;
+				 sdt.gxTpr_Url = value ;
 			}
 		}
 

@@ -40,15 +40,14 @@
       <add  key="EnableIntegratedSecurity" value="0"/>
       <add  key="MAX_CURSOR" value="100"/>
       <add  key="STATIC_CONTENT" value=""/>
-      <add  key="GX_BUILD_NUMBER" value="135614"/>
+      <add  key="GX_BUILD_NUMBER" value="131213"/>
       <add  key="CACHE_CONTENT_EXPIRATION" value="36"/>
       <add  key="ENABLE_MANAGEMENT" value="0"/>
       <add  key="COMPRESS_HTML" value="1"/>
       <add  key="IE_COMPATIBILITY_VIEW" value="EmulateIE7"/>
       <add  key="DocumentType" value="HTML5"/>
       <add  key="SMART_CACHING" value="0"/>
-      <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="2019111915368"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="20191118311710"/>
    </appSettings>
    <languages >
       <Spanish  code="spa" time_fmt="24" decimal_point="," thousand_sep="." date_fmt="DMY" culture="es-ES"/>
